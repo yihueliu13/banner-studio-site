@@ -59,6 +59,13 @@ Next.js 14 + TypeScript + Tailwind CSS + Lenis + Framer Motion + GSAP + Vercel A
 - Block 08.5 Z 軸 reveal 在 mobile **降級為 translateY + fade**(不算 perspective)
 - 圖片用 `next/image`,字型用 `next/font`(自託管,不直接 link Google Fonts)
 - 大標題(h1/h2)**不加標點**,內文用全形「,」「。」(非半形)
+  - **規則範圍**:只管「網站視覺呈現的文案」(JSX / content / spec 文案)
+  - 治理文件(本檔 / README / SYSTEM-MANUAL / backlog / roadmap 等)不強制,半形可
+
+## 白話規則(對應全域 CLAUDE.md 最高硬規則)
+- AI 對 Kay(非工程師)說話**第一次出現的英文 / 術語**必須加括號白話解釋
+- 不確定查 [`docs/reference/glossary.md`](docs/reference/glossary.md)(80+ 詞對照表)
+- Kay 反問「這是什麼 / 不懂 / 太複雜」→ 立刻白話補
 
 ## Mobile 優先檢查
 - **每個 block 寫完當下** chrome devtools 切 375x667 確認(不要等到最後)
