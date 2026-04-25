@@ -99,19 +99,15 @@ body {
 }
 
 /* ────────────────────────────────────────────────────────
-   OKLCH @supports 降級
+   OKLCH @supports 降級(skeleton)
    舊瀏覽器(< Chrome 110 / Safari 16.4)用 hex fallback;
-   新瀏覽器啟用 OKLCH 色彩空間做 hover 微調。
-   範例:Block 08 .testimonial-card hover 暖灰
+   新瀏覽器啟用 OKLCH 色彩空間。
+
+   ⚠️ 目前 .testimonial-card 範例已移除 — 跟 v9.9 spec
+      「Testimonials hover 純 transform 不動 background」原則衝突。
+      D5 寫到實際 OKLCH 場景時補(候選:Final CTA 卡片 active glow、
+      Feature card is-selected state)。
    ──────────────────────────────────────────────────────── */
-.testimonial-card {
-  background: var(--bg-page);
-}
-@supports (background: oklch(0.5 0.1 50)) {
-  .testimonial-card:hover {
-    background: oklch(94% 0.012 70);
-  }
-}
 
 @layer utilities {
   .text-balance {

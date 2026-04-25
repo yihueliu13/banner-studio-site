@@ -34,6 +34,18 @@ last_updated: 2026-04-25
 | ⬜ | Mobile 漢堡選單 | 2026-04-25 | D3-D6 階段直接隱藏 menu items |
 | ⬜ | Block 04 Level A 完整版(若衝刺退到 Level B) | 2026-04-25 | 看 D3 完成度 |
 
+## D5 / D7 Design Token Polish(A-2 留下的尾巴)
+
+- [ ] **D5**:補 OKLCH @supports 實際使用場景
+  - 候選 1:Final CTA 卡片 active state glow
+  - 候選 2:Feature card is-selected state
+  - 不要用 testimonial-card hover(違反 v9.9「純 transform 不動 background」)
+
+- [ ] **D7**:tailwind.config.ts colors / fontFamily 改用 var() 吃 globals.css
+  - 現況:colors 跟 :root vars 雙來源,未來改 token 要兩邊同步
+  - 改法:`brand: { DEFAULT: "var(--brand)" }` 統一從 globals.css 讀
+  - D3 衝刺不動,風險大於效益
+
 ## 🟢 P2(評估 / 之後再說)
 
 | 狀態 | 項目 | 建立 | 備註 |
