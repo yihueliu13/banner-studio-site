@@ -1,0 +1,2000 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Banner Studio — Final v10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --neutral-0: #FFFFFF;
+    --neutral-50: #FAFAF9;
+    --neutral-100: #F5F5F4;
+    --neutral-200: #E7E5E4;
+    --neutral-300: #D6D3D1;
+    --neutral-400: #A8A29E;
+    --neutral-600: #57534E;
+    --neutral-700: #44403C;
+    --neutral-800: #292524;
+    --neutral-900: #1C1917;
+    --orange-50: #FFF7ED;
+    --orange-100: #FFEDD5;
+    --orange-500: #FF963B;
+    --orange-600: #EA7A1F;
+    --bg-page: var(--neutral-50);
+    --bg-card: var(--neutral-0);
+    --bg-story-card: #EEEDE8;
+    --text-primary: var(--neutral-900);
+    --text-secondary: var(--neutral-600);
+    --text-muted: var(--neutral-400);
+    --brand: var(--orange-500);
+    --brand-hover: var(--orange-600);
+    --border-subtle: var(--neutral-200);
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* ⭐ Typography Tokens
+       --font-display: Geist 用於數字、大標題、metric value (像 Nauta)
+       --font-body: Inter + Noto Sans TC 用於內文 */
+    --font-display: "Geist", "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --font-body: "Inter", "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+  /* 全域預設用 body 字型 */
+  html, body, button, input, textarea, select, p, span, div, a, li {
+    font-family: var(--font-body);
+  }
+
+  /* ⭐ 大標題、Metric 數字一律用 Geist (像 Nauta) */
+  h1, h2, h3, h4,
+  .stat-number, .scale-metric-value,
+  .hero-title, .testimonial-num,
+  .counter, .counter-num, .counter-prefix {
+    font-family: var(--font-display);
+  }
+
+  body {
+    background: var(--bg-page);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ─────────── Nav（補齊選單） ─────────── */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 16px 0;
+    transition: all 600ms var(--ease-out-expo);
+    background: transparent;
+  }
+  .nav > .container {
+    max-width: 100%;
+    padding: 0 32px;
+  }
+  .nav.scrolled {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px) saturate(180%);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+  }
+  .nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .logo-dot {
+    width: 8px; height: 8px;
+    background: var(--brand);
+    border-radius: 50%;
+  }
+
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  .nav-link {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: opacity 200ms var(--ease-out-expo);
+  }
+  .nav-link:hover { opacity: 0.6; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 9999px;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 400ms var(--ease-out-expo);
+    border: none;
+    text-decoration: none;
+  }
+  .btn-primary {
+    background: var(--text-primary);       /* ⭐ 黑底 */
+    color: var(--brand);                   /* ⭐ 橘字 */
+  }
+  .btn-primary:hover {
+    background: #000;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-primary);            /* 黑字 */
+    border: 1.5px solid var(--brand);      /* 橘邊框 */
+  }
+  .btn-secondary:hover {
+    border-color: var(--brand-hover);
+    background: rgba(255, 150, 59, 0.08);
+  }
+  .btn-brand {
+    background: var(--brand);              /* 橘底 */
+    color: var(--text-primary);            /* 黑字 */
+  }
+  .btn-brand:hover {
+    background: var(--brand-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(255, 150, 59, 0.35);
+  }
+  .btn-lg { padding: 16px 32px; font-size: 17px; }
+
+  /* ─────────── Hero ─────────── */
+  .hero {
+    padding: 96px 0 96px;
+    overflow: hidden;
+  }
+  .hero > .container {
+    max-width: 1366px;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .eyebrow {
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--brand);
+    margin-bottom: 24px;
+  }
+  .hero-title {
+    font-size: clamp(40px, 6vw, 56px);
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+  .word { display: inline-block; overflow: hidden; vertical-align: top; }
+  .word-inner {
+    display: inline-block;
+    transform: translateY(110%);
+    transition: transform 800ms var(--ease-out-expo);
+  }
+  .hero-title.is-revealed .word-inner { transform: translateY(0); }
+  .hero-title.is-revealed .word:nth-child(1) .word-inner { transition-delay: 0ms; }
+  .hero-title.is-revealed .word:nth-child(2) .word-inner { transition-delay: 0ms; }
+  .hero-title.is-revealed .word:nth-child(3) .word-inner { transition-delay: 150ms; }
+
+  .hero-subtitle {
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    /* ⭐ 拿掉 max-width,讓寬度跟標題一致 */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 800ms var(--ease-out-expo) 600ms, transform 800ms var(--ease-out-expo) 600ms;
+  }
+  .hero-subtitle.is-revealed { opacity: 1; transform: translateY(0); }
+  .hero-cta {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 800ms var(--ease-out-expo) 750ms, transform 800ms var(--ease-out-expo) 750ms;
+  }
+  .hero-cta.is-revealed { opacity: 1; transform: translateY(0); }
+  .hero-micro {
+    font-size: 14px;
+    color: var(--text-muted);
+    opacity: 0;
+    transition: opacity 800ms var(--ease-out-expo) 900ms;
+  }
+  .hero-micro.is-revealed { opacity: 1; }
+  .hero-eyebrow {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 800ms var(--ease-out-expo), transform 800ms var(--ease-out-expo);
+  }
+  .hero-eyebrow.is-revealed { opacity: 1; transform: translateY(0); }
+
+  .hero-marquee {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    height: 600px;
+    overflow: hidden;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 1000ms var(--ease-out-expo) 400ms, transform 1000ms var(--ease-out-expo) 400ms;
+  }
+  .hero-marquee.is-revealed { opacity: 1; transform: scale(1); }
+  .marquee-col { display: flex; flex-direction: column; gap: 12px; }
+  .marquee-col-up { animation: scrollUp 30s linear infinite; }
+  .marquee-col-down { animation: scrollDown 35s linear infinite; }
+  .banner-mock {
+    flex-shrink: 0;
+    height: 140px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  }
+  .banner-mock img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .banner-mock-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 60%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    padding: 0 16px;
+    text-align: center;
+  }
+  @keyframes scrollUp {
+    from { transform: translateY(0); }
+    to { transform: translateY(-50%); }
+  }
+  @keyframes scrollDown {
+    from { transform: translateY(-50%); }
+    to { transform: translateY(0); }
+  }
+
+  /* ─────────── Stats ─────────── */
+  .stats {
+    padding: 64px 0;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--bg-card);
+  }
+  .stats-eyebrow {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--brand);                  /* ⭐ 統一橘色 */
+    margin-bottom: 32px;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .stat { text-align: center; }
+  .stat-number {
+    font-size: 72px;
+    font-weight: 500;             /* ⭐ Nauta 風格,瘦版而不是粗體 */
+    color: var(--text-primary);
+    letter-spacing: -0.03em;       /* 字距更緊 */
+    line-height: 1;
+    margin-bottom: 12px;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-number .suffix {
+    background: linear-gradient(135deg, var(--text-primary) 40%, var(--brand) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .stat-label { font-size: 16px; color: var(--text-secondary); }
+
+  /* ═══════════════════════════════════════════════════════
+     ⭐ Block 04: Story（混合佈局）
+     ═══════════════════════════════════════════════════════ */
+  .story {
+    padding: 160px 0;
+    position: relative;
+  }
+  .story-header {
+    text-align: center;
+    margin-bottom: 120px;
+  }
+  .story-header h2 {
+    font-size: clamp(40px, 5vw, 56px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+  .story-header p {
+    font-size: 20px;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  .story-main {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .story-sidebar {
+    position: sticky;
+    top: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .story-nav-item {
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: var(--neutral-300);
+    text-align: left;
+    cursor: pointer;
+    transition: color 500ms var(--ease-out-expo);
+    line-height: 1.3;
+    display: flex;             /* ⭐ 改成 flex 容納 icon */
+    align-items: center;
+    gap: 10px;
+  }
+  .story-nav-item.active { color: var(--text-primary); }
+  .story-nav-item:hover:not(.active) { color: var(--neutral-500); }
+
+  /* ⭐ Sidebar 滑鼠提示 icon (SVG stroke) */
+  .nav-mouse-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    color: var(--brand);
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 400ms var(--ease-out-expo),
+                transform 400ms var(--ease-out-expo);
+    flex-shrink: 0;
+  }
+  .nav-mouse-icon path {
+    stroke: currentColor;
+  }
+  /* active 時顯示並啟動動畫 */
+  .story-nav-item.active .nav-mouse-icon {
+    opacity: 1;
+    transform: translateX(0);
+    animation: mouseHint 1.6s ease-in-out infinite;
+  }
+
+  /* ⭐ 滑鼠提示 keyframes:模擬游標滑動的微動感 */
+  @keyframes mouseHint {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    20% {
+      transform: translateY(-3px) rotate(-6deg);
+    }
+    50% {
+      transform: translateY(2px) rotate(4deg);
+    }
+    80% {
+      transform: translateY(-2px) rotate(-3deg);
+    }
+  }
+
+  .story-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* ⭐ 卡片基底 */
+  .story-card {
+    background: var(--bg-story-card);
+    border-radius: 32px;
+    padding: 24px;
+    overflow: hidden;
+  }
+
+  /* ⭐ 變體 A：上下排列（圖大、文字在上） */
+  .story-card.layout-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .story-card.layout-stack .story-card-content {
+    max-width: 580px;
+  }
+  .story-card.layout-stack .story-card-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 24px;
+  }
+
+  /* ⭐ 變體 B：左右排列（圖在右、文字在左） */
+  .story-card.layout-split {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .story-card.layout-split .story-card-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 20px;
+  }
+
+  /* 文字內容 */
+  .story-card-content {
+    transform: translateY(30px);
+    opacity: 0;
+    transition: transform 1000ms var(--ease-out-expo) 200ms, opacity 800ms var(--ease-out-expo) 200ms;
+  }
+  .story-card.is-visible .story-card-content {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .story-card-title {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    margin-bottom: 16px;
+    line-height: 1.25;
+  }
+  .story-card-body {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+  }
+
+  /* 圖片基底 */
+  .story-card-image {
+    overflow: hidden;
+    background: var(--neutral-100);
+    display: block;
+    position: relative;
+    transform: translateY(60px);
+    opacity: 0;
+    transition: transform 1200ms var(--ease-out-expo), opacity 900ms var(--ease-out-expo);
+  }
+  .story-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .story-card.is-visible .story-card-image {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .story-card.is-visible .story-card-image {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* ─────────── Features（圖片版 + 微互動）─────────── */
+  .features {
+    padding: 128px 0;
+    background: var(--bg-card);
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+  .section-header h2 {
+    font-size: 48px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .section-header p {
+    font-size: 18px;
+    color: var(--text-secondary);
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  /* ⭐ 卡片基底 */
+  .feature-card {
+    background: transparent;
+    border-radius: 28px;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 500ms var(--ease-out-expo);
+    /* ⭐ 不能 overflow: hidden,否則文字會被 reveal 的 mask 切到 */
+  }
+  .feature-card:hover {
+    transform: translateY(-6px);
+  }
+
+  /* ⭐ 圖片容器 */
+  .feature-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: var(--neutral-100);
+  }
+  .feature-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 800ms var(--ease-out-expo);
+    display: block;
+  }
+  .feature-card:hover .feature-image img {
+    transform: scale(1.05);
+  }
+
+  /* ⭐ 文字區 */
+  .feature-text {
+    padding: 0 4px;
+  }
+  .feature-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .feature-body {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  /* ─── Lightbox Modal ─── */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 500ms var(--ease-out-expo);
+    padding: 48px;
+    cursor: zoom-out;
+  }
+  .lightbox.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .lightbox-content {
+    max-width: 1100px;
+    max-height: 90vh;
+    width: 100%;
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    transform: scale(0.92);
+    opacity: 0;
+    transition: transform 600ms var(--ease-out-expo), opacity 500ms var(--ease-out-expo);
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+  }
+  .lightbox.is-open .lightbox-content {
+    transform: scale(1);
+    opacity: 1;
+  }
+  .lightbox-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--neutral-100);
+  }
+  .lightbox-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .lightbox-text {
+    padding: 32px 40px 40px;
+  }
+  .lightbox-text h3 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: -0.015em;
+  }
+  .lightbox-text p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 300ms var(--ease-out-expo);
+  }
+  .lightbox-close:hover {
+    background: rgba(255,255,255,0.2);
+    transform: scale(1.1);
+  }
+
+  /* ─────────── Manifesto（底圖版）─────────── */
+  .manifesto {
+    padding: 160px 0;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .manifesto-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=2000&h=1200&fit=crop');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+  .manifesto-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+      rgba(0,0,0,0.3) 0%,
+      rgba(0,0,0,0.5) 50%,
+      rgba(0,0,0,0.7) 100%);
+  }
+  .manifesto > .container {
+    position: relative;
+    z-index: 1;
+  }
+  .manifesto h2 {
+    font-size: clamp(48px, 7vw, 88px);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: white;
+  }
+  .manifesto h2 + h2 { margin-top: 8px; }
+  .manifesto-cta { margin-top: 64px; }
+  .manifesto-meta {
+    margin-top: 24px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+  }
+
+  /* Manifesto 是底圖暗色背景,btn-primary 已經是橘底黑字夠搶眼,不需要覆寫 */
+
+  /* ─────────── Testimonials ─────────── */
+  .testimonials { padding: 128px 0; background: var(--bg-card); }
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  /* ⭐ Hover 由 GSAP 控制 (見 JS) - GPU 加速 + spring 物理感 */
+  .testimonial-card {
+    background-color: var(--bg-page);
+    border: none;
+    border-radius: 28px;
+    padding: 40px;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    will-change: transform, box-shadow;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  .testimonial-num {
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 16px;
+    font-variant-numeric: tabular-nums;
+  }
+  .testimonial-num .accent { color: var(--brand); }
+  .testimonial-label { font-size: 18px; font-weight: 600; margin-bottom: 16px; }
+  .testimonial-detail { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px; }
+  .testimonial-source {
+    font-size: 12px;
+    color: var(--text-muted);
+    padding-top: 16px;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  /* ─────────── Scale Showcase（Z 軸 scroll-linked depth reveal）─────────── */
+  .scale-showcase {
+    padding: 160px 0;
+    background: white;
+    /* ⭐ 關鍵:給子元素 3D 透視空間 */
+    perspective: 1500px;
+    perspective-origin: 50% 50%;
+    overflow: hidden;
+  }
+  .scale-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 120px;
+    transform-style: preserve-3d;
+    align-items: start;
+  }
+  .scale-intro h2 {
+    font-size: clamp(40px, 5vw, 56px);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    color: var(--text-primary);
+    margin-bottom: 32px;
+  }
+  .scale-intro p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    max-width: 400px;
+  }
+
+  .scale-numbers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px 64px;
+    transform-style: preserve-3d;
+  }
+  /* ⭐ 起始狀態：遠 + 縮小 + 模糊 + 透明
+     JS 會即時更新 transform / opacity / filter 三個 inline style */
+  .scale-metric {
+    display: flex;
+    flex-direction: column;
+    transform-style: preserve-3d;
+    will-change: transform, opacity, filter;
+
+    /* 預設值（JS 載入前的 fallback） */
+    transform: translateZ(-1000px) scale(0.3);
+    opacity: 0;
+    filter: blur(24px);
+  }
+
+  .scale-metric-value {
+    font-size: clamp(72px, 8vw, 104px);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+    font-variant-numeric: tabular-nums;
+  }
+  .scale-metric-value .unit {
+    font-weight: 500;
+  }
+  /* 漸層色：交替 accent 色 */
+  .scale-metric-value.accent-orange .unit {
+    background: linear-gradient(135deg, var(--text-primary) 40%, var(--brand) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .scale-metric-value.accent-blue .unit {
+    background: linear-gradient(135deg, var(--text-primary) 40%, #3B5FD6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .scale-metric-meta {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .scale-metric-arrow {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .scale-metric-arrow.down { color: var(--brand); }
+  .scale-metric-arrow.up { color: #3B5FD6; }
+  .scale-metric-label {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--text-primary);
+  }
+
+  /* Mobile 降級：不做 3D，只 fade-up（JS 會在 mobile 偵測時用不同公式）*/
+  @media (max-width: 768px) {
+    .scale-showcase { perspective: none; }
+  }
+
+  @media (max-width: 900px) {
+    .scale-layout {
+      grid-template-columns: 1fr;
+      gap: 64px;
+    }
+    .scale-numbers { gap: 48px 32px; }
+  }
+
+  /* ─────────── Final CTA（深色卡片內縮 90% 寬版）─────────── */
+  .final-cta {
+    /* 外層只是給 page 背景的 padding */
+    padding: 80px 0 80px;
+    background: var(--bg-page);  /* 露出米色 */
+  }
+  .final-cta-card {
+    /* 卡片寬度 90%,左右各留 5% page 背景 */
+    width: 90%;
+    max-width: none;
+    margin: 0 auto;
+    padding: 96px 96px;
+    background: var(--brand);                 /* ⭐ 露天橘底 */
+    color: white;
+    border-radius: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .final-cta-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .final-cta-content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 96px;
+    align-items: center;
+  }
+
+  /* 左側文字 - 全黑 (橘底配黑字) */
+  .final-cta-card {
+    color: var(--text-primary);                /* ⭐ 整體文字底色改黑 */
+  }
+  .final-cta-intro h2 {
+    font-size: clamp(36px, 4.5vw, 56px);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    margin-bottom: 24px;
+    color: var(--text-primary);                /* ⭐ 黑 */
+  }
+  .final-cta-subtitle {
+    font-size: 17px;
+    color: rgba(28, 25, 23, 0.75);             /* ⭐ 黑色 75% */
+    line-height: 1.6;
+    margin-bottom: 32px;
+    max-width: 420px;
+  }
+  .final-cta-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .final-cta-points li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--text-primary);                /* ⭐ 黑 */
+  }
+  .final-cta-points li::before {
+    content: '✓';
+    color: var(--text-primary);                /* ⭐ 黑勾勾 */
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* 右側表單 */
+  .apply-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    text-align: left;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);                /* ⭐ 黑 label */
+    letter-spacing: 0.02em;
+  }
+  .form-label .required {
+    color: var(--text-primary);                /* ⭐ 黑星號 */
+    margin-left: 4px;
+  }
+  .form-input {
+    background: #33343B;                       /* ⭐ 指定深色 */
+    border: none;                              /* ⭐ 拿掉邊框 */
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 15px;
+    color: white;
+    font-family: inherit;
+    transition: all 300ms var(--ease-out-expo);
+    outline: none;
+  }
+  .form-input::placeholder { color: rgba(255,255,255,0.4); }
+  .form-input:hover {
+    background: #3A3B43;
+  }
+  .form-input:focus {
+    background: #3D3E47;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15);
+  }
+  .form-submit-row {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;                   /* ⭐ 按鈕靠左 (寬度減半的關係) */
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .form-submit {
+    background: white;                         /* ⭐ 白底 */
+    color: var(--text-primary);                /* ⭐ 深色字 */
+    border: none;
+    padding: 16px 32px;
+    width: 50%;                                /* ⭐ 寬度減半 */
+    border-radius: 9999px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 400ms var(--ease-out-expo);
+    animation: pulse 3s var(--ease-out-expo) infinite;
+  }
+  .form-submit:hover {
+    background: #F5F5F4;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+  }
+  .form-submit:active { transform: translateY(0); }
+  .form-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    animation: none;
+  }
+  .form-meta {
+    font-size: 13px;
+    color: rgba(28, 25, 23, 0.6);              /* ⭐ 黑 60% */
+    text-align: center;
+  }
+
+  /* 成功訊息 */
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 48px 24px;
+  }
+  .form-success.is-visible { display: block; }
+  .form-success-icon {
+    width: 72px;
+    height: 72px;
+    background: rgba(28, 25, 23, 0.1);         /* ⭐ 黑底淡光 */
+    color: var(--text-primary);                /* ⭐ 黑勾勾 */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    font-size: 36px;
+  }
+  .form-success h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+  }
+  .form-success p {
+    font-size: 16px;
+    color: rgba(28, 25, 23, 0.7);              /* ⭐ 黑 70% */
+    line-height: 1.6;
+  }
+
+  .pulse { animation: pulse 3s var(--ease-out-expo) infinite; }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5); }
+    50% { transform: scale(1.04); box-shadow: 0 0 0 16px rgba(255, 255, 255, 0); }
+  }
+
+  /* Mobile */
+  @media (max-width: 900px) {
+    .final-cta { padding: 48px 0; }
+    .final-cta-card { padding: 56px 32px; border-radius: 24px; }
+    .final-cta-content {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+  }
+  @media (max-width: 640px) {
+    .final-cta-card { padding: 40px 24px; }
+    .apply-form { grid-template-columns: 1fr; }
+    .form-submit { width: 100%; }       /* mobile 按鈕回滿版 */
+  }
+
+  /* ─────────── FAQ ─────────── */
+  .faq { padding: 128px 0; }
+  .faq-list { max-width: 768px; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid var(--border-subtle); }
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 24px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+  }
+  .faq-question h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: color 300ms var(--ease-out-expo);
+  }
+  .faq-item:hover .faq-question h3 { color: var(--brand); }
+  .faq-icon {
+    font-size: 32px;
+    color: var(--brand);
+    transition: transform 500ms var(--ease-out-expo);
+    flex-shrink: 0;
+    margin-left: 24px;
+    line-height: 1;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 600ms var(--ease-out-expo);
+  }
+  .faq-item.open .faq-answer { max-height: 500px; }
+  .faq-answer-inner {
+    padding: 0 0 24px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    white-space: pre-line;
+  }
+
+  /* ─────────── Footer ─────────── */
+  .footer { background: var(--neutral-900); color: white; padding: 80px 0 32px; }
+  /* ⭐ Footer container 跟 Nav 一致:100% 滿版 + padding 32px */
+  .footer > .container {
+    max-width: 100%;
+    padding: 0 32px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+  .footer-brand .logo { color: white; margin-bottom: 12px; }
+  .footer-brand p { font-size: 14px; color: rgba(255,255,255,0.5); }
+  .footer-col h4 {
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 16px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 8px; font-size: 14px; color: rgba(255,255,255,0.7); }
+  /* Pill: 黑底橘字（在 footer 黑色背景上需要對比，這裡是黑字白底反過來）*/
+  .footer-pill {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 2px 8px;
+    background: var(--brand);
+    color: var(--text-primary);
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    vertical-align: middle;
+  }
+  .footer-bottom {
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(48px);
+    transition: opacity 1000ms var(--ease-out-expo), transform 1000ms var(--ease-out-expo);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  .demo-banner {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    background: rgba(0,0,0,0.85);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-size: 13px;
+    z-index: 999;
+    backdrop-filter: blur(8px);
+  }
+  .demo-banner strong { color: var(--brand); }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <div class="logo">
+      Banner Studio
+      <span class="logo-dot"></span>
+    </div>
+    <div class="nav-menu">
+      <a href="#story" class="nav-link">怎麼運作</a>
+      <a href="#features" class="nav-link">功能</a>
+      <a href="#faq" class="nav-link">常見問題</a>
+      <a href="#apply" class="btn btn-primary">申請使用</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow hero-eyebrow" id="heroEyebrow">露天 AI Banner 產線 · 內部使用</div>
+      <h1 class="hero-title" id="heroTitle">
+        <span class="word"><span class="word-inner">你以為要 4 小時的 banner</span></span>
+        <br>
+        <span class="word"><span class="word-inner">現在 3 分鐘</span></span>
+      </h1>
+      <p class="hero-subtitle" id="heroSubtitle">不用排期設計、不用會 Photoshop / Figma,沒時間用 AI 生圖、想文案。在 Notion 填 5 個欄位,AI 幫你把文案、底圖、組裝全做完。</p>
+      <div class="hero-cta" id="heroCta">
+        <a href="#apply" class="btn btn-primary btn-lg">申請使用</a>
+        <a href="#story" class="btn btn-secondary btn-lg">先看怎麼運作 →</a>
+      </div>
+      <p class="hero-micro" id="heroMicro">已在業務團隊跑過 100+ 筆 · 平均 3 分鐘 · 誠實的 70% 一次過率</p>
+    </div>
+    <div class="hero-marquee" id="heroMarquee">
+      <div class="marquee-col marquee-col-up" id="marqueeLeft"></div>
+      <div class="marquee-col marquee-col-down" id="marqueeRight"></div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="container">
+    <div class="stats-eyebrow">業務團隊實際數據</div>
+    <div class="stats-grid">
+      <div class="stat reveal">
+        <div class="stat-number"><span class="counter" data-target="120">0</span><span class="suffix">+</span></div>
+        <div class="stat-label">已產出 banner</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-number"><span class="counter" data-target="3">0</span><span class="suffix">min</span></div>
+        <div class="stat-label">平均產製時間</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-number"><span class="counter" data-target="72">0</span><span class="suffix">%</span></div>
+        <div class="stat-label">一次通過率</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="story">
+  <div class="container">
+    <div class="story-header reveal">
+      <h2>5 個步驟 3 分鐘</h2>
+      <p>你只要填需求和點「確認」。AI 和 Cloud Function 做剩下的事。</p>
+    </div>
+
+    <div class="story-main">
+      <nav class="story-sidebar">
+        <button class="story-nav-item active" data-jump="0">
+          <svg class="nav-mouse-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="2" width="12" height="20" rx="6" stroke="currentColor" stroke-width="2" fill="none"/>
+            <line x1="12" y1="6" x2="12" y2="10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          <span>填需求</span>
+        </button>
+        <button class="story-nav-item" data-jump="1">
+          <svg class="nav-mouse-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="2" width="12" height="20" rx="6" stroke="currentColor" stroke-width="2" fill="none"/>
+            <line x1="12" y1="6" x2="12" y2="10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          <span>產文案</span>
+        </button>
+        <button class="story-nav-item" data-jump="2">
+          <svg class="nav-mouse-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="2" width="12" height="20" rx="6" stroke="currentColor" stroke-width="2" fill="none"/>
+            <line x1="12" y1="6" x2="12" y2="10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          <span>產底圖</span>
+        </button>
+        <button class="story-nav-item" data-jump="3">
+          <svg class="nav-mouse-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="2" width="12" height="20" rx="6" stroke="currentColor" stroke-width="2" fill="none"/>
+            <line x1="12" y1="6" x2="12" y2="10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          <span>自動組裝</span>
+        </button>
+        <button class="story-nav-item" data-jump="4">
+          <svg class="nav-mouse-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="2" width="12" height="20" rx="6" stroke="currentColor" stroke-width="2" fill="none"/>
+            <line x1="12" y1="6" x2="12" y2="10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          <span>下載使用</span>
+        </button>
+      </nav>
+
+      <div class="story-cards">
+        <!-- 01 填需求：上下排列(圖大) -->
+        <article class="story-card layout-stack" data-step="0">
+          <div class="story-card-content">
+            <h3 class="story-card-title">在 Notion 填 5 個欄位</h3>
+            <p class="story-card-body">活動名稱、促銷重點、目標受眾、語氣風格、版型。其他欄位都可以讓 AI 自己決定。</p>
+          </div>
+          <div class="story-card-image">
+            <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1400&h=800&fit=crop" alt="在 Notion 填表" loading="lazy">
+          </div>
+        </article>
+
+        <!-- 02 產文案：左右排列(圖小) -->
+        <article class="story-card layout-split" data-step="1">
+          <div class="story-card-content">
+            <h3 class="story-card-title">30-60 秒產出 3 組候選文案</h3>
+            <p class="story-card-body">H1 大標、H2 小標、CTA 各 3 版,挑一個勾確認就好。不滿意?改一個字再勾也行,系統會用你的版本繼續跑。</p>
+          </div>
+          <div class="story-card-image">
+            <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1000&h=750&fit=crop" alt="文案候選" loading="lazy">
+          </div>
+        </article>
+
+        <!-- 03 產底圖：上下排列(圖大) -->
+        <article class="story-card layout-stack" data-step="2">
+          <div class="story-card-content">
+            <h3 class="story-card-title">12 種風格 5 種主體 自由組合</h3>
+            <p class="story-card-body">清新美妝、質感家電、活潑童趣、急迫促銷、溫馨生活…或讓 AI 看完你的活動需求,自動幫你判斷該用哪一種。PC + M 兩種版型一次產完。</p>
+          </div>
+          <div class="story-card-image">
+            <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=1400&h=800&fit=crop" alt="12 種風格 grid" loading="lazy">
+          </div>
+        </article>
+
+        <!-- 04 自動組裝：左右排列(圖小) -->
+        <article class="story-card layout-split" data-step="3">
+          <div class="story-card-content">
+            <h3 class="story-card-title">自動組裝 + WCAG 檢查</h3>
+            <p class="story-card-body">文字和底圖自動拼起來,檢查對比度是否達到無障礙標準、文字有沒有超出邊界。不合格的系統直接退回重做,醜 banner 上不了架。</p>
+          </div>
+          <div class="story-card-image">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1000&h=750&fit=crop" alt="WCAG 對比度檢查" loading="lazy">
+          </div>
+        </article>
+
+        <!-- 05 下載使用：上下排列(圖大) -->
+        <article class="story-card layout-stack" data-step="4">
+          <div class="story-card-content">
+            <h3 class="story-card-title">Google Chat 通知 Drive 下載</h3>
+            <p class="story-card-body">每階段完成 Google Chat 會提醒你。點連結進 Notion 審核,成品連結直接通往 Drive。不滿意?點「退回」重跑該階段。</p>
+          </div>
+          <div class="story-card-image">
+            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1400&h=800&fit=crop" alt="Chat 通知" loading="lazy">
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow" style="margin-bottom:16px;">功能總覽</div>
+      <h2>一個工具 把業務團隊從 banner 地獄救出來</h2>
+      <p>Kay 做設計系統的時候,受不了 banner 要反覆排期和改尺寸,所以做了這個。</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card reveal" data-title="12 種視覺風格" data-body="清新、質感、活潑、急迫、溫馨… 17 種選一個,或讓 AI 自動判斷。Figma 設計 token 同步,不走調。" data-img="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=1200&h=800&fit=crop">
+        <div class="feature-image">
+          <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&h=600&fit=crop" alt="12 種視覺風格" loading="lazy">
+        </div>
+        <div class="feature-text">
+          <h3 class="feature-title">12 種視覺風格</h3>
+          <p class="feature-body">清新、質感、活潑、急迫、溫馨… 17 種選一個,或讓 AI 自動判斷。</p>
+        </div>
+      </div>
+
+      <div class="feature-card reveal" data-title="PC + M 雙版型" data-body="一次產完 PC 和 Mobile 兩種版型。座標從 Figma 同步,永遠對齊最新規範,設計工程不用再手動校對。" data-img="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1200&h=800&fit=crop">
+        <div class="feature-image">
+          <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=600&fit=crop" alt="PC + M 雙版型" loading="lazy">
+        </div>
+        <div class="feature-text">
+          <h3 class="feature-title">PC + M 雙版型</h3>
+          <p class="feature-body">一次產完 PC 和 Mobile 兩種版型。座標從 Figma 同步,永遠對齊最新規範。</p>
+        </div>
+      </div>
+
+      <div class="feature-card reveal" data-title="3 組文案候選" data-body="H1/H2/CTA 各 3 版。不滿意直接切換,或退回重跑。AI 會學你挑的版本,下次建議更準。" data-img="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1200&h=800&fit=crop">
+        <div class="feature-image">
+          <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=600&fit=crop" alt="3 組文案候選" loading="lazy">
+        </div>
+        <div class="feature-text">
+          <h3 class="feature-title">3 組文案候選</h3>
+          <p class="feature-body">H1/H2/CTA 各 3 版。不滿意直接切換,或退回重跑。</p>
+        </div>
+      </div>
+
+      <div class="feature-card reveal" data-title="WCAG 對比度檢查" data-body="大標 3:1、小標 4.5:1。對比度不夠、字數超限、字超出邊界,系統擋下重做。無障礙標準不靠人眼把關。" data-img="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop">
+        <div class="feature-image">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop" alt="WCAG 對比度檢查" loading="lazy">
+        </div>
+        <div class="feature-text">
+          <h3 class="feature-title">WCAG 對比度檢查</h3>
+          <p class="feature-body">大標 3:1、小標 4.5:1。對比度不夠、字數超限、字超出邊界,系統擋下重做。</p>
+        </div>
+      </div>
+
+      <div class="feature-card reveal" data-title="手動上傳替代路徑" data-body="AI 生的圖不滿意?按規範準備自己的底圖,上傳 Drive 貼連結。系統一樣幫你做對比度檢查和組裝。" data-img="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=1200&h=800&fit=crop">
+        <div class="feature-image">
+          <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&h=600&fit=crop" alt="手動上傳替代路徑" loading="lazy">
+        </div>
+        <div class="feature-text">
+          <h3 class="feature-title">手動上傳替代路徑</h3>
+          <p class="feature-body">AI 生的圖不滿意?按規範準備自己的底圖,上傳 Drive 貼連結。</p>
+        </div>
+      </div>
+
+      <div class="feature-card reveal" data-title="Google Chat 自動通知" data-body="每階段完成,Chat 群組直接叫你審核。成品連結一鍵下載到 Drive。流程透明,進度一目了然。" data-img="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1200&h=800&fit=crop">
+        <div class="feature-image">
+          <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=600&fit=crop" alt="Google Chat 自動通知" loading="lazy">
+        </div>
+        <div class="feature-text">
+          <h3 class="feature-title">Google Chat 自動通知</h3>
+          <p class="feature-body">每階段完成,Chat 群組直接叫你審核。成品連結一鍵下載到 Drive。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="關閉">✕</button>
+  <div class="lightbox-content" id="lightboxContent">
+    <div class="lightbox-image">
+      <img id="lightboxImg" src="" alt="">
+    </div>
+    <div class="lightbox-text">
+      <h3 id="lightboxTitle"></h3>
+      <p id="lightboxBody"></p>
+    </div>
+  </div>
+</div>
+
+<section class="manifesto">
+  <div class="manifesto-bg"></div>
+  <div class="container">
+    <h2 class="reveal">一個設計師做的</h2>
+    <h2 class="reveal">給不會設計的人用</h2>
+    <div class="manifesto-cta reveal">
+      <a href="#apply" class="btn btn-primary btn-lg">申請使用 →</a>
+      <p class="manifesto-meta">Made by UIUX Team,專為露天業務團隊打造</p>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow" style="margin-bottom:16px;">實測數據</div>
+      <h2>不用信我們 看數據</h2>
+      <p>Banner Studio 已經在露天業務團隊跑了一段時間。</p>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-num"><span class="accent">&lt;</span> 10 <span class="accent">分鐘</span></div>
+        <div class="testimonial-label">從需求到成品</div>
+        <p class="testimonial-detail">PRD Success Metric 目標。實測平均 3-5 分鐘完成全流程。</p>
+        <div class="testimonial-source">PRD v4.3 Success Metrics</div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-num">72<span class="accent">%</span></div>
+        <div class="testimonial-label">一次通過率</div>
+        <p class="testimonial-detail">PRD 目標 60%、實測 72%。</p>
+        <div class="testimonial-source">2026-04 實測資料</div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-num"><span class="accent">$</span>0.04 <span class="accent">USD</span></div>
+        <div class="testimonial-label">單筆 API 成本</div>
+        <p class="testimonial-detail">每 100 張 banner 的 AI 成本約台幣 120 元。</p>
+        <div class="testimonial-source">PRD v4.3 費用預估</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Scale Showcase：Banner Agent 本體規格（Nauta 極簡風）-->
+<section class="scale-showcase">
+  <div class="container">
+    <div class="scale-layout">
+      <!-- 左側：大標 + 描述 -->
+      <div class="scale-intro reveal">
+        <h2>真實規模<br>真實數字</h2>
+        <p>Banner Studio 背後是完整的 Banner Agent 系統 — 由一個設計師和 Claude Code 用 SDD 流程打造,達到接近大廠內部工具的治理密度。</p>
+      </div>
+
+      <!-- 右側：6 個指標 (2×3) -->
+      <div class="scale-numbers">
+        <div class="scale-metric reveal">
+          <div class="scale-metric-value accent-orange"><span class="counter-num" data-target="3" data-decimals="0">0</span><span class="unit">min</span></div>
+          <div class="scale-metric-meta">
+            <span class="scale-metric-arrow down">↘</span>
+            <span class="scale-metric-label">平均產製時間<br>從 4 小時 → 3 分鐘</span>
+          </div>
+        </div>
+
+        <div class="scale-metric reveal">
+          <div class="scale-metric-value accent-blue"><span class="counter-num" data-target="72" data-decimals="0">0</span><span class="unit">%</span></div>
+          <div class="scale-metric-meta">
+            <span class="scale-metric-arrow up">↗</span>
+            <span class="scale-metric-label">一次通過率<br>PRD 目標 60%,實測 72%</span>
+          </div>
+        </div>
+
+        <div class="scale-metric reveal">
+          <div class="scale-metric-value accent-orange"><span class="counter-num" data-target="16" data-decimals="0">0</span><span class="unit">K+</span></div>
+          <div class="scale-metric-meta">
+            <span class="scale-metric-arrow down">↘</span>
+            <span class="scale-metric-label">Python 主 Code 行數<br>41 個檔案</span>
+          </div>
+        </div>
+
+        <div class="scale-metric reveal">
+          <div class="scale-metric-value accent-blue"><span class="counter-num" data-target="14" data-decimals="0">0</span><span class="unit">K+</span></div>
+          <div class="scale-metric-meta">
+            <span class="scale-metric-arrow up">↗</span>
+            <span class="scale-metric-label">文件總行數<br>60 個 Markdown 檔</span>
+          </div>
+        </div>
+
+        <div class="scale-metric reveal">
+          <div class="scale-metric-value accent-orange">1:1<span class="unit"></span></div>
+          <div class="scale-metric-meta">
+            <span class="scale-metric-arrow down">↘</span>
+            <span class="scale-metric-label">Code : 文件 密度<br>一般專案為 10:1</span>
+          </div>
+        </div>
+
+        <div class="scale-metric reveal">
+          <div class="scale-metric-value accent-blue"><span class="counter-prefix">$0.0</span><span class="counter-num" data-target="4" data-decimals="0">0</span><span class="unit"></span></div>
+          <div class="scale-metric-meta">
+            <span class="scale-metric-arrow up">↗</span>
+            <span class="scale-metric-label">單筆 banner 成本<br>每 100 張約台幣 120 元</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow" style="margin-bottom:16px;">常見問題</div>
+      <h2>關於 Banner Studio</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question">
+          <h3>AI 產出真的符合需求嗎?</h3>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">不保證每次都完美。每個階段都有 3 組候選和重做機制。實測 72% 一次過、剩下 28% 微調文案或重跑底圖。</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <h3>會有額度限制嗎?</h3>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">技術上沒有額度限制。每 100 張 banner 的 AI API 成本大約台幣 120 元。
+
+但如果你一天產 1000 張只是為了測試玩樂,Kay 會來找你喝茶 ☕</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <h3>設計師會不會討厭我用這個?</h3>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">不會。這工具處理的是「尺寸對齊、文字排版、對比度檢查、多版型產出」這些設計師本來就不想重複做的事。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta" id="apply">
+    <div class="final-cta-card">
+      <div class="final-cta-content">
+    <!-- 左側：文字 -->
+    <div class="final-cta-intro reveal">
+      <h2>下一個 banner<br>3 分鐘搞定</h2>
+      <p class="final-cta-subtitle">填 4 個欄位,24 小時內 Kay 會把你加進 Notion 和 Chat 群組,你就可以開始產 banner 了。</p>
+      <ul class="final-cta-points">
+        <li>平均 3 分鐘產完一組 PC + M banner</li>
+        <li>72% 一次通過,不用反覆改稿</li>
+        <li>每 100 張成本約台幣 120 元,幾乎等於免費</li>
+      </ul>
+    </div>
+
+    <!-- 右側：表單 -->
+    <div class="reveal">
+      <form class="apply-form" id="applyForm">
+        <div class="form-group">
+          <label class="form-label" for="form-name">姓名<span class="required">*</span></label>
+          <input class="form-input" type="text" id="form-name" name="name" placeholder="王小明" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="form-dept">部門<span class="required">*</span></label>
+          <input class="form-input" type="text" id="form-dept" name="dept" placeholder="行銷部 / 營運部 / …" required>
+        </div>
+
+        <div class="form-group full">
+          <label class="form-label" for="form-email">Email<span class="required">*</span></label>
+          <input class="form-input" type="email" id="form-email" name="email" placeholder="you@ruten.com.tw" required>
+        </div>
+
+        <div class="form-group full">
+          <label class="form-label" for="form-notion">Notion ID<span class="required">*</span></label>
+          <input class="form-input" type="text" id="form-notion" name="notion" placeholder="Notion workspace 帳號" required>
+        </div>
+
+        <div class="form-submit-row">
+          <button class="form-submit" type="submit" id="formSubmit">送出申請</button>
+          <p class="form-meta">申請 24 小時內開通 · 有問題 Google Chat 找 Kay</p>
+        </div>
+      </form>
+
+      <div class="form-success" id="formSuccess">
+        <div class="form-success-icon">✓</div>
+        <h3>申請已送出</h3>
+        <p>Kay 已收到通知,24 小時內會把你加進 Notion 和 Chat 群組。</p>
+      </div>
+    </div>
+   </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          Banner Studio
+          <span class="logo-dot"></span>
+        </div>
+        <p>露天 UIUX Team × Sales</p>
+      </div>
+      <div class="footer-col">
+        <h4>快速連結</h4>
+        <ul>
+          <li>Notion DB 後台 <span class="footer-pill">需申請</span></li>
+          <li>Quick Start 教學</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>找 Kay</h4>
+        <ul>
+          <li>Google Chat: @kay</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 露天 UIUX Team · Internal Use Only
+    </div>
+  </div>
+</footer>
+
+<div class="demo-banner">
+  ⭐ <strong>v10.0</strong> · Hero subtitle 同寬 + Footer 滿版（部署準備完成）
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  const lenis = new Lenis({
+    duration: 1.4,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+  });
+  function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+
+  setTimeout(() => document.getElementById('heroEyebrow').classList.add('is-revealed'), 100);
+  setTimeout(() => document.getElementById('heroTitle').classList.add('is-revealed'), 200);
+  setTimeout(() => document.getElementById('heroSubtitle').classList.add('is-revealed'), 300);
+  setTimeout(() => document.getElementById('heroCta').classList.add('is-revealed'), 400);
+  setTimeout(() => document.getElementById('heroMicro').classList.add('is-revealed'), 500);
+  setTimeout(() => document.getElementById('heroMarquee').classList.add('is-revealed'), 100);
+
+  const nav = document.getElementById('nav');
+  lenis.on('scroll', ({ scroll }) => {
+    nav.classList.toggle('scrolled', scroll > 80);
+  });
+
+  const banners = [
+    { text: '春季女裝 85 折', img: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&h=400&fit=crop' },
+    { text: '母親節滿千折百', img: 'https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=600&h=400&fit=crop' },
+    { text: '新品上市獨家預購', img: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop' },
+    { text: '週年慶會員專屬', img: 'https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?w=600&h=400&fit=crop' },
+    { text: 'Flash Sale', img: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=600&h=400&fit=crop' },
+    { text: 'New Arrival', img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=400&fit=crop' },
+    { text: 'Limited Offer', img: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=600&h=400&fit=crop' },
+    { text: 'Brand Day', img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=400&fit=crop' },
+  ];
+  const renderMarquee = (id, list) => {
+    const col = document.getElementById(id);
+    const all = [...list, ...list, ...list];
+    col.innerHTML = all.map(b => `
+      <div class="banner-mock">
+        <img src="${b.img}" alt="${b.text}" loading="lazy">
+        <div class="banner-mock-overlay">${b.text}</div>
+      </div>
+    `).join('');
+  };
+  renderMarquee('marqueeLeft', banners.slice(0, 4));
+  renderMarquee('marqueeRight', banners.slice(4));
+
+  // ⭐ Scale Showcase: Z 軸 scroll-linked depth reveal + counter 同步
+  // 直接用 JS 設 inline style,避開 CSS calc + var() + transform 的瀏覽器相容問題
+  const scaleMetrics = document.querySelectorAll('.scale-metric');
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+  const updateScaleMetricsDepth = () => {
+    const windowHeight = window.innerHeight;
+
+    scaleMetrics.forEach((metric, index) => {
+      const rect = metric.getBoundingClientRect();
+
+      // progress 算法：
+      // - 元素頂部還在視窗下方 = 0 (完全看不到)
+      // - 元素頂部到達視窗底部 95% 處 = 進場開始
+      // - 元素頂部到達視窗 25% 處 = 進場完成 = 1
+      const triggerStart = windowHeight * 0.95;
+      const triggerEnd = windowHeight * 0.25;
+      const range = triggerStart - triggerEnd;
+
+      // stagger: 每個元素延後 0.08 進度開始
+      const staggerOffset = index * 0.08;
+
+      let progress = (triggerStart - rect.top) / range;
+      progress = progress - staggerOffset;
+      progress = Math.max(0, Math.min(1, progress));
+
+      // ease-out-expo 讓動畫尾段比較慢，更戲劇性
+      const eased = progress === 0 ? 0 : 1 - Math.pow(2, -10 * progress);
+
+      // 計算 4 個視覺屬性的當前值
+      const z = -1500 + (1500 * eased);
+      const scale = 0.2 + (0.8 * eased);
+      const blur = 30 - (30 * eased);
+      const opacity = eased;
+
+      if (isMobile) {
+        const translateY = 60 - (60 * eased);
+        metric.style.transform = `translateY(${translateY}px)`;
+        metric.style.opacity = opacity;
+        metric.style.filter = 'none';
+      } else {
+        metric.style.transform = `translateZ(${z}px) scale(${scale})`;
+        metric.style.opacity = opacity;
+        metric.style.filter = `blur(${blur}px)`;
+      }
+
+      // ⭐ Counter 同步：用同一個 eased progress 驅動數字
+      const counter = metric.querySelector('.counter-num');
+      if (counter) {
+        const target = parseFloat(counter.dataset.target);
+        const decimals = parseInt(counter.dataset.decimals || '0');
+        const current = target * eased;
+        counter.textContent = current.toFixed(decimals);
+      }
+    });
+  };
+
+  // RAF 節流的 scroll handler
+  let scaleMetricsRafPending = false;
+  const onScrollUpdateScale = () => {
+    if (!scaleMetricsRafPending) {
+      scaleMetricsRafPending = true;
+      requestAnimationFrame(() => {
+        updateScaleMetricsDepth();
+        scaleMetricsRafPending = false;
+      });
+    }
+  };
+
+  // 同時綁 Lenis scroll 和原生 scroll（雙保險）
+  lenis.on('scroll', onScrollUpdateScale);
+  window.addEventListener('scroll', onScrollUpdateScale, { passive: true });
+
+  // 初始計算一次
+  updateScaleMetricsDepth();
+  // resize 時也重算
+  window.addEventListener('resize', updateScaleMetricsDepth);
+
+  // ⭐ Testimonials hover - GSAP spring 物理 (套方案 1 克制版)
+  document.querySelectorAll('.testimonial-card').forEach(card => {
+    let hoverTl = null;
+
+    card.addEventListener('mouseenter', () => {
+      if (hoverTl) hoverTl.kill();
+      hoverTl = gsap.timeline({ defaults: { overwrite: 'auto' } });
+
+      // Scale + 浮起 (主動作 0.7s, ease-out-expo)
+      hoverTl.to(card, {
+        scale: 1.02,
+        y: -6,
+        duration: 0.7,
+        ease: 'expo.out'
+      }, 0);
+
+      // 陰影 (慢一點 0.9s, delay 100ms)
+      hoverTl.to(card, {
+        boxShadow: '0 12px 28px rgba(0,0,0,0.05), 0 4px 8px rgba(0,0,0,0.03)',
+        duration: 0.9,
+        delay: 0.1,
+        ease: 'power2.out'
+      }, 0);
+    });
+
+    card.addEventListener('mouseleave', () => {
+      if (hoverTl) hoverTl.kill();
+      gsap.to(card, {
+        scale: 1,
+        y: 0,
+        boxShadow: '0 0 0 rgba(0,0,0,0)',
+        duration: 0.5,
+        ease: 'power3.out'
+      });
+    });
+  });
+
+  const storyCards = document.querySelectorAll('.story-card');
+  const navItems = document.querySelectorAll('.story-nav-item');
+
+  const cardVisibleObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('is-visible');
+    });
+  }, { threshold: 0.2, rootMargin: '0px 0px -100px 0px' });
+  storyCards.forEach(card => cardVisibleObserver.observe(card));
+
+  const activeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const step = parseInt(entry.target.dataset.step);
+        navItems.forEach((item, i) => item.classList.toggle('active', i === step));
+      }
+    });
+  }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+  storyCards.forEach(card => activeObserver.observe(card));
+
+  navItems.forEach((item, i) => {
+    item.addEventListener('click', () => {
+      const card = storyCards[i];
+      const cardHeight = card.offsetHeight;
+      const windowHeight = window.innerHeight;
+      const offset = -((windowHeight - cardHeight) / 2);
+      lenis.scrollTo(card, { offset: offset });
+    });
+  });
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -100px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const counter = entry.target;
+        const target = parseInt(counter.dataset.target);
+        const duration = 1800;
+        const start = performance.now();
+        const animate = (now) => {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(2, -10 * progress);
+          counter.textContent = Math.floor(target * eased);
+          if (progress < 1) requestAnimationFrame(animate);
+          else counter.textContent = target;
+        };
+        requestAnimationFrame(animate);
+        counterObserver.unobserve(counter);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-question').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // ⭐ Lightbox（點擊 feature card 放大）
+  const lightbox = document.getElementById('lightbox');
+  const lightboxContent = document.getElementById('lightboxContent');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  const lightboxBody = document.getElementById('lightboxBody');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  const openLightbox = (card) => {
+    const title = card.dataset.title;
+    const body = card.dataset.body;
+    const img = card.dataset.img;
+
+    lightboxImg.src = img;
+    lightboxImg.alt = title;
+    lightboxTitle.textContent = title;
+    lightboxBody.textContent = body;
+    lightbox.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    lenis.stop();
+  };
+
+  const closeLightbox = () => {
+    lightbox.classList.remove('is-open');
+    document.body.style.overflow = '';
+    lenis.start();
+  };
+
+  document.querySelectorAll('.feature-card').forEach(card => {
+    card.addEventListener('click', () => openLightbox(card));
+  });
+
+  lightboxClose.addEventListener('click', closeLightbox);
+
+  // 點 lightbox 背景（非 content）關閉
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  // ⭐ Apply Form（demo 版,真實 webhook 由 Claude Code 階段接）
+  const applyForm = document.getElementById('applyForm');
+  const formSuccess = document.getElementById('formSuccess');
+  const formSubmit = document.getElementById('formSubmit');
+
+  if (applyForm) {
+    applyForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = {
+        name: document.getElementById('form-name').value,
+        dept: document.getElementById('form-dept').value,
+        email: document.getElementById('form-email').value,
+        notion: document.getElementById('form-notion').value,
+      };
+
+      formSubmit.disabled = true;
+      formSubmit.textContent = '送出中...';
+
+      // Demo：模擬 webhook 延遲
+      // 真實版本:await fetch('/api/apply', { method: 'POST', body: JSON.stringify(formData) })
+      await new Promise(r => setTimeout(r, 800));
+
+      console.log('申請資料:', formData);
+
+      applyForm.style.display = 'none';
+      formSuccess.classList.add('is-visible');
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (target) lenis.scrollTo(target);
+    });
+  });
+</script>
+
+</body>
+</html>
