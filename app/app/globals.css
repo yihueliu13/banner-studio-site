@@ -2,22 +2,115 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ────────────────────────────────────────────────────────
+   Banner Studio Design Tokens (v11.4 spec 對齊)
+   ──────────────────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* ─── Color Tokens ─── */
+  --brand: #FF963B;
+  --brand-hover: #EA7A1F;
+  --neutral-900: #1C1917;
+  --text-primary: #1C1917;
+  --neutral-600: #57534E;
+  --text-secondary: #57534E;
+  --neutral-400: #A8A29E;
+  --text-muted: #A8A29E;
+  --bg-page: #FAFAF9;
+  --bg-card: #FFFFFF;
+  --bg-story-card: #EEEDE8;
+  --border-subtle: #E7E5E4;
+  --accent-blue: #3B5FD6;
+  --form-input-bg: #33343B;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* ─── Animation Duration 6 階 ─── */
+  --duration-instant: 100ms;
+  --duration-fast: 200ms;
+  --duration-base: 400ms;
+  --duration-slow: 600ms;
+  --duration-slower: 800ms;
+  --duration-slowest: 1200ms;
+
+  /* ─── Easing ─── */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ─── Spacing 14 階(4px base unit) ─── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+  --space-40: 160px;
+
+  /* ─── Border Radius 8 階 ─── */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-3xl: 28px;
+  --radius-4xl: 32px;
+  --radius-full: 9999px;
+
+  /* ─── Shadow 7 階 ─── */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 4px 8px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 12px 28px rgba(0, 0, 0, 0.05), 0 4px 8px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.08), 0 8px 16px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 30px 60px rgba(0, 0, 0, 0.12), 0 12px 24px rgba(0, 0, 0, 0.06);
+  --shadow-brand: 0 12px 28px rgba(255, 150, 59, 0.35);
+  --shadow-cta: 0 32px 64px rgba(255, 150, 59, 0.20), 0 8px 24px rgba(0, 0, 0, 0.08);
+
+  /* ─── Z-Index 10 階 ─── */
+  --z-base: 1;
+  --z-sticky: 10;
+  --z-fixed: 50;
+  --z-nav: 100;
+  --z-overlay: 200;
+  --z-modal-backdrop: 300;
+  --z-modal: 400;
+  --z-popover: 500;
+  --z-toast: 600;
+  --z-debug: 9999;
+
+  /* ─── Breakpoint(JS 對照用,Tailwind 已透過 screens 對應) ─── */
+  --bp-sm: 480px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1100px;
+  --bp-2xl: 1366px;
+
+  /* ─── Font Stack ─── */
+  --font-display: var(--font-geist-sans), var(--font-inter), system-ui, sans-serif;
+  --font-body: var(--font-inter), var(--font-geist-sans), "PingFang TC", "Heiti TC", "Microsoft JhengHei", system-ui, sans-serif;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-primary);
+  background: var(--bg-page);
+  font-family: var(--font-body);
+}
+
+/* ────────────────────────────────────────────────────────
+   OKLCH @supports 降級
+   舊瀏覽器(< Chrome 110 / Safari 16.4)用 hex fallback;
+   新瀏覽器啟用 OKLCH 色彩空間做 hover 微調。
+   範例:Block 08 .testimonial-card hover 暖灰
+   ──────────────────────────────────────────────────────── */
+.testimonial-card {
+  background: var(--bg-page);
+}
+@supports (background: oklch(0.5 0.1 50)) {
+  .testimonial-card:hover {
+    background: oklch(94% 0.012 70);
+  }
 }
 
 @layer utilities {
