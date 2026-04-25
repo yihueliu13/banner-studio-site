@@ -42,13 +42,20 @@ Next.js 14 + TypeScript + Tailwind CSS + Lenis + Framer Motion + GSAP + Vercel A
 ## 依任務加讀(動手前必須先讀完相關 spec,不可憑記憶改)
 | 任務類型 | 必讀檔案 |
 |---------|---------|
-| 任何 block 視覺/文案(主) | `docs/banner-studio-full-copy-and-spec.md` |
+| 任何 block 視覺/文案(主)| `docs/banner-studio-full-copy-and-spec.md` **+ `docs/banner-studio-demo-v10-final.html`(必對照)** |
+| Token / globals.css / Tailwind 設計 | spec §60-220 + `docs/banner-studio-demo-v10-final.html` 行 11-168(token 定義 + .btn 系列) |
 | Block 04 Scroll-Pinned Story | `docs/scroll-pinned-story-spec.md` + `docs/banner-studio-demo-v10-final.html` |
 | Block 08.5 Scale Showcase | `specs/blocks/scale-showcase.md`(Z 軸 JS / 6 metric / 9 踩雷) |
 | Block 09 Final CTA + 表單 + Webhook | `specs/blocks/final-cta-form.md` |
 | Block 10 FAQ Accordion | `specs/blocks/faq-accordion.md` |
 | RWD / mobile 行為 | `specs/rwd-responsive.md` |
 | 全站底層 A11y / SEO / States / Performance / Analytics | `specs/site-foundations.md` |
+
+## ⚠️ 視覺實作硬規則(R1 教訓)
+- **任何 block / token / 樣式實作前,必須對照 `docs/banner-studio-demo-v10-final.html`** 的對應 CSS 和 HTML 結構
+- spec 是文字描述 + 範例,demo 是視覺真相 — 兩者衝突時以 **demo 為準**(它是已經視覺通過的版本)
+- 寫完每個 block / 樣式區塊後 grep demo HTML 對應 class 名,逐項驗證 padding / font-weight / transition / hover state
+- 違反這條會發生 v11.2 假升版同類型錯誤(看 changelog 但沒看實作)
 
 ## 工作模式
 - 照 spec 不發揮,有疑問問,卡 30 分鐘停下來

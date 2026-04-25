@@ -3,22 +3,37 @@
 @tailwind utilities;
 
 /* ────────────────────────────────────────────────────────
-   Banner Studio Design Tokens (v11.4 spec 對齊)
+   Banner Studio Design Tokens (v11.4 spec + demo v10 對齊)
    ──────────────────────────────────────────────────────── */
 :root {
-  /* ─── Color Tokens ─── */
-  --brand: #FF963B;
-  --brand-hover: #EA7A1F;
-  --neutral-900: #1C1917;
-  --text-primary: #1C1917;
-  --neutral-600: #57534E;
-  --text-secondary: #57534E;
+  /* ─── Neutral 色階(10 階,對齊 demo) ─── */
+  --neutral-0: #FFFFFF;
+  --neutral-50: #FAFAF9;
+  --neutral-100: #F5F5F4;
+  --neutral-200: #E7E5E4;
+  --neutral-300: #D6D3D1;
   --neutral-400: #A8A29E;
-  --text-muted: #A8A29E;
-  --bg-page: #FAFAF9;
-  --bg-card: #FFFFFF;
+  --neutral-600: #57534E;
+  --neutral-700: #44403C;
+  --neutral-800: #292524;
+  --neutral-900: #1C1917;
+
+  /* ─── Orange 色階(4 階) ─── */
+  --orange-50: #FFF7ED;
+  --orange-100: #FFEDD5;
+  --orange-500: #FF963B;
+  --orange-600: #EA7A1F;
+
+  /* ─── Brand / Bg / Text(雙層 alias) ─── */
+  --brand: var(--orange-500);
+  --brand-hover: var(--orange-600);
+  --bg-page: var(--neutral-50);
+  --bg-card: var(--neutral-0);
   --bg-story-card: #EEEDE8;
-  --border-subtle: #E7E5E4;
+  --text-primary: var(--neutral-900);
+  --text-secondary: var(--neutral-600);
+  --text-muted: var(--neutral-400);
+  --border-subtle: var(--neutral-200);
   --accent-blue: #3B5FD6;
   --form-input-bg: #33343B;
 
@@ -80,22 +95,63 @@
   --z-toast: 600;
   --z-debug: 9999;
 
-  /* ─── Breakpoint(JS 對照用,Tailwind 已透過 screens 對應) ─── */
+  /* ─── Breakpoint ─── */
   --bp-sm: 480px;
   --bp-md: 768px;
   --bp-lg: 1024px;
   --bp-xl: 1100px;
   --bp-2xl: 1366px;
 
-  /* ─── Font Stack ─── */
-  --font-display: var(--font-geist-sans), var(--font-inter), system-ui, sans-serif;
-  --font-body: var(--font-inter), var(--font-geist-sans), "PingFang TC", "Heiti TC", "Microsoft JhengHei", system-ui, sans-serif;
+  /* ─── Font Stack(對齊 demo line 40-41) ─── */
+  --font-display: "Geist", "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-body: "Inter", "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
+
+/* ────────────────────────────────────────────────────────
+   Reset + 全域字型套用(對齊 demo line 44-67)
+   ──────────────────────────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+button,
+input,
+textarea,
+select,
+p,
+span,
+div,
+a,
+li {
+  font-family: var(--font-body);
+}
+
+/* ⭐ 大標題 + Metric 數字一律用 Geist(對齊 demo line 53-59) */
+h1,
+h2,
+h3,
+h4,
+.stat-number,
+.scale-metric-value,
+.hero-title,
+.testimonial-num,
+.counter,
+.counter-num,
+.counter-prefix {
+  font-family: var(--font-display);
 }
 
 body {
-  color: var(--text-primary);
   background: var(--bg-page);
-  font-family: var(--font-body);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* ────────────────────────────────────────────────────────
@@ -108,6 +164,98 @@ body {
       D5 寫到實際 OKLCH 場景時補(候選:Final CTA 卡片 active glow、
       Feature card is-selected state)。
    ──────────────────────────────────────────────────────── */
+
+@layer components {
+  /* ─── Button 系統(對齊 demo line 127-168) ─── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 9999px;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 400ms var(--ease-out-expo);
+    border: none;
+    text-decoration: none;
+  }
+  .btn-primary {
+    background: var(--text-primary);     /* 黑底 */
+    color: var(--brand);                  /* 橘字 */
+  }
+  .btn-primary:hover {
+    background: #000;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  }
+  .btn-primary:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 4px;
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-primary);          /* 黑字 */
+    border: 1.5px solid var(--brand);    /* 橘邊框 */
+  }
+  .btn-secondary:hover {
+    border-color: var(--brand-hover);
+    background: rgba(255, 150, 59, 0.08);
+  }
+  .btn-secondary:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 4px;
+  }
+  .btn-brand {
+    background: var(--brand);            /* 橘底 */
+    color: var(--text-primary);          /* 黑字 */
+  }
+  .btn-brand:hover {
+    background: var(--brand-hover);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-brand);
+  }
+  .btn-lg {
+    padding: 16px 32px;
+    font-size: 17px;
+  }
+
+  /* ─── Nav link(Block 01,對齊 demo line 118-125) ─── */
+  .nav-link {
+    color: var(--text-primary);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: opacity 200ms var(--ease-out-expo);
+  }
+  .nav-link:hover {
+    opacity: 0.6;
+  }
+  .nav-link:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+  /* ─── Logo(對齊 demo line 99-111) ─── */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+  .logo-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--brand);
+    border-radius: 50%;
+  }
+}
 
 @layer utilities {
   .text-balance {

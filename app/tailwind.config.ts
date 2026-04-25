@@ -19,16 +19,27 @@ const config: Config = {
       "max-lg": { max: "1099px" },
     },
     extend: {
-      // ─── Colors ───
+      // ─── Colors(對齊 demo 完整色階) ───
       colors: {
         brand: {
           DEFAULT: "#FF963B",
           hover: "#EA7A1F",
+          50: "#FFF7ED",
+          100: "#FFEDD5",
+          500: "#FF963B",
+          600: "#EA7A1F",
         },
         neutral: {
-          900: "#1C1917",
-          600: "#57534E",
+          0: "#FFFFFF",
+          50: "#FAFAF9",
+          100: "#F5F5F4",
+          200: "#E7E5E4",
+          300: "#D6D3D1",
           400: "#A8A29E",
+          600: "#57534E",
+          700: "#44403C",
+          800: "#292524",
+          900: "#1C1917",
         },
         text: {
           primary: "#1C1917",
@@ -46,7 +57,7 @@ const config: Config = {
         },
         "form-input-bg": "#33343B",
       },
-      // ─── Spacing 14 階(對齊 Tailwind 預設 scale,顯式宣告以鎖定) ───
+      // ─── Spacing 14 階 ───
       spacing: {
         1: "4px",
         2: "8px",
@@ -109,24 +120,10 @@ const config: Config = {
       transitionTimingFunction: {
         "out-expo": "cubic-bezier(0.16, 1, 0.3, 1)",
       },
-      // ─── Font Family(Geist localFont + Inter Google + 中文 system fallback) ───
+      // ─── Font Family(吃 globals.css :root 的 var) ───
       fontFamily: {
-        display: [
-          "var(--font-geist-sans)",
-          "var(--font-inter)",
-          "system-ui",
-          "sans-serif",
-        ],
-        body: [
-          "var(--font-inter)",
-          "var(--font-geist-sans)",
-          "PingFang TC",
-          "Heiti TC",
-          "Microsoft JhengHei",
-          "system-ui",
-          "sans-serif",
-        ],
-        mono: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
+        display: ["var(--font-display)"],
+        body: ["var(--font-body)"],
       },
     },
   },
