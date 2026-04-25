@@ -1,6 +1,6 @@
 # Banner Studio — Full Copy & Spec
 
-**Version**: v11.1 (2026-04-25 D2 完整版 + RWD + DB + A11y + SEO + States + Analytics)
+**Version**: v11.4 (2026-04-25 D2 拆檔治理 — Block 08.5 / 09 / 10 拆到 specs/blocks/, A11y/SEO/States/Performance/Analytics 合併到 specs/site-foundations.md, RWD 拆到 specs/rwd-responsive.md;主檔 2024 → ~700 行)
 **Owner**: Kay · 露天 UIUX Team × Sales
 **For**: D3-D7 Claude Code vibe coding
 **Deployment target**: 5/1 (週五) Vercel
@@ -207,12 +207,104 @@ D3 用 `next/font/google` + `geist` package 載入。
 | 03 | Stats Strip | 1080px | 3 個 counter / Geist 500 / 漸層 suffix / **eyebrow 橘色** |
 | 04 | Scroll-Pinned Story | 1080px | ⭐ 見專用 spec + **Sidebar active 滑鼠 icon** |
 | 05 | Feature Grid | 1080px | 圖片版 + Lightbox（**不能 overflow:hidden**）|
+| ~~06~~ | ~~（D1 廢案）~~ | — | 編號保留以維持版本對齊,內容已併入 05 Reframe |
 | 07 | Manifesto | 滿版 | Unsplash 底圖 + 黑漸層 |
 | 08 | Data Testimonials | 1080px | 3 張 metric card + **GSAP scale hover** |
 | **08.5** | **Scale Showcase** ⭐ | 1080px | Z 軸 scroll-linked depth reveal + counter 同步 |
 | **10** | **FAQ Accordion** ⭐ 移前 | 768px | 先解疑慮 |
 | **09** | **Final CTA + 表單** ⭐ 移後 | 90% 寬 **橘色卡片** | 黑字 + 深灰欄位 + 白底按鈕 |
 | 11 | Footer | **100% 滿版** | 跟 Nav 一致 + pill |
+
+---
+
+## 📦 子 spec 目錄(v11.4 拆檔)
+
+| 主題 | 檔案 |
+|------|------|
+| Block 04 Scroll-Pinned Story | `@docs/scroll-pinned-story-spec.md` |
+| Block 08.5 Scale Showcase | `@specs/blocks/scale-showcase.md` |
+| Block 09 Final CTA + 表單 + Webhook | `@specs/blocks/final-cta-form.md` |
+| Block 10 FAQ Accordion | `@specs/blocks/faq-accordion.md` |
+| 全站底層(A11y / SEO / States / Performance / Analytics) | `@specs/site-foundations.md` |
+| RWD 響應式 Block-by-Block | `@specs/rwd-responsive.md` |
+
+---
+
+## 01. Top Nav
+
+### Container
+- 100% 寬，padding `0 32px`（**跟 Footer 一致，不用 1080px container**）
+- `position: fixed; top:0; z-index:100;`
+- 預設 `background: transparent`
+- 滾動 > 80px 加 `.scrolled` → 白底 85% + `backdrop-filter: blur(16px) saturate(180%)` + 1px 黑線
+- `transition: all 600ms var(--ease-out-expo)`
+
+### 結構
+```
+[ Logo ●橘點 ]                    [ 怎麼運作 | 功能 | 常見問題 |  申請使用 ]
+```
+
+### Copy
+- Logo: `Banner Studio` + 8px 橘色圓點 dot
+- Menu links（依序）：
+  - `怎麼運作` → `#story`
+  - `功能` → `#features`
+  - `常見問題` → `#faq`
+  - `申請使用` → `#apply`（用 `.btn .btn-primary`，**不是 nav-link**）
+
+### CSS（從 demo 抽）
+```css
+.nav {
+  position: fixed; top:0; left:0; right:0;
+  z-index: 100;
+  padding: 16px 0;
+  transition: all 600ms var(--ease-out-expo);
+  background: transparent;
+}
+.nav > .container { max-width: 100%; padding: 0 32px; }
+.nav.scrolled {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px) saturate(180%);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+}
+.nav-inner {
+  display: flex; justify-content: space-between; align-items: center;
+}
+.logo {
+  font-weight: 600; font-size: 20px; letter-spacing: -0.01em;
+  display: flex; align-items: center; gap: 8px;
+}
+.logo-dot {
+  width: 8px; height: 8px;
+  background: var(--brand);
+  border-radius: 50%;
+}
+.nav-menu { display: flex; align-items: center; gap: 32px; }
+.nav-link {
+  font-size: 15px; font-weight: 500;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: opacity 200ms var(--ease-out-expo);
+}
+.nav-link:hover { opacity: 0.6; }
+```
+
+### Scroll behavior（JS）
+```javascript
+const nav = document.getElementById('nav');
+lenis.on('scroll', ({ scroll }) => {
+  nav.classList.toggle('scrolled', scroll > 80);
+});
+```
+> 用 Lenis 的 scroll event，**不是 window 原生 scroll**，避免跟 Lenis 平滑滾動打架。
+
+### A11y
+- `<nav>` semantic tag
+- 「申請使用」按鈕用 `<a class="btn btn-primary">`，不要用 `<button>`（要錨點跳轉）
+- nav-link focus 狀態：`outline: 2px solid var(--brand); outline-offset: 4px`
+
+### RWD
+詳見 `@specs/rwd-responsive.md` Block 01 段(漢堡選單、logo 縮小)。
 
 ---
 
@@ -227,7 +319,7 @@ D3 用 `next/font/google` + `geist` package 載入。
 
 ### Subtitle (v10.0 ⭐ 寬度跟標題一致，不再 max-width: 480px)
 ```
-不用排期設計、不用會 Photoshop / Figma,沒時間用 AI 生圖、想文案。在 Notion 填 5 個欄位,AI 幫你把文案、底圖、組裝全做完。
+不用排期設計、不用會 Photoshop / Figma，沒時間用 AI 生圖、想文案。在 Notion 填 5 個欄位，AI 幫你把文案、底圖、組裝全做完。
 ```
 
 ### CTA
@@ -259,11 +351,23 @@ D3 用 `next/font/google` + `geist` package 載入。
 - Geist weight 500（瘦版）
 - Suffix（+, min, %）漸層色
 
+### ⚠️ 跟 Block 08.5 Scale Showcase 數字的定位差異
+
+兩個區塊都有數字，但**講不同故事、不衝突**：
+
+| 區塊 | 角色 | 數字內容 | 受眾 |
+|------|------|---------|------|
+| **03. Stats Strip** | **業務指標**（產品成果） | 120+ banner / 3 min / 72% | 給「考慮要不要用」的業務團隊 |
+| **08.5. Scale Showcase** | **工程規格**（系統治理密度） | 16K+ Code / 14K+ Docs / 1:1 / $0.04 | 給「想知道這東西認真程度」的同行 / 上層 |
+
+> **不要在 Stats Strip 放工程數字**（程式行數、文件密度），會稀釋業務訊息；
+> **不要在 Scale Showcase 重複業務指標**（產製時間 3min、通過率 72%），但 Scale 第 1、2 個 metric 確實重複了 — 那是刻意的，因為 Scale 的視覺敘事是「業務指標 → 工程規格」由小到大堆疊，前兩個當錨點，後四個才是放大鏡。
+
 ---
 
 ## 04. Scroll-Pinned Story ⭐
 
-**見獨立檔案 `scroll-pinned-story-spec.md`**
+**見獨立檔案 `@docs/scroll-pinned-story-spec.md`**
 
 ### Sidebar 滑鼠 Icon ⭐ v9 新增
 
@@ -351,6 +455,84 @@ Active sidebar item **左邊**出現露天橘色實體滑鼠 SVG icon，CSS anim
 
 ---
 
+## 07. Manifesto ⭐ 滿版底圖
+
+### Container
+- **滿版（100%）**，不用 1080px container
+- `padding: 160px 0; min-height: 80vh`
+- `text-align: center`，垂直水平置中
+
+### Copy
+```
+一個設計師做的
+給不會設計的人用
+```
+（兩行 H2，**分開寫成兩個 `<h2>`**，行距 `margin-top: 8px`）
+
+CTA 區：
+- Button: `申請使用 →`（`.btn .btn-primary .btn-lg`，連到 `#apply`）
+- Meta（CTA 下方 24px）: `Made by UIUX Team，專為露天業務團隊打造`（白色 70% 透明）
+
+### 視覺
+- **底圖**：Unsplash 黑白攝影風
+  ```
+  https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=2000&h=1200&fit=crop
+  ```
+- 底圖 z-index 0，背景蓋全版
+- 黑色漸層遮罩（`::after`）：
+  ```
+  linear-gradient(180deg,
+    rgba(0,0,0,0.3) 0%,
+    rgba(0,0,0,0.5) 50%,
+    rgba(0,0,0,0.7) 100%)
+  ```
+  > **由淺到深**，這樣文字可讀性最好（標題在中間/下半，最深的位置）。
+
+### Typography
+- H2: `clamp(48px, 7vw, 88px)`，weight 600，letter-spacing `-0.03em`，line-height 1.05
+- 顏色：白色（`color: white`）
+
+### CSS（從 demo 抽）
+```css
+.manifesto {
+  padding: 160px 0;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  min-height: 80vh;
+  display: flex; align-items: center; justify-content: center;
+}
+.manifesto-bg {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=2000&h=1200&fit=crop');
+  background-size: cover; background-position: center;
+  z-index: 0;
+}
+.manifesto-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg,
+    rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.7) 100%);
+}
+.manifesto > .container { position: relative; z-index: 1; }
+.manifesto h2 {
+  font-size: clamp(48px, 7vw, 88px);
+  font-weight: 600; letter-spacing: -0.03em; line-height: 1.05;
+  color: white;
+}
+.manifesto h2 + h2 { margin-top: 8px; }
+.manifesto-cta { margin-top: 64px; }
+.manifesto-meta {
+  margin-top: 24px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+}
+```
+
+### ⚠️ 重要：btn-primary 在這裡**不需要反色**
+Manifesto 是黑色底圖背景，btn-primary 預設是橘底黑字，本身在黑底上夠搶眼。不要再做 `background: white` 的覆寫，會違反全站 CTA 一致性。
+
+---
+
 ## 08. Data Testimonials
 
 ### Section Copy
@@ -420,228 +602,24 @@ document.querySelectorAll('.testimonial-card').forEach(card => {
 
 ---
 
-## 08.5. Scale Showcase ⭐
+## 08.5. Scale Showcase ⭐ → 拆出
 
-（保持 v8.x 規格，內容不動 — Z 軸 scroll-linked depth reveal + counter 同步驅動 5 屬性）
-
-請參考前版 spec 的 Block 08.5 完整段落（包含 6 metric 列表、Framer Motion 範例 code、踩雷清單）。
-
----
-
-## 09. Final CTA + 表單 ⭐ v9.10-9.11 大改造
-
-### 卡片底色：露天橘 ⭐ v9.10
-
-```css
-.final-cta-card {
-  width: 90%;
-  margin: 0 auto;
-  padding: 96px 96px;
-  background: var(--brand);              /* 露天橘 */
-  color: var(--text-primary);            /* 黑字 */
-  border-radius: 32px;
-  position: relative;
-  overflow: hidden;
-}
-.final-cta-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
-  pointer-events: none;
-}
-```
-
-### 卡片內所有文字：黑色 ⭐ v9.11
-
-```css
-.final-cta-intro h2 { color: var(--text-primary); }
-.final-cta-subtitle { color: rgba(28, 25, 23, 0.75); }
-.final-cta-points li { color: var(--text-primary); }
-.final-cta-points li::before { color: var(--text-primary); }   /* ✓ 黑色 */
-.form-label { color: var(--text-primary); }
-.form-label .required { color: var(--text-primary); }
-.form-meta { color: rgba(28, 25, 23, 0.6); }
-.form-success-icon { background: rgba(28, 25, 23, 0.1); color: var(--text-primary); }
-.form-success p { color: rgba(28, 25, 23, 0.7); }
-```
-
-### 表單欄位：#33343B 無框 ⭐ v9.10
-
-```css
-.form-input {
-  background: #33343B;
-  border: none;             /* ⭐ 無邊框 */
-  border-radius: 12px;
-  padding: 14px 16px;
-  font-size: 15px;
-  color: white;
-  outline: none;
-  transition: all 300ms var(--ease-out-expo);
-}
-.form-input::placeholder { color: rgba(255,255,255,0.4); }
-.form-input:hover { background: #3A3B43; }
-.form-input:focus {
-  background: #3D3E47;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15);
-}
-```
-
-### 送出按鈕：白底黑字、寬度 50% ⭐ v9.10
-
-```css
-.form-submit-row {
-  align-items: flex-start;   /* 按鈕靠左 */
-}
-.form-submit {
-  background: white;
-  color: var(--text-primary);
-  width: 50%;                /* ⭐ 寬度減半 */
-  padding: 16px 32px;
-  border: none;
-  border-radius: 9999px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  animation: pulse 3s var(--ease-out-expo) infinite;
-}
-.form-submit:hover {
-  background: #F5F5F4;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
-}
-/* Mobile 回 100% */
-@media (max-width: 640px) {
-  .form-submit { width: 100%; }
-}
-
-/* Pulse 改白色光環 (因為按鈕是白底) */
-@keyframes pulse {
-  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5); }
-  50% { transform: scale(1.04); box-shadow: 0 0 0 16px rgba(255, 255, 255, 0); }
-}
-```
-
-### Form-meta 文案
-```
-申請 24 小時內開通 · 有問題 Google Chat 找 Kay
-```
+> **完整內容已搬到 `@specs/blocks/scale-showcase.md`**(含 6 metric 表 / Z 軸 JS / 9 踩雷 / Mobile 降級)。
+> 改 Block 08.5 行為前必讀該檔。
 
 ---
 
-### 🗄️ 資料持久化架構 ⭐ v11.0 新增
+## 10. FAQ Accordion ⭐ → 拆出
 
-#### 雙 Webhook 設計
+> **完整內容已搬到 `@specs/blocks/faq-accordion.md`**(含 3 Q&A / HTML / CSS / JS / A11y / 動畫)。
+> 改 FAQ 前必讀該檔。
 
-```
-業務填表 → POST /api/apply → ① Google Chat webhook(即時通知 Kay)
-                          → ② Google Sheet webhook(累積申請紀錄)
-                          → 回傳 success
-```
+---
 
-#### 為什麼兩個都要
+## 09. Final CTA + 表單 ⭐ → 拆出
 
-- **Chat 通知**:Kay 立刻知道有人申請,可以馬上加進 Notion DB
-- **Sheet 紀錄**:所有申請累積,可以看「總申請數」「部門分佈」,**考績佐證直接撈這個**
-
-#### Google Sheet 結構
-
-Sheet 欄位:
-```
-A: Timestamp        (自動填)
-B: 姓名
-C: 部門
-D: Email
-E: Notion ID
-F: 處理狀態         (Kay 手動標,預設留空)
-```
-
-#### Google Apps Script Webhook
-
-Sheet → Extensions → Apps Script,貼:
-
-```javascript
-function doPost(e) {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  const data = JSON.parse(e.postData.contents);
-
-  sheet.appendRow([
-    new Date(),
-    data.name || '',
-    data.dept || '',
-    data.email || '',
-    data.notion || '',
-    ''  // 處理狀態,預設空
-  ]);
-
-  return ContentService
-    .createTextOutput(JSON.stringify({ success: true }))
-    .setMimeType(ContentService.MimeType.JSON);
-}
-```
-
-Deploy → New deployment → **Web app** → Execute as: Me / Who has access: **Anyone** → 拿到 URL,設成 Vercel env var `SHEETS_WEBHOOK_URL`。
-
-#### Next.js API Route(`app/api/apply/route.ts`)
-
-```typescript
-export async function POST(req: Request) {
-  const data = await req.json();
-
-  // 簡單 email 格式驗證
-  if (!data.email?.includes('@')) {
-    return Response.json({ error: 'Invalid email' }, { status: 400 });
-  }
-
-  // 並行送兩個 webhook
-  const [chatRes, sheetRes] = await Promise.allSettled([
-    // ① Google Chat 通知
-    fetch(process.env.CHAT_WEBHOOK!, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        cardsV2: [{
-          card: {
-            header: { title: '🎨 Banner Studio 新申請' },
-            sections: [{
-              widgets: [
-                { decoratedText: { topLabel: '姓名', text: data.name } },
-                { decoratedText: { topLabel: '部門', text: data.dept } },
-                { decoratedText: { topLabel: 'Email', text: data.email } },
-                { decoratedText: { topLabel: 'Notion ID', text: data.notion } },
-              ]
-            }]
-          }
-        }]
-      }),
-    }),
-    // ② Google Sheet 累積
-    fetch(process.env.SHEETS_WEBHOOK_URL!, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    }),
-  ]);
-
-  // 容錯:就算 Sheet 失敗,Chat 通知到了也算成功
-  if (chatRes.status === 'rejected' && sheetRes.status === 'rejected') {
-    return Response.json({ error: 'Both webhooks failed' }, { status: 500 });
-  }
-
-  return Response.json({ success: true });
-}
-```
-
-#### Vercel Env Vars(部署時設)
-
-```
-CHAT_WEBHOOK=https://chat.googleapis.com/v1/spaces/.../messages?key=...
-SHEETS_WEBHOOK_URL=https://script.google.com/macros/s/.../exec
-```
-
-#### Kay 的後續工作流
-
-收到 Chat 通知 → 開 Sheet 看細節 → 手動加進 Notion DB(`bef2ca4469914de1b5cf5610043132db`)→ 在 Sheet F 欄標「已開通」
+> **完整內容已搬到 `@specs/blocks/final-cta-form.md`**(含卡片 / 表單欄位 / 送出按鈕 / 雙 webhook 架構 / Apps Script / Next.js API route / Vercel env vars)。
+> 改 Final CTA 或表單行為前必讀該檔。
 
 ---
 
@@ -696,835 +674,41 @@ Google Chat: @kay     ← v9.x 從 Slack 改 Google Chat
 
 ---
 
-## ♿ Accessibility (A11y) 規格 ⭐ v11.1
+## ♿ Site Foundations(全站底層) → 拆出
 
-### HTML 語意化
-- `<html lang="zh-Hant">` 明確聲明語系
-- 每個 section 用 `<section aria-labelledby="...">`
-- Hero `<h1>` 全站只能一個
-- 各 section 用 `<h2>`，內部小標 `<h3>`
-- Lists 用 `<ul>` / `<ol>`，不要用 `<div>` 假裝
-- Footer 用 `<footer>`，Nav 用 `<nav aria-label="主導覽">`
-
-### Focus States ⭐ 必須有可見 focus
-```css
-*:focus-visible {
-  outline: 2px solid var(--brand);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-.btn:focus-visible {
-  outline: 2px solid var(--brand);
-  outline-offset: 4px;  /* 按鈕外緣多一點 */
-}
-.form-input:focus-visible {
-  outline: none;        /* 用 box-shadow 取代 */
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15);
-}
-```
-
-### ARIA Labels
-| 元素 | aria 屬性 |
-|------|----------|
-| Nav 漢堡選單 button | `aria-label="開啟選單"` / `aria-expanded="true/false"` |
-| Story sidebar item | `aria-current="step"` 標當前 |
-| FAQ accordion | `aria-expanded` + `aria-controls` |
-| Lightbox close | `aria-label="關閉"` |
-| Form input | `<label for>` 對應，必填加 `aria-required="true"` |
-| Form error | `<p id="email-error" role="alert">` + input `aria-describedby="email-error"` |
-| Loading spinner | `aria-live="polite"` + `aria-label="送出中"` |
-| Decorative icon | `aria-hidden="true"`（如 sidebar 滑鼠 SVG）|
-
-### 鍵盤導航
-- Tab order 跟視覺順序一致
-- Lightbox：開啟時 focus trap 在 modal，ESC 關閉
-- FAQ accordion：Enter / Space 展開，Arrow up/down 切換
-- Form：Enter 送出，欄位間 Tab 切換
-
-### 顏色對比度（WCAG AA）
-| 組合 | 對比度 | 通過？ |
-|------|-------|-------|
-| `#1C1917` text on `#FAFAF9` bg | 17.4:1 | ✅ AAA |
-| `#57534E` secondary on `#FAFAF9` | 7.5:1 | ✅ AAA |
-| `#A8A29E` muted on `#FAFAF9` | 3.0:1 | ⚠️ 只能用大字級 (≥18px) |
-| `#FF963B` brand on white | 2.6:1 | ❌ 不能當 body text，只能當大字 / button bg |
-| `#FF963B` brand on `#1C1917` | 6.7:1 | ✅ AAA（btn-primary 黑底橘字 OK）|
-| White on `#FF963B`（橘卡片）| 2.6:1 | ❌ Final CTA 文字不能用白色 |
-| Black on `#FF963B` | 9.0:1 | ✅ AAA（v9.11 改黑字正確）|
-
-### Skip Link（mobile 友善）
-首屏左上角加 skip link：
-```html
-<a href="#main-content" class="skip-link">跳至主內容</a>
-```
-```css
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  background: var(--text-primary);
-  color: white;
-  padding: 8px 16px;
-  z-index: 1000;
-  transition: top 200ms;
-}
-.skip-link:focus {
-  top: 0;
-}
-```
-
-### Reduced Motion 支援
-```css
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-  .scale-metric { transform: none !important; opacity: 1 !important; }
-  .reveal { opacity: 1 !important; transform: none !important; }
-}
-```
-
-JS 也需偵測：
-```js
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if (prefersReducedMotion) {
-  // 跳過 GSAP hover、Z 軸 reveal、scroll-linked counter
-}
-```
+> **A11y / SEO + OG / Loading-Error-Success states / Performance + Browser Support / Analytics 完整規格已搬到 `@specs/site-foundations.md`**。
+> 動到全站底層規範前必讀該檔。
 
 ---
 
-## 🔍 SEO + Open Graph 規格 ⭐ v11.1
+## 📱 RWD 響應式規格 → 拆出
 
-### `<head>` 必填
-
-```html
-<head>
-  <!-- 基本 -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Banner Studio · 露天 AI Banner 產線</title>
-  <meta name="description" content="露天內部 AI Banner 自動產線。3 分鐘產出一張 banner、72% 一次通過、單筆成本 $0.04 USD。一個設計師做的,給不會設計的人用。">
-
-  <!-- Theme color (browser UI 染色) -->
-  <meta name="theme-color" content="#FF963B">
-
-  <!-- Favicon -->
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-  <!-- Open Graph (Slack / LINE / Facebook 預覽) -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Banner Studio · 露天 AI Banner 產線">
-  <meta property="og:description" content="3 分鐘產出一張 banner、72% 一次通過、單筆成本 $0.04 USD。">
-  <meta property="og:image" content="https://banner-studio-site.vercel.app/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:url" content="https://banner-studio-site.vercel.app">
-  <meta property="og:site_name" content="Banner Studio">
-  <meta property="og:locale" content="zh_TW">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Banner Studio · 露天 AI Banner 產線">
-  <meta name="twitter:description" content="3 分鐘產出一張 banner、72% 一次通過率。">
-  <meta name="twitter:image" content="https://banner-studio-site.vercel.app/og-image.png">
-
-  <!-- 內部站不要 SEO 公開索引 -->
-  <meta name="robots" content="noindex, nofollow">
-</head>
-```
-
-### Next.js 14 metadata API 寫法
-```tsx
-// app/layout.tsx
-export const metadata: Metadata = {
-  metadataBase: new URL('https://banner-studio-site.vercel.app'),
-  title: 'Banner Studio · 露天 AI Banner 產線',
-  description: '露天內部 AI Banner 自動產線。3 分鐘產出一張 banner、72% 一次通過、單筆成本 $0.04 USD。一個設計師做的,給不會設計的人用。',
-  themeColor: '#FF963B',
-  robots: { index: false, follow: false },  // 內部站
-  openGraph: {
-    type: 'website',
-    locale: 'zh_TW',
-    siteName: 'Banner Studio',
-    images: [{ url: '/og-image.png', width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    images: ['/og-image.png'],
-  },
-};
-```
-
-### OG 圖規格（D7 polish 階段做）
-- **尺寸**：1200 × 630px
-- **檔案**：`public/og-image.png`
-- **內容建議**：
-  - 露天橘色底
-  - 大字「Banner Studio」（Geist 96px 黑字）
-  - 副標「4 小時 → 3 分鐘」
-  - 右下角「露天 UIUX × Sales」
-- **生成方式**：用 Banner Agent 自己產一張（吃自己的狗糧）。失敗用 Figma 手刻。
-
-### Favicon 規格
-- `favicon.svg`：32 × 32 SVG，露天橘色 "B" 字母
-- `apple-touch-icon.png`：180 × 180 PNG，圓角會由 iOS 自動套
-
-### Sitemap / robots.txt
-- 內部站 **不需要** sitemap.xml
-- `public/robots.txt`：
-  ```
-  User-agent: *
-  Disallow: /
-  ```
-
----
-
-## ⚡ Loading / Error / Success States 規格 ⭐ v11.1
-
-### 表單 Loading State
-
-送出按鈕點下後：
-```tsx
-const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-
-<button disabled={status === 'loading'}>
-  {status === 'loading' ? (
-    <>
-      <Spinner /> 送出中...
-    </>
-  ) : '送出申請'}
-</button>
-```
-
-CSS：
-```css
-.form-submit:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  animation: none;       /* 拿掉 pulse */
-}
-.spinner {
-  width: 16px; height: 16px;
-  border: 2px solid currentColor;
-  border-top-color: transparent;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-```
-
-### 表單 Error States
-
-#### 欄位驗證錯誤（前端即時）
-- Email 格式錯：欄位下方紅字「請輸入有效的 Email」
-- 必填空白：欄位 border 變紅 + 下方「此欄位為必填」
-- 出現方式：onBlur 觸發，不要 onChange（太煩）
-
-```tsx
-{errors.email && (
-  <p id="email-error" role="alert" className="form-error">
-    {errors.email}
-  </p>
-)}
-```
-
-```css
-.form-error {
-  font-size: 12px;
-  color: #FCA5A5;     /* 在橘底上要用淺紅,深紅看不見 */
-  margin-top: 4px;
-}
-.form-input.has-error {
-  background: rgba(252, 165, 165, 0.15);
-  box-shadow: 0 0 0 2px rgba(252, 165, 165, 0.5);
-}
-```
-
-#### API 失敗
-雙 webhook 都失敗時，表單下方顯示：
-```
-😕 送出失敗,請稍後再試,或直接 Google Chat 找 Kay
-```
-
-不要把技術細節（500 / timeout）給業務看。
-
-### 表單 Success State
-
-送出成功後 fade out 表單，顯示成功訊息（spec 已有）：
-```
-✓ (橘色圓 72×72)
-申請已送出
-Kay 已收到通知,24 小時內會把你加進 Notion 和 Chat 群組。
-```
-
-5 秒後**不要**自動跳走，讓人看清楚。
-
-### 圖片 Loading State
-
-所有 `<img>` / `<Image>` 預設灰底 placeholder：
-```css
-img {
-  background: var(--neutral-100);
-}
-```
-
-Next.js Image 加 `placeholder="blur"` + `blurDataURL`（自動產低解析）。
-
-### Page Loading（Next.js）
-
-`app/loading.tsx`：
-```tsx
-export default function Loading() {
-  return (
-    <div className="page-loader" aria-live="polite">
-      <div className="spinner-large" />
-      <p>載入中...</p>
-    </div>
-  );
-}
-```
-
-實際上 Next.js SSR 後幾乎不會看到，但 PWA / 慢網路會用到。
-
----
-
-## 🚀 Performance + Browser Support 目標 ⭐ v11.1
-
-### Lighthouse 目標（Production URL 跑）
-
-| Metric | Mobile 目標 | Desktop 目標 |
-|--------|-----------|-------------|
-| Performance | **≥ 85** | ≥ 95 |
-| Accessibility | **≥ 95** | ≥ 95 |
-| Best Practices | ≥ 90 | ≥ 95 |
-| SEO | ≥ 90 | ≥ 95 |
-
-### Core Web Vitals
-| Metric | 目標 | 實際做法 |
-|--------|------|---------|
-| **LCP** (Largest Contentful Paint) | < 2.5s | Hero 圖用 next/image priority、字型 preload |
-| **CLS** (Cumulative Layout Shift) | < 0.1 | 圖片寫死 width/height、字型用 `font-display: optional` |
-| **INP** (Interaction to Next Paint) | < 200ms | hover GSAP 用 GPU、避免大量 re-render |
-| **FCP** (First Contentful Paint) | < 1.8s | 第一個 viewport 不要等 Lenis、GSAP 載入 |
-| **TBT** (Total Blocking Time) | < 200ms | code splitting、defer 非關鍵 JS |
-
-### Optimization Checklist
-- [ ] 所有圖片用 `next/image`（自動 webp + lazy + responsive）
-- [ ] 字型用 `next/font` 自動 preload + 自託管（不直接 link Google Fonts）
-- [ ] GSAP 用 dynamic import（`import('gsap')`）只在桌機載入
-- [ ] Lenis 用 dynamic import 只在桌機載入
-- [ ] Block 08.5 / Block 04 component 用 `<Suspense>` 拆 chunk
-- [ ] CSS 用 Tailwind JIT，build 後 < 50KB
-- [ ] 全站 JS bundle < 200KB（gzipped）
-- [ ] 加 `<link rel="preconnect" href="https://images.unsplash.com">`
-
-### Browser Support 矩陣
-
-| 瀏覽器 | 最低版本 | 為什麼 |
-|--------|---------|-------|
-| Chrome | 110+ | OKLCH、container queries |
-| Safari | 16.4+ | OKLCH、`@container` |
-| Firefox | 113+ | OKLCH |
-| Edge | 110+ | 同 Chrome |
-| iOS Safari | 16.4+ | iPhone 8 + 以上都 cover |
-| Android Chrome | 110+ | 同 desktop Chrome |
-
-**降級策略**：用 `@supports` 偵測，舊瀏覽器用 fallback：
-```css
-.testimonial-card { background: #FAFAF9; }
-@supports (background: oklch(0.5 0.1 50)) {
-  .testimonial-card:hover { background: oklch(94% 0.012 70); }
-}
-```
-
-⚠️ 露天業務同事大多用 Chrome / iOS Safari，**IE / 舊版 Safari 不需要支援**。
-
----
-
-## 📊 Analytics 埋點規格 ⭐ v11.1
-
-### 工具選擇
-
-| 選項 | 優點 | 缺點 |
-|------|------|------|
-| **Google Analytics 4** | 免費、容易接、報表齊全 | 設定複雜、隱私疑慮 |
-| **Vercel Analytics** | 一鍵啟用、Web Vitals 內建 | 要付費（免費版限量）|
-| **Plausible / Umami** | 簡潔、隱私友善 | 要自架或付費 |
-
-**內部站建議**：用 **Vercel Analytics 免費版**就夠（每月 2500 events），不需要 GA4。
-
-### 埋點事件
-
-| 事件名 | 觸發 | 屬性 |
-|--------|------|------|
-| `page_view` | 進站 | path, referrer |
-| `cta_click` | 點任何 CTA | location（hero/manifesto/nav）|
-| `story_step_click` | 點 sidebar item | step_number |
-| `feature_card_click` | 點 feature card 開 lightbox | feature_id |
-| `faq_open` | 展開 FAQ | question_id |
-| `form_start` | 第一次 focus 任何欄位 | — |
-| `form_submit` | 點送出 | dept, success/fail |
-| `form_success` | 收到 webhook 200 | — |
-| `form_error` | 表單失敗 | error_type |
-| `external_link_click` | 點 footer 外部連結 | link_name |
-
-### Vercel Analytics 整合
-```tsx
-// app/layout.tsx
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
-
-<body>
-  {children}
-  <Analytics />
-  <SpeedInsights />
-</body>
-```
-
-### Custom Event
-```tsx
-import { track } from '@vercel/analytics';
-
-<button onClick={() => {
-  track('cta_click', { location: 'hero' });
-  // 然後 scroll to apply
-}}>
-  申請使用
-</button>
-```
-
-### 隱私聲明
-不蒐集 PII（個人資料）。表單填的姓名/Email 只送 webhook **不送 Analytics**。
-
-考績呈報數據時用：
-1. **Google Sheet** 撈申請數量、部門分佈
-2. **Vercel Analytics** 撈訪問數、轉換率（form_submit / page_view）
+> **Block-by-Block mobile/tablet 行為、降級規則、共用 Mobile Polish、QA Checklist 已搬到 `@specs/rwd-responsive.md`**。
+> 改任何 block 的 mobile 行為前必讀該檔對應段。
 
 ---
 
 ## 📦 D3 開工檔案清單
 
-`~/Desktop/banner-studio-site/docs/`：
+`~/Desktop/banner-studio-site/docs/`(主)+ `specs/`(拆出):
 
-1. `banner-studio-full-copy-and-spec.md` — **本檔（v10.0）**
+**docs/**
+1. `banner-studio-full-copy-and-spec.md` — **本檔(v11.4)**
 2. `scroll-pinned-story-spec.md` — Block 04 深挖
 3. `claude-code-day1-prompt.md` — D3-D7 Claude Code prompt
-4. `banner-studio-demo-v10-final.html` — **v10.0 視覺 reference**
+4. `banner-studio-demo-v10-final.html` — **v10.0 視覺 reference**(檔名保留 v10,內容是 D2 demo final)
+
+**specs/**(v11.4 拆檔)
+5. `specs/blocks/scale-showcase.md` — Block 08.5
+6. `specs/blocks/faq-accordion.md` — Block 10
+7. `specs/blocks/final-cta-form.md` — Block 09 + Webhook
+8. `specs/site-foundations.md` — A11y / SEO / States / Performance / Analytics
+9. `specs/rwd-responsive.md` — RWD 全規格
 
 ### CDN 依賴
 - Lenis (smooth scroll)
 - **GSAP 3.12.5** ⭐ v9.9 新增（Testimonials hover 用）
 - D7 React 版用 Framer Motion 取代 GSAP
-
----
-
-## 📱 RWD 響應式規格 ⭐ v10.1
-
-### Breakpoints 三段式
-```css
-/* Desktop default */     ≥ 1100px
-/* Tablet */               768px - 1099px
-/* Mobile */               < 768px
-/* Small mobile */         < 480px
-```
-
-### 全站通則
-
-#### 觸控目標尺寸（Apple HIG / Material 標準）
-- 所有可點擊元素最小 **44 × 44 px**（含 nav links / sidebar items / accordion / form inputs / buttons）
-- Inline link 例外（保持文字尺寸即可，但 padding 區可擴展）
-
-#### Hover 替代
-- Mobile **沒有** hover 概念，所有 `:hover` 互動需要對等的 `:active` / `tap` 替代
-- Testimonials GSAP hover → mobile **完全不執行**（用 `matchMedia('(hover: hover)')` 偵測）
-- Feature card hover → 同上，mobile 改成「點擊直接開 Lightbox」
-- Button :hover transform → mobile 改成 `:active { transform: scale(0.98) }`
-
-#### Container padding
-| Breakpoint | Nav / Footer | Hero / Sections |
-|-----------|--------------|----------------|
-| Desktop ≥ 1100 | 32px | 24px |
-| Tablet 768-1099 | 24px | 24px |
-| Mobile < 768 | 20px | 20px |
-| Small < 480 | 16px | 16px |
-
-#### Typography 縮放
-所有 `clamp()` 函數會自動縮放，但需驗證：
-- Hero title `clamp(40px, 6vw, 56px)` → mobile 約 32-40px
-- Section h2 → mobile 應 ≥ 32px（不能太小，否則沒有 marketing 衝擊力）
-- Body text 最小 14px（Mobile WCAG 標準）
-
----
-
-### Block-by-Block RWD 規格
-
-#### 01. Top Nav
-
-| 螢幕 | 行為 |
-|------|------|
-| Desktop | 100% 滿版 + 32px padding，顯示 menu items |
-| Tablet | 同 desktop 但 padding 24px |
-| Mobile | **隱藏 menu items，顯示漢堡選單**（D7 polish 做） |
-| Mobile（簡版） | D3-D6 階段 menu items 直接隱藏，只留 Logo + 「申請使用」按鈕 |
-
-```css
-@media (max-width: 768px) {
-  .nav-menu { display: none; }
-  /* 或改為點漢堡 */
-}
-```
-
-#### 02. Hero
-
-| 螢幕 | 佈局 |
-|------|------|
-| Desktop | 兩欄 1.2fr / 1fr，左文字右 marquee |
-| Tablet (768-1099) | 兩欄但比例改 1fr / 1fr，marquee 高度縮到 480px |
-| Mobile (< 768) | **單欄**，文字在上、marquee 在下（高度 320px） |
-| Small (< 480) | **隱藏 marquee**，純文字 + CTA |
-
-理由：marquee 在 mobile 直排會佔太多空間，小螢幕直接拿掉，文字 + CTA 即可。
-
-```css
-@media (max-width: 768px) {
-  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
-  .hero-marquee { height: 320px; }
-}
-@media (max-width: 480px) {
-  .hero-marquee { display: none; }
-  .hero-cta { flex-direction: column; }
-  .hero-cta .btn { width: 100%; }
-}
-```
-
-#### 03. Stats Strip
-
-| 螢幕 | 佈局 |
-|------|------|
-| Desktop | 三欄 1fr / 1fr / 1fr |
-| Tablet | 三欄但 padding 縮小 |
-| Mobile (< 768) | **三欄改單欄**，每個 stat 之間用 divider 分隔 |
-| Small | 同 mobile |
-
-```css
-@media (max-width: 768px) {
-  .stats-grid { grid-template-columns: 1fr; gap: 48px; }
-  .stat-item { text-align: center; }
-}
-```
-
-#### 04. Scroll-Pinned Story ⭐ 最複雜
-
-| 螢幕 | 行為 |
-|------|------|
-| Desktop | sidebar 200px sticky + 卡片 1fr |
-| Tablet (768-1099) | **sidebar 變橫向 sticky 在頂端**（top: 80px），卡片在下方 |
-| Mobile (< 768) | **完全隱藏 sidebar**，純粹卡片直排 |
-
-#### Mobile 降級理由
-- Sticky sidebar 在小螢幕上會擋畫面
-- 5 張卡片直排即可，不需要 navigator
-- **滑鼠 icon 動畫**：在 desktop / tablet 顯示，mobile **隱藏整個 sidebar 自然就沒了**
-
-#### 卡片 Layout 統一直排
-- Desktop 的 stack/split 混合佈局（Step 1/3/5 stack, Step 2/4 split）→ **mobile 全部變 stack**（圖在上，文字在下）
-
-```css
-@media (max-width: 1099px) {
-  .story-grid { grid-template-columns: 1fr; }
-  .story-sidebar {
-    position: sticky;
-    top: 80px;
-    z-index: 10;
-    background: var(--bg-page);
-    padding: 16px 0;
-    /* 改橫向 */
-    flex-direction: row;
-    overflow-x: auto;
-    gap: 24px;
-  }
-}
-@media (max-width: 768px) {
-  .story-sidebar { display: none; }
-  /* 卡片全部 layout-stack */
-  .story-card.layout-split { grid-template-columns: 1fr; }
-}
-```
-
-#### 05. Feature Grid + Lightbox
-
-| 螢幕 | 佈局 |
-|------|------|
-| Desktop | 3 欄 |
-| Tablet | **2 欄** |
-| Mobile | **單欄** |
-
-#### Lightbox Modal mobile 行為
-- 打開 modal：`position: fixed; inset: 0`，全螢幕（不是 max-width 1100px）
-- 圖片 `max-height: 60vh`（避免太佔螢幕，留空間給文字）
-- Close button：右上角 **48 × 48 px**（觸控目標尺寸）
-- 改用 `touchstart` 事件 detect 滑動關閉（往下拉關閉）
-
-```css
-@media (max-width: 1099px) {
-  .feature-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-}
-@media (max-width: 640px) {
-  .feature-grid { grid-template-columns: 1fr; }
-  .lightbox-content {
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 0;
-    margin: 0;
-  }
-  .lightbox-close { width: 48px; height: 48px; }
-}
-```
-
-#### 07. Manifesto
-
-| 螢幕 | 行為 |
-|------|------|
-| Desktop | 滿版底圖 + 黑漸層 + 兩行 88px h2 |
-| Mobile | 同結構，h2 自動縮到約 56px（clamp 處理）|
-
-#### 注意
-- 底圖 mobile 要確認上下漸層**夠暗**（Unsplash 圖片在小螢幕對比可能跑掉）
-- CTA 按鈕在 mobile 改 `width: 100%`
-
-```css
-@media (max-width: 480px) {
-  .manifesto-cta .btn { width: 100%; }
-  .manifesto-meta { font-size: 13px; }
-}
-```
-
-#### 08. Testimonials
-
-| 螢幕 | 佈局 |
-|------|------|
-| Desktop | 3 欄 |
-| Tablet | 3 欄保留（卡片內容夠精簡）|
-| Mobile (< 768) | **單欄** |
-
-#### Hover 處理 ⭐ 重要
-GSAP hover **不在 mobile 執行**：
-
-```js
-const isMobile = !window.matchMedia('(hover: hover)').matches;
-
-document.querySelectorAll('.testimonial-card').forEach(card => {
-  if (isMobile) return;  // ⭐ mobile 完全跳過
-  // ... 桌機才綁 mouseenter / mouseleave
-});
-```
-
-或在 React：
-```tsx
-const canHover = useMediaQuery('(hover: hover)');
-{canHover && <HoverEffect />}
-```
-
-```css
-@media (max-width: 768px) {
-  .testimonial-grid { grid-template-columns: 1fr; gap: 16px; }
-}
-```
-
-#### 08.5 Scale Showcase ⭐ 必須降級
-
-| 螢幕 | 行為 |
-|------|------|
-| Desktop | Z 軸 perspective 1500px reveal + counter 同步 |
-| Tablet | 保留 Z 軸但 perspective 縮小到 800px |
-| Mobile (< 768) | **完全降級為 translateY + fade**，不用 perspective |
-
-#### 為什麼 mobile 要降級
-- Perspective 在小螢幕（< 480px）會把字放大到糊掉
-- Mobile GPU 算 3D transform 容易卡頓
-- 6 個數字直排已經很長，不需要再加 z 軸戲劇性
-
-#### 降級實作
-```js
-const isMobile = window.innerWidth < 768;
-
-if (isMobile) {
-  // 純 translateY + fade，不算 z / scale / blur
-  metrics.forEach(metric => {
-    const rect = metric.getBoundingClientRect();
-    const progress = ...;  // 同樣的 progress 算法
-    metric.style.transform = `translateY(${(1-progress) * 40}px)`;
-    metric.style.opacity = progress;
-  });
-} else {
-  // 桌機完整 Z 軸 reveal
-}
-```
-
-#### Mobile Layout
-- 6 個 metric 從 2 × 3 grid 改為 **1 × 6 grid**（直排）
-- 不再「左右交錯橘藍」，全部置中
-- 數字字級從 clamp(72-104px) 自動縮到約 56-72px
-
-```css
-@media (max-width: 768px) {
-  .scale-numbers { grid-template-columns: 1fr; gap: 56px; }
-  .scale-showcase { perspective: none; }
-  .scale-metric {
-    transform: none !important;
-    opacity: 1;
-    filter: none;
-  }
-  .scale-metric-value { font-size: clamp(56px, 12vw, 72px); }
-}
-```
-
-#### 10. FAQ Accordion
-
-| 螢幕 | 行為 |
-|------|------|
-| Desktop | 768px 寬置中 |
-| Tablet | 同 desktop |
-| Mobile | 100% 寬，padding 20px |
-
-#### 觸控注意
-- Accordion `<button>` 整個 row 高度至少 56px（觸控友善）
-- `+` icon 至少 24px（容易點到）
-
-```css
-@media (max-width: 768px) {
-  .faq-question {
-    min-height: 56px;
-    padding: 20px 0;
-  }
-}
-```
-
-#### 09. Final CTA + 表單
-
-| 螢幕 | 行為 |
-|------|------|
-| Desktop | 90% 寬橘卡片 + 兩欄 1fr / 1fr |
-| Tablet (768-1099) | 90% 寬保留，padding 縮到 64px，**改單欄**（左文字 + 下表單）|
-| Mobile (< 768) | **95% 寬**，padding 40-48px，單欄 |
-| Small (< 480) | **100% 寬**（去 margin，讓卡片貼邊），padding 32px 24px，圓角縮到 16px |
-
-#### 表單欄位 mobile
-- 4 個欄位（姓名/部門/Email/Notion ID）→ **全部改 1 欄滿版**
-- input 高度 ≥ 48px（觸控友善）
-- 字級 16px（避免 iOS 自動縮放）
-- 送出按鈕 100% 寬
-
-```css
-@media (max-width: 1099px) {
-  .final-cta-content { grid-template-columns: 1fr; gap: 48px; }
-  .final-cta-card { padding: 64px 48px; }
-}
-@media (max-width: 768px) {
-  .final-cta-card {
-    width: 95%;
-    padding: 56px 32px;
-    border-radius: 24px;
-  }
-  .apply-form { grid-template-columns: 1fr; }
-  .form-input {
-    font-size: 16px;       /* iOS 防縮放 */
-    padding: 14px 16px;
-    min-height: 48px;
-  }
-  .form-submit { width: 100%; }
-}
-@media (max-width: 480px) {
-  .final-cta-card {
-    width: 100%;
-    border-radius: 16px;
-    padding: 40px 24px;
-  }
-}
-```
-
-#### 11. Footer
-
-| 螢幕 | 佈局 |
-|------|------|
-| Desktop | 滿版 + 3 欄 grid |
-| Tablet | 滿版 + 3 欄但 gap 縮小 |
-| Mobile | 滿版 + **單欄垂直堆疊** |
-
-```css
-@media (max-width: 768px) {
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  .footer-bottom {
-    text-align: center;
-    margin-top: 40px;
-  }
-}
-```
-
----
-
-### 共用 Mobile Polish 細節
-
-#### Performance
-- Mobile 優先載入小張圖（Unsplash 帶 `?w=800` query param 而非 `?w=1200`）
-- Lazy load 所有非首屏 image：`<img loading="lazy">`
-- Reveal 動畫在 mobile 縮短（800ms → 500ms），減少 jank
-
-#### Scroll
-- Lenis smooth scroll 在 iOS 可能會跟系統 inertia 打架
-  - 建議 mobile **關閉 Lenis**：`smoothWheel: false, smoothTouch: false`
-  - 用 native scroll，CSS `scroll-behavior: smooth` 處理錨點
-
-```js
-const lenis = new Lenis({
-  duration: 1.4,
-  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-  smoothWheel: window.innerWidth >= 768,    // ⭐ mobile 關閉
-  smoothTouch: false,                        // 永遠關閉 touch
-});
-```
-
-#### Form input iOS 注意事項
-- `<input>` 字級必須 ≥ 16px，否則 iOS 點到自動 zoom
-- `inputmode="email"` / `autocomplete="email"` 提升填表體驗
-- Email 欄位加 `enterkeyhint="next"`，最後一個欄位 `enterkeyhint="send"`
-
-#### Reveal 動畫
-- IntersectionObserver `rootMargin` 在 mobile 收緊（移到 -50px），提早觸發
-
----
-
-### Mobile QA Checklist（D7 polish 階段必跑）
-
-- [ ] iPhone 14 Pro (390 × 844) 各 block 直排正常
-- [ ] iPhone SE (375 × 667) 沒有橫向 scroll
-- [ ] iPad (768 × 1024) tablet 中間值佈局
-- [ ] 所有按鈕觸控目標 ≥ 44 × 44px
-- [ ] 表單欄位 ≥ 48px 高、字級 ≥ 16px
-- [ ] Block 04 sidebar 在 mobile 完全隱藏
-- [ ] Block 08.5 Z 軸 reveal 在 mobile 改用 translateY + fade
-- [ ] Testimonials hover 在 mobile **不執行 GSAP**（matchMedia 偵測）
-- [ ] Lightbox 在 mobile 全螢幕 + 大 close 按鈕
-- [ ] Lenis smoothWheel 在 mobile 關閉
-- [ ] 文字 reveal 動畫不會卡頓
-- [ ] Footer 三欄改單欄
-- [ ] Final CTA 表單 4 欄位改 1 欄、按鈕滿版
-
----
-
-
-
-- [ ] 4 個檔案放進 `~/Desktop/banner-studio-site/docs/`
-- [ ] GitHub repo `yihueliu13/banner-studio-site` 建好
-- [ ] `CHAT_WEBHOOK` env var 從 Banner Agent 複製備用
-- [ ] **蒐圖延後**到 D5 看 Claude Code 跑出實際 layout 再決定（Kay 自決）
 
 ---
 
@@ -1546,3 +730,6 @@ const lenis = new Lenis({
 | **v10.1** | **4/25 傍晚** | **補完整 RWD 響應式規格 — Block-by-Block mobile/tablet 行為、降級規則、QA checklist**|
 | **v11.0** | **4/25 晚上** | **加 Google Sheet 雙寫架構（Chat + Sheet），Apps Script webhook + Next.js API route 程式碼**|
 | **v11.1** | **4/25 晚上** | **補完整 — Spacing/Radius/Shadow/Z-index/Duration/Breakpoint Scale + A11y + SEO/OG + Loading/Error/Success states + Lighthouse + Browser Support + Analytics**|
+| ~~v11.2~~ | ~~4/25 D2~~ | ~~（**假升版**:changelog 宣稱補 4 個 block 章節 + Hero 全形 + Stats vs Scale 說明 + 檔案清單對齊,但實際只做了 Block 結構表 06 註記 + Sheet Notion ID 註記 + 版本號變更。已在 v11.3 真補)~~ |
+| **v11.3** | **4/25 D2 真補完** | **Block 01 Top Nav / 07 Manifesto / 08.5 Scale Showcase / 10 FAQ Accordion 完整章節 + Hero subtitle 半形→全形 + Stats vs Scale 數字定位區隔 + D3 檔案清單** |
+| **v11.4** | **4/25 D2 拆檔治理** | **Block 08.5 / 09 / 10 拆到 `specs/blocks/` + A11y/SEO/States/Performance/Analytics 合併到 `specs/site-foundations.md` + RWD 拆到 `specs/rwd-responsive.md`。主檔 2024 → ~700 行,治理達標** |

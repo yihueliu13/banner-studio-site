@@ -42,11 +42,13 @@ Next.js 14 + TypeScript + Tailwind CSS + Lenis + Framer Motion + GSAP + Vercel A
 ## 依任務加讀(動手前必須先讀完相關 spec,不可憑記憶改)
 | 任務類型 | 必讀檔案 |
 |---------|---------|
-| 任何 block 視覺/文案 | `docs/banner-studio-full-copy-and-spec.md` |
+| 任何 block 視覺/文案(主) | `docs/banner-studio-full-copy-and-spec.md` |
 | Block 04 Scroll-Pinned Story | `docs/scroll-pinned-story-spec.md` + `docs/banner-studio-demo-v10-final.html` |
-| RWD / mobile 行為 | `docs/banner-studio-full-copy-and-spec.md` §RWD 響應式規格 |
-| 表單 / API webhook | `docs/banner-studio-full-copy-and-spec.md` §資料持久化架構 |
-| A11y / SEO / Analytics | `docs/banner-studio-full-copy-and-spec.md` 對應段落 |
+| Block 08.5 Scale Showcase | `specs/blocks/scale-showcase.md`(Z 軸 JS / 6 metric / 9 踩雷) |
+| Block 09 Final CTA + 表單 + Webhook | `specs/blocks/final-cta-form.md` |
+| Block 10 FAQ Accordion | `specs/blocks/faq-accordion.md` |
+| RWD / mobile 行為 | `specs/rwd-responsive.md` |
+| 全站底層 A11y / SEO / States / Performance / Analytics | `specs/site-foundations.md` |
 
 ## 工作模式
 - 照 spec 不發揮,有疑問問,卡 30 分鐘停下來
