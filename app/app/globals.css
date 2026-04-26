@@ -498,6 +498,104 @@ body {
     transform: scale(1.1);
   }
 
+  /* ─── Scale Showcase Block 08.5(對齊 demo line 779-890) ─── */
+  .scale-showcase {
+    padding: 160px 0;
+    background: white;
+    /* ⚠️ 關鍵:給子元素 3D 透視空間 */
+    perspective: 1500px;
+    perspective-origin: 50% 50%;
+    overflow: hidden;
+  }
+  .scale-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 120px;
+    transform-style: preserve-3d;
+    align-items: start;
+  }
+  .scale-intro h2 {
+    font-size: clamp(40px, 5vw, 56px);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    color: var(--text-primary);
+    margin-bottom: 32px;
+  }
+  .scale-intro p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    max-width: 400px;
+  }
+  .scale-numbers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px 64px;
+    transform-style: preserve-3d;
+  }
+  /* 起始狀態(JS 載入前 fallback): 遠 + 縮小 + 模糊 + 透明 */
+  .scale-metric {
+    display: flex;
+    flex-direction: column;
+    transform-style: preserve-3d;
+    will-change: transform, opacity, filter;
+    transform: translateZ(-1000px) scale(0.3);
+    opacity: 0;
+    filter: blur(24px);
+  }
+  .scale-metric-value {
+    font-size: clamp(72px, 8vw, 104px);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+    font-variant-numeric: tabular-nums;
+  }
+  .scale-metric-value .unit {
+    font-weight: 500;
+  }
+  .scale-metric-value.accent-orange .unit {
+    background: linear-gradient(135deg, var(--text-primary) 40%, var(--brand) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .scale-metric-value.accent-blue .unit {
+    background: linear-gradient(135deg, var(--text-primary) 40%, #3B5FD6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .scale-metric-meta {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .scale-metric-arrow {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .scale-metric-arrow.down {
+    color: var(--brand);
+  }
+  .scale-metric-arrow.up {
+    color: #3B5FD6;
+  }
+  .scale-metric-label {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--text-primary);
+  }
+
   /* ─── Testimonials Block 08(對齊 demo line 739-776) ─── */
   .testimonials {
     padding: 128px 0;
@@ -1037,6 +1135,34 @@ body {
   .testimonial-grid {
     grid-template-columns: 1fr;
     gap: 16px;
+  }
+}
+
+/* ─── Scale Showcase Block 08.5 RWD(對齊 demo line 880-890 + spec §RWD) ─── */
+@media (max-width: 900px) {
+  .scale-layout {
+    grid-template-columns: 1fr;
+    gap: 64px;
+  }
+  .scale-numbers {
+    gap: 48px 32px;
+  }
+}
+@media (max-width: 768px) {
+  .scale-showcase {
+    perspective: none;
+  }
+  .scale-numbers {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+  .scale-metric {
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+  .scale-metric-value {
+    font-size: clamp(56px, 12vw, 72px);
   }
 }
 

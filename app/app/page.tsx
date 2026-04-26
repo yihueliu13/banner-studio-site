@@ -4,6 +4,7 @@ import Story from "@/components/Story";
 import Features from "@/components/Features";
 import Manifesto from "@/components/Manifesto";
 import Testimonials from "@/components/Testimonials";
+import ScaleShowcase from "@/components/ScaleShowcase";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Features />
       <Manifesto />
       <Testimonials />
+      <ScaleShowcase />
 
       {/* Dummy 區段(後續 block 取代) */}
       <section
