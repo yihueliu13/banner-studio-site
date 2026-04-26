@@ -1035,6 +1035,196 @@ body {
     padding: 0 16px;
     text-align: center;
   }
+
+  /* ─── Final CTA Block 09(對齊 demo line 893-1082) ─── */
+  .final-cta {
+    padding: 80px 0 80px;
+    background: var(--bg-page);
+  }
+  .final-cta-card {
+    width: 90%;
+    max-width: none;
+    margin: 0 auto;
+    padding: 96px 96px;
+    background: var(--brand);
+    color: var(--text-primary);
+    border-radius: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .final-cta-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at 80% 30%,
+      rgba(255, 255, 255, 0.08) 0%,
+      transparent 60%
+    );
+    pointer-events: none;
+  }
+  .final-cta-content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 96px;
+    align-items: center;
+  }
+  .final-cta-intro h2 {
+    font-size: clamp(36px, 4.5vw, 56px);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+  }
+  .final-cta-subtitle {
+    font-size: 17px;
+    color: rgba(28, 25, 23, 0.75);
+    line-height: 1.6;
+    margin-bottom: 32px;
+    max-width: 420px;
+  }
+  .final-cta-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .final-cta-points li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--text-primary);
+  }
+  .final-cta-points li::before {
+    content: "✓";
+    color: var(--text-primary);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .apply-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    text-align: left;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .form-group.full {
+    grid-column: 1 / -1;
+  }
+  .form-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+    letter-spacing: 0.02em;
+  }
+  .form-label .required {
+    color: var(--text-primary);
+    margin-left: 4px;
+  }
+  .form-input {
+    background: var(--form-input-bg);
+    border: none;
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 15px;
+    color: white;
+    font-family: inherit;
+    transition: all 300ms var(--ease-out-expo);
+    outline: none;
+  }
+  .form-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+  .form-input:hover {
+    background: #3a3b43;
+  }
+  .form-input:focus {
+    background: #3d3e47;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15);
+  }
+  .form-submit-row {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .form-submit {
+    background: var(--text-primary);
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 9999px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 400ms var(--ease-out-expo);
+    font-family: inherit;
+  }
+  .form-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  }
+  .form-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  .form-meta {
+    font-size: 13px;
+    color: rgba(28, 25, 23, 0.6);
+    margin: 0;
+  }
+  .form-success {
+    text-align: center;
+    padding: 64px 32px;
+  }
+  .form-success-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 9999px;
+    background: var(--text-primary);
+    color: var(--brand);
+    font-size: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    animation: pulse 600ms var(--ease-out-expo);
+  }
+  .form-success h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+  .form-success p {
+    color: rgba(28, 25, 23, 0.75);
+    line-height: 1.6;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 @keyframes scrollUp {
@@ -1201,6 +1391,36 @@ body {
   .stats-grid {
     grid-template-columns: 1fr;
     gap: 48px;
+  }
+}
+
+/* ─── Final CTA Block 09 RWD(D3 minimal,對齊 demo line 1085-1097) ─── */
+@media (max-width: 900px) {
+  .final-cta {
+    padding: 48px 0;
+  }
+  .final-cta-card {
+    padding: 56px 32px;
+    border-radius: 24px;
+  }
+  .final-cta-content {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+@media (max-width: 480px) {
+  .final-cta-card {
+    padding: 40px 24px;
+  }
+  .apply-form {
+    grid-template-columns: 1fr;
+  }
+  .form-input {
+    font-size: 16px;
+    min-height: 48px;
+  }
+  .form-submit {
+    width: 100%;
   }
 }
 

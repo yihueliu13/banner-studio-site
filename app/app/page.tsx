@@ -5,6 +5,7 @@ import Features from "@/components/Features";
 import Manifesto from "@/components/Manifesto";
 import Testimonials from "@/components/Testimonials";
 import ScaleShowcase from "@/components/ScaleShowcase";
+import FinalCta from "@/components/FinalCta";
 
 export default function Home() {
   return (
@@ -17,19 +18,15 @@ export default function Home() {
       <Testimonials />
       <ScaleShowcase />
 
-      {/* Dummy 區段(後續 block 取代) */}
+      {/* FAQ placeholder(D-3 取代) */}
       <section
         id="faq"
         className="min-h-screen flex items-center justify-center bg-bg-story-card"
       >
         <p className="text-text-muted">scroll 區段(Block 10 placeholder)</p>
       </section>
-      <section
-        id="apply"
-        className="min-h-screen flex items-center justify-center"
-      >
-        <p className="text-text-muted">scroll 區段(Block 09 placeholder)</p>
-      </section>
+
+      <FinalCta />
     </main>
   );
 }
