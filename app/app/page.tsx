@@ -1,9 +1,11 @@
 import Hero from "@/components/Hero";
+import Stats from "@/components/Stats";
 
 export default function Home() {
   return (
     <main>
       <Hero />
+      <Stats />
 
       {/* Dummy 區段(讓 nav scroll 變色 + nav anchor 可測,後續 block 取代) */}
       <section

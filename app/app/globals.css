@@ -273,6 +273,65 @@ body {
     border-radius: 50%;
   }
 
+  /* ─── Reveal(全站通用,對齊 demo line 1188-1193) ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(48px);
+    transition:
+      opacity 1000ms var(--ease-out-expo),
+      transform 1000ms var(--ease-out-expo);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── Stats Strip(Block 03,對齊 demo line 298-336) ─── */
+  .stats {
+    padding: 64px 0;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--bg-card);
+  }
+  .stats-eyebrow {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--brand);
+    margin-bottom: 32px;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-number {
+    font-size: 72px;
+    font-weight: 500;
+    color: var(--text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 12px;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-number .suffix {
+    background: linear-gradient(135deg, var(--text-primary) 40%, var(--brand) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .stat-label {
+    font-size: 16px;
+    color: var(--text-secondary);
+  }
+
   /* ─── Hero(Block 02,對齊 demo line 170-294) ─── */
   .hero {
     padding: 96px 0 96px;
@@ -485,6 +544,14 @@ body {
   }
   .hero-cta .btn {
     width: 100%;
+  }
+}
+
+/* ─── Stats Strip RWD(對齊 spec v11.4 §RWD Block 03) ─── */
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
   }
 }
 
