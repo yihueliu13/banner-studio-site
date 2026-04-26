@@ -31,6 +31,7 @@ Next.js 14 + TypeScript + Tailwind CSS + Lenis + Framer Motion + GSAP + Vercel A
 | 主 Spec(複製文案/視覺/RWD)| `docs/banner-studio-full-copy-and-spec.md` | v11.1 全站規格,單一真相來源 |
 | Block 04 深挖 | `docs/scroll-pinned-story-spec.md` | Scroll-Pinned Story 專用 spec |
 | 視覺 reference | `docs/banner-studio-demo-v10-final.html` | v10 HTML 視覺對照 |
+| 部署 SOP | `docs/deploy-guide.md` | Apps Script + Chat webhook + Vercel step-by-step |
 | D3 開工 prompt | `docs/claude-code-day1-prompt.md` | 一日衝刺指令 |
 | 產品需求 | `docs/prd.md` | 產品視角入口 |
 | 大階段目標 | `docs/roadmap.md` | milestone |
