@@ -1036,6 +1036,72 @@ body {
     text-align: center;
   }
 
+  /* ─── FAQ Block 10(對齊 demo line 1099-1141) ─── */
+  .faq {
+    padding: 128px 0;
+  }
+  .faq-list {
+    max-width: 768px;
+    margin: 0 auto;
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 24px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+    color: inherit;
+    font-family: inherit;
+  }
+  .faq-question:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+  .faq-question h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: color 300ms var(--ease-out-expo);
+    margin: 0;
+  }
+  .faq-item:hover .faq-question h3 {
+    color: var(--brand);
+  }
+  .faq-icon {
+    font-size: 32px;
+    color: var(--brand);
+    transition: transform 500ms var(--ease-out-expo);
+    flex-shrink: 0;
+    margin-left: 24px;
+    line-height: 1;
+  }
+  .faq-item.open .faq-icon {
+    transform: rotate(45deg);
+  }
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 600ms var(--ease-out-expo);
+  }
+  .faq-item.open .faq-answer {
+    max-height: 500px;
+  }
+  .faq-answer-inner {
+    padding: 0 0 24px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    white-space: pre-line;
+    margin: 0;
+  }
+
   /* ─── Final CTA Block 09(對齊 demo line 893-1082) ─── */
   .final-cta {
     padding: 80px 0 80px;
@@ -1391,6 +1457,20 @@ body {
   .stats-grid {
     grid-template-columns: 1fr;
     gap: 48px;
+  }
+}
+
+/* ─── FAQ Block 10 RWD(對齊 specs/rwd-responsive.md §10) ─── */
+@media (max-width: 768px) {
+  .faq {
+    padding: 80px 20px;
+  }
+  .faq-question {
+    min-height: 56px;
+    padding: 20px 0;
+  }
+  .faq-question h3 {
+    font-size: 17px;
   }
 }
 
