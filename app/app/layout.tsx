@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
@@ -32,6 +33,7 @@ export default function RootLayout({
         <SmoothScroll>
           <Nav />
           {children}
+          <Footer />
         </SmoothScroll>
       </body>
     </html>
