@@ -95,3 +95,4 @@ last_updated: 2026-04-25
 | D-2 Block 09 Final CTA + 表單 + Webhook stub | 2026-04-26 | (待補) | 4 欄表單 + setTimeout 800ms stub,D6 接 `/api/apply` |
 | D-3 Block 10 FAQ Accordion | 2026-04-26 | (待補) | 3 Q&A + 單開模式 + + → × 旋轉 + max-height transition + A11y |
 | D-4 Block 11 Footer | 2026-04-26 | (待補) | 滿版黑底 + 3 欄(Brand/快速連結/找 Kay)+ 橘 pill「需申請」 |
+| D-5 wave 1 Mobile RWD Polish | 2026-04-26 | b70f828 | Scale counter mobile 卡 0 / Stats 字級 / Features h2 三項;375x667 + 390x844 雙 viewport 無 overflow |
