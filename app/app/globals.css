@@ -1414,6 +1414,23 @@ body {
   }
 }
 
+/* ─── Section Header h2 mobile 縮字級(全站,D5 polish) ─── */
+@media (max-width: 768px) {
+  .section-header {
+    margin-bottom: 40px;
+  }
+  .section-header h2 {
+    font-size: 32px;
+    letter-spacing: -0.015em;
+  }
+  .section-header p {
+    font-size: 16px;
+  }
+  .features {
+    padding: 64px 0;
+  }
+}
+
 /* ─── Features Block 05 RWD(spec D3 minimal,polish 留 D5) ─── */
 @media (max-width: 1099px) {
   .feature-grid {
@@ -1516,9 +1533,18 @@ body {
 
 /* ─── Stats Strip RWD(對齊 spec v11.4 §RWD Block 03) ─── */
 @media (max-width: 768px) {
+  .stats {
+    padding: 48px 0;
+  }
   .stats-grid {
     grid-template-columns: 1fr;
-    gap: 48px;
+    gap: 32px;
+  }
+  .stat-number {
+    font-size: 56px;
+  }
+  .stat-label {
+    font-size: 14px;
   }
 }
 

@@ -137,13 +137,14 @@ export default function ScaleShowcase() {
         metric.style.filter = `blur(${blur}px)`;
       }
 
-      // Counter 同步:用同一個 eased progress 驅動數字
+      // Counter 同步:desktop 用 eased 爬升,mobile 直接顯示終值
+      // (mobile 沒 perspective,scroll-linked 數字爬升體驗差,直接顯示完整數字)
       const counter = counterRefs.current[index];
       if (counter && counter.dataset.target) {
         const target = parseFloat(counter.dataset.target);
         const decimals = parseInt(counter.dataset.decimals ?? "0", 10);
-        const current = target * eased;
-        counter.textContent = current.toFixed(decimals);
+        const value = isMobile ? target : target * eased;
+        counter.textContent = value.toFixed(decimals);
       }
     });
   };
