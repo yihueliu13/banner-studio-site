@@ -1,21 +1,11 @@
+import Hero from "@/components/Hero";
+
 export default function Home() {
   return (
     <main>
-      {/* Hero placeholder(A-4 補完整) */}
-      <section className="min-h-screen flex items-center justify-center px-6 pt-24">
-        <div className="text-center">
-          <h1 className="text-[clamp(40px,6vw,56px)] font-semibold leading-[1.1] tracking-tight">
-            你以為要 4 小時的 banner
-            <br />
-            現在 3 分鐘
-          </h1>
-          <p className="mt-6 text-text-secondary max-w-[560px] mx-auto">
-            (這是 A-3 開發 placeholder,Block 02 Hero 完整版會在 A-4 取代)
-          </p>
-        </div>
-      </section>
+      <Hero />
 
-      {/* Dummy 高度區段(讓 nav scroll 變色可測) */}
+      {/* Dummy 區段(讓 nav scroll 變色 + nav anchor 可測,後續 block 取代) */}
       <section
         id="story"
         className="min-h-screen flex items-center justify-center bg-bg-story-card"

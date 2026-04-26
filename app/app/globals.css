@@ -166,6 +166,23 @@ body {
    ──────────────────────────────────────────────────────── */
 
 @layer components {
+  /* ─── Container(對齊 demo line 70-74) ─── */
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ─── Eyebrow 全站統一橘色(對齊 demo line 184-191) ─── */
+  .eyebrow {
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--brand);
+    margin-bottom: 24px;
+  }
+
   /* ─── Button 系統(對齊 demo line 127-168) ─── */
   .btn {
     display: inline-flex;
@@ -254,6 +271,220 @@ body {
     height: 8px;
     background: var(--brand);
     border-radius: 50%;
+  }
+
+  /* ─── Hero(Block 02,對齊 demo line 170-294) ─── */
+  .hero {
+    padding: 96px 0 96px;
+    overflow: hidden;
+  }
+  .hero > .container {
+    max-width: 1366px;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .hero-title {
+    font-size: clamp(40px, 6vw, 56px);
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+  .word {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+  }
+  .word-inner {
+    display: inline-block;
+    transform: translateY(110%);
+    transition: transform 800ms var(--ease-out-expo);
+  }
+  .hero-title.is-revealed .word-inner {
+    transform: translateY(0);
+  }
+  .hero-title.is-revealed .word:nth-child(1) .word-inner {
+    transition-delay: 0ms;
+  }
+  .hero-title.is-revealed .word:nth-child(2) .word-inner {
+    transition-delay: 0ms;
+  }
+  .hero-title.is-revealed .word:nth-child(3) .word-inner {
+    transition-delay: 150ms;
+  }
+  .hero-subtitle {
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 800ms var(--ease-out-expo) 600ms,
+      transform 800ms var(--ease-out-expo) 600ms;
+  }
+  .hero-subtitle.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .hero-cta {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 800ms var(--ease-out-expo) 750ms,
+      transform 800ms var(--ease-out-expo) 750ms;
+  }
+  .hero-cta.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .hero-micro {
+    font-size: 14px;
+    color: var(--text-muted);
+    opacity: 0;
+    transition: opacity 800ms var(--ease-out-expo) 900ms;
+  }
+  .hero-micro.is-revealed {
+    opacity: 1;
+  }
+  .hero-eyebrow {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 800ms var(--ease-out-expo),
+      transform 800ms var(--ease-out-expo);
+  }
+  .hero-eyebrow.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .hero-marquee {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    height: 600px;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 15%,
+      black 85%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 15%,
+      black 85%,
+      transparent 100%
+    );
+    opacity: 0;
+    transform: scale(0.95);
+    transition:
+      opacity 1000ms var(--ease-out-expo) 400ms,
+      transform 1000ms var(--ease-out-expo) 400ms;
+  }
+  .hero-marquee.is-revealed {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .marquee-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .marquee-col-up {
+    animation: scrollUp 30s linear infinite;
+  }
+  .marquee-col-down {
+    animation: scrollDown 35s linear infinite;
+  }
+  .banner-mock {
+    flex-shrink: 0;
+    height: 140px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  }
+  .banner-mock img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .banner-mock-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.55) 0%,
+      rgba(0, 0, 0, 0.15) 60%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    padding: 0 16px;
+    text-align: center;
+  }
+}
+
+@keyframes scrollUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+@keyframes scrollDown {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* ─── Hero RWD(對齊 spec v11.4 §RWD Block 02) ─── */
+@media (max-width: 1099px) {
+  .hero-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .hero-marquee {
+    height: 480px;
+  }
+}
+@media (max-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .hero-marquee {
+    height: 320px;
+  }
+}
+@media (max-width: 480px) {
+  .hero-marquee {
+    display: none;
+  }
+  .hero-cta {
+    flex-direction: column;
+  }
+  .hero-cta .btn {
+    width: 100%;
   }
 }
 
