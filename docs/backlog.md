@@ -1,7 +1,7 @@
 ---
 role: backlog
 status: active
-last_updated: 2026-04-25
+last_updated: 2026-04-26
 ---
 
 # banner-studio-site Backlog
@@ -9,26 +9,21 @@ last_updated: 2026-04-25
 > 單一真相來源。新項目從這裡加、改、歸檔。
 > 用 `/backlog` 快速檢視。
 
-## 🔴 P0(本週必做 / D3 衝刺)
+## 🔴 P0(D-7 Lighthouse 修改 / 4/29 上線前必過)
 
 | 狀態 | 項目 | 建立 | 備註 |
 |------|------|------|------|
-| ⬜ | `create-next-app` 建 app/ + 設 Tailwind | 2026-04-25 | D3 早上 |
-| ⬜ | 寫 design tokens 到 Tailwind config(色、字、shadow、radius、spacing)| 2026-04-25 | 對應主 spec §全站基本設定 |
-| ⬜ | Block 01-03(Nav / Hero / Stats)| 2026-04-25 | D3 上午 |
-| ⬜ | Block 04 Scroll-Pinned Story | 2026-04-25 | D4 一整天預算,卡 30min 退 Level B |
-| ⬜ | Block 05 + Block 07-08 | 2026-04-25 | D5 |
-| ⬜ | Block 08.5 Scale Showcase Z 軸 reveal | 2026-04-25 | mobile 必須降級 |
-| ⬜ | Block 09 Final CTA + 雙 webhook API route | 2026-04-25 | Promise.allSettled |
-| ⬜ | Block 10 + 11 + lightbox + 全站 reveal | 2026-04-25 | D6 |
-| ⬜ | Vercel 部署 + env vars | 2026-04-25 | M2 |
-| ⬜ | Apps Script 部署 Sheet webhook | 2026-04-25 | M2 |
-| ⬜ | Mobile 真機 + Lighthouse | 2026-04-25 | M2 |
+| ⬜ | **Mobile Performance 57 → 85+**(D-7 早上開工)| 2026-04-26 | 主因:轉譯封鎖 8.6s。修法:① `next/font` 加 `display: 'swap'` ② Hero 首屏圖加 `priority` + `fetchpriority="high"` |
+| ⬜ | **A11y 92 → 95**(D-7 早上)| 2026-04-26 | 差 3 分:檢查按鈕 `aria-label` / color contrast / form input 跟 label 對應 |
+| ⬜ | LCP 11.5s → < 2.5s(行動)| 2026-04-26 | hero 圖 `priority` 一加應該過 |
+| ⬜ | D-7 修完跑第二次 Lighthouse 驗證 | 2026-04-26 | Mobile Performance ≥ 85 / A11y ≥ 95 才能上線 |
 
 ## 🟡 P1(交件後 polish)
 
 | 狀態 | 項目 | 建立 | 備註 |
 |------|------|------|------|
+| ⬜ | **Mobile UI 修改**(細項待 Kay 補)| 2026-04-26 | D-7 真機跑完後列具體修法 |
+| ⬜ | **圖片換成正式產品圖**(現在是 placeholder)| 2026-04-26 | Hero / Feature Grid / Story 等都用真產品圖 |
 | ⬜ | OG image 生成(用 Banner Agent 吃自己狗糧)| 2026-04-25 | D7 polish |
 | ⬜ | Favicon SVG 設計 | 2026-04-25 | D7 polish |
 | ⬜ | Mobile 漢堡選單 | 2026-04-25 | D3-D6 階段直接隱藏 menu items |
@@ -69,6 +64,10 @@ last_updated: 2026-04-25
 
 | 狀態 | 項目 | 建立 | 備註 |
 |------|------|------|------|
+| ⬜ | 減少無用的 CSS(省 131 KiB)| 2026-04-26 | Tailwind purge content 路徑全對 + globals.css 手動清 |
+| ⬜ | 壓縮 CSS(省 14 KiB)| 2026-04-26 | next.config 確認 `compress: true` |
+| ⬜ | 舊版 JavaScript(省 12 KiB)| 2026-04-26 | next.config browser target 提到 ES2020+ |
+| ⬜ | 強制自動重排 / 主執行緒長工 | 2026-04-26 | 動畫用 `transform/opacity` 不用 `width/height` |
 | ⬜ | A/B 測試表單轉換率 | 2026-04-25 | 等資料夠 |
 | ⬜ | Vercel Analytics 報表整理(考績用)| 2026-04-25 | 上線後一個月 |
 
@@ -96,3 +95,9 @@ last_updated: 2026-04-25
 | D-3 Block 10 FAQ Accordion | 2026-04-26 | (待補) | 3 Q&A + 單開模式 + + → × 旋轉 + max-height transition + A11y |
 | D-4 Block 11 Footer | 2026-04-26 | (待補) | 滿版黑底 + 3 欄(Brand/快速連結/找 Kay)+ 橘 pill「需申請」 |
 | D-5 wave 1 Mobile RWD Polish | 2026-04-26 | b70f828 | Scale counter mobile 卡 0 / Stats 字級 / Features h2 三項;375x667 + 390x844 雙 viewport 無 overflow |
+| D-6 wave 1 真 webhook + 表單 error state + .env.example | 2026-04-26 | 9649dac | Promise.allSettled 雙 webhook + idle/loading/success/error 四 state + prefers-reduced-motion |
+| D-6 wave 2 Apps Script Sheet webhook 部署 | 2026-04-26 | — | personal Gmail 部署 + setupStatusColumn 一次性函式(F 欄 dropdown + conditional format)+ doPost 預設「申請中」 |
+| D-6 wave 2 Google Chat webhook 部署 | 2026-04-26 | — | 群組「Banner Studio 申請通知」+ Apps 與整合新增 webhook |
+| D-6 wave 2 Vercel 部署上線 | 2026-04-26 | — | Framework Preset Other → Next.js 為主要修法 + Deployment Protection Disabled。Production URL: banner-studio-site-jbnq4nnx2-yihueliu13s-projects.vercel.app |
+| D-6 wave 2 真實表單測試全綠 | 2026-04-26 | — | 桌機 production URL 填表 → ✓ 大勾勾 + Chat 卡片 + Sheet 第 5 列(申請中 + 橘 + dropdown) |
+| D-6 wave 2 Lighthouse 第一輪跑分 | 2026-04-26 | — | Mobile 57 / Desktop 80。A11y 92 / Best Practices 100 / SEO 100。Performance 不過 → P0 D-7 修(主因:轉譯封鎖 8.6s) |
