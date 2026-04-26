@@ -41,16 +41,29 @@ export default function FinalCta() {
     (e: React.ChangeEvent<HTMLInputElement>) =>
       setData((d) => ({ ...d, [key]: e.target.value }));
 
+  const [errorMsg, setErrorMsg] = useState<string>("");
+
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("loading");
+    setErrorMsg("");
 
-    // D3 stub:模擬 webhook 延遲(對齊 demo line 1981)
-    // D6 真實版:await fetch('/api/apply', { method: 'POST', body: JSON.stringify(data) })
-    await new Promise((r) => setTimeout(r, 800));
-    console.log("申請資料(D3 stub):", data);
-
-    setStatus("success");
+    try {
+      const res = await fetch("/api/apply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const json = (await res.json()) as { success?: boolean; error?: string };
+      if (!res.ok || !json.success) {
+        throw new Error(json.error || `HTTP ${res.status}`);
+      }
+      setStatus("success");
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "送出失敗";
+      setErrorMsg(msg);
+      setStatus("error");
+    }
   };
 
   return (
@@ -156,6 +169,14 @@ export default function FinalCta() {
                     申請 24 小時內開通 · 有問題 Google Chat 找 Kay
                   </p>
                 </div>
+                {status === "error" && (
+                  <div className="form-error" role="alert">
+                    送出失敗,請稍後再試或直接 Google Chat 找 Kay。
+                    {errorMsg && (
+                      <span className="form-error-detail">({errorMsg})</span>
+                    )}
+                  </div>
+                )}
               </form>
             ) : (
               <div className="form-success is-visible">
