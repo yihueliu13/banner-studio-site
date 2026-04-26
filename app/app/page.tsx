@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
 import Story from "@/components/Story";
+import Features from "@/components/Features";
 
 export default function Home() {
   return (
@@ -8,14 +9,9 @@ export default function Home() {
       <Hero />
       <Stats />
       <Story />
+      <Features />
 
       {/* Dummy 區段(後續 block 取代) */}
-      <section
-        id="features"
-        className="min-h-screen flex items-center justify-center"
-      >
-        <p className="text-text-muted">scroll 區段(Block 05 placeholder)</p>
-      </section>
       <section
         id="faq"
         className="min-h-screen flex items-center justify-center bg-bg-story-card"
