@@ -332,6 +332,175 @@ body {
     color: var(--text-secondary);
   }
 
+  /* ─── Lenis 必要 CSS(對齊 demo line 45-46) ─── */
+  /* 跟 Lenis smooth scroll 並存 — html.lenis 是 Lenis init 自動加的 class */
+
+  /* ─── Story Block 04(對齊 demo line 338-525) ─── */
+  .story {
+    padding: 160px 0;
+    position: relative;
+  }
+  .story-header {
+    text-align: center;
+    margin-bottom: 120px;
+  }
+  .story-header h2 {
+    font-size: clamp(40px, 5vw, 56px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+  .story-header p {
+    font-size: 20px;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+  .story-main {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .story-sidebar {
+    position: sticky;
+    top: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .story-nav-item {
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: var(--neutral-300);
+    text-align: left;
+    cursor: pointer;
+    transition: color 500ms var(--ease-out-expo);
+    line-height: 1.3;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .story-nav-item.active {
+    color: var(--text-primary);
+  }
+  .story-nav-item:hover:not(.active) {
+    color: var(--neutral-400);
+  }
+  .story-nav-item:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+  .nav-mouse-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    color: var(--brand);
+    opacity: 0;
+    transform: translateX(-8px);
+    transition:
+      opacity 400ms var(--ease-out-expo),
+      transform 400ms var(--ease-out-expo);
+    flex-shrink: 0;
+  }
+  .nav-mouse-icon path,
+  .nav-mouse-icon rect,
+  .nav-mouse-icon line {
+    stroke: currentColor;
+  }
+  .story-nav-item.active .nav-mouse-icon {
+    opacity: 1;
+    transform: translateX(0);
+    animation: mouseHint 1.6s ease-in-out infinite;
+  }
+  .story-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .story-card {
+    background: var(--bg-story-card);
+    border-radius: 32px;
+    padding: 24px;
+    overflow: hidden;
+  }
+  .story-card.layout-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .story-card.layout-stack .story-card-content {
+    max-width: 580px;
+  }
+  .story-card.layout-stack .story-card-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 24px;
+  }
+  .story-card.layout-split {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .story-card.layout-split .story-card-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 20px;
+  }
+  .story-card-content {
+    transform: translateY(30px);
+    opacity: 0;
+    transition:
+      transform 1000ms var(--ease-out-expo) 200ms,
+      opacity 800ms var(--ease-out-expo) 200ms;
+  }
+  .story-card.is-visible .story-card-content {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .story-card-title {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    margin-bottom: 16px;
+    line-height: 1.25;
+  }
+  .story-card-body {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+  }
+  .story-card-image {
+    overflow: hidden;
+    background: var(--neutral-100);
+    display: block;
+    position: relative;
+    transform: translateY(60px);
+    opacity: 0;
+    transition:
+      transform 1200ms var(--ease-out-expo),
+      opacity 900ms var(--ease-out-expo);
+  }
+  .story-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .story-card.is-visible .story-card-image {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
   /* ─── Hero(Block 02,對齊 demo line 170-294) ─── */
   .hero {
     padding: 96px 0 96px;
@@ -514,6 +683,48 @@ body {
   }
   to {
     transform: translateY(0);
+  }
+}
+
+/* ─── Mouse Icon 擺動 keyframes(Block 04 sidebar active 用) ─── */
+@keyframes mouseHint {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  20% {
+    transform: translateY(-3px) rotate(-6deg);
+  }
+  50% {
+    transform: translateY(2px) rotate(4deg);
+  }
+  80% {
+    transform: translateY(-2px) rotate(-3deg);
+  }
+}
+
+/* ─── Story RWD(對齊 spec v11.4 §RWD Block 04) ─── */
+@media (max-width: 1099px) {
+  .story-main {
+    grid-template-columns: 1fr;
+  }
+  .story-sidebar {
+    position: sticky;
+    top: 80px;
+    z-index: 10;
+    background: var(--bg-page);
+    padding: 16px 0;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 24px;
+  }
+}
+@media (max-width: 768px) {
+  .story-sidebar {
+    display: none;
+  }
+  .story-card.layout-split {
+    grid-template-columns: 1fr;
   }
 }
 
