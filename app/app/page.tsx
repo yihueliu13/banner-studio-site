@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
 import Story from "@/components/Story";
 import Features from "@/components/Features";
+import Manifesto from "@/components/Manifesto";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <Stats />
       <Story />
       <Features />
+      <Manifesto />
 
       {/* Dummy 區段(後續 block 取代) */}
       <section

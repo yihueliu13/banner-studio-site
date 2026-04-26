@@ -498,6 +498,60 @@ body {
     transform: scale(1.1);
   }
 
+  /* ─── Manifesto Block 07(對齊 demo line 689-734) ─── */
+  .manifesto {
+    padding: 160px 0;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .manifesto-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=2000&h=1200&fit=crop");
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+  .manifesto-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0.5) 50%,
+      rgba(0, 0, 0, 0.7) 100%
+    );
+  }
+  .manifesto > .container {
+    position: relative;
+    z-index: 1;
+    max-width: 100%;
+  }
+  .manifesto h2 {
+    font-size: clamp(48px, 7vw, 88px);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: white;
+  }
+  .manifesto h2 + h2 {
+    margin-top: 8px;
+  }
+  .manifesto-cta {
+    margin-top: 64px;
+  }
+  .manifesto-meta {
+    margin-top: 24px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
   /* ─── Story Block 04(對齊 demo line 338-525) ─── */
   .story {
     padding: 160px 0;
@@ -912,6 +966,16 @@ body {
   .lightbox-close {
     width: 48px;
     height: 48px;
+  }
+}
+
+/* ─── Manifesto Block 07 RWD(D3 minimal) ─── */
+@media (max-width: 480px) {
+  .manifesto-cta .btn {
+    width: 100%;
+  }
+  .manifesto-meta {
+    font-size: 13px;
   }
 }
 
