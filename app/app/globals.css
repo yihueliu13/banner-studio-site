@@ -498,6 +498,59 @@ body {
     transform: scale(1.1);
   }
 
+  /* ─── Testimonials Block 08(對齊 demo line 739-776) ─── */
+  .testimonials {
+    padding: 128px 0;
+    background: var(--bg-card);
+  }
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .testimonial-card {
+    background-color: var(--bg-page);
+    border: none;
+    border-radius: 28px;
+    padding: 40px;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    /* GPU 加速關鍵(對齊 demo line 754-756) */
+    will-change: transform, box-shadow;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  .testimonial-num {
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 16px;
+    font-variant-numeric: tabular-nums;
+  }
+  .testimonial-num .accent {
+    color: var(--brand);
+  }
+  .testimonial-label {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .testimonial-detail {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .testimonial-source {
+    font-size: 12px;
+    color: var(--text-muted);
+    padding-top: 16px;
+    border-top: 1px solid var(--border-subtle);
+  }
+
   /* ─── Manifesto Block 07(對齊 demo line 689-734) ─── */
   .manifesto {
     padding: 160px 0;
@@ -976,6 +1029,14 @@ body {
   }
   .manifesto-meta {
     font-size: 13px;
+  }
+}
+
+/* ─── Testimonials Block 08 RWD(D3 minimal,對齊 spec §RWD Block 08) ─── */
+@media (max-width: 768px) {
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 }
 
