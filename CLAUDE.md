@@ -51,6 +51,7 @@ Next.js 14 + TypeScript + Tailwind CSS + Lenis + Framer Motion + GSAP + Vercel A
 | Block 10 FAQ Accordion | `specs/blocks/faq-accordion.md` |
 | RWD / mobile 行為 | `specs/rwd-responsive.md` |
 | 全站底層 A11y / SEO / States / Performance / Analytics | `specs/site-foundations.md` |
+| Block 02 Hero / 換 marquee 圖 / 改 banner 順序 | `app/data/hero-banners.ts`(SSOT 資料檔,layout.tsx LCP preload + Hero.tsx 渲染都從這讀)|
 
 ## ⚠️ 視覺實作硬規則(R1 教訓)
 - **任何 block / token / 樣式實作前,必須對照 `docs/banner-studio-demo-v10-final.html`** 的對應 CSS 和 HTML 結構

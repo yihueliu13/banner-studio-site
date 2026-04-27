@@ -182,7 +182,7 @@ export const metadata: Metadata = {
 - **檔案**:`public/og-image.png`
 - **內容建議**:
   - 露天橘色底
-  - 大字「Banner Studio」(Geist 96px 黑字)
+  - 大字「Banner Studio」(`--font-display` 96px 黑字,D-7 改純系統字後對應 SF Pro Display)
   - 副標「4 小時 → 3 分鐘」
   - 右下角「露天 UIUX × Sales」
 - **生成方式**:用 Banner Agent 自己產一張(吃自己的狗糧)。失敗用 Figma 手刻。

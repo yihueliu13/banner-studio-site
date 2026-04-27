@@ -130,7 +130,7 @@ li {
   font-family: var(--font-body);
 }
 
-/* ⭐ 大標題 + Metric 數字一律用 Geist(對齊 demo line 53-59) */
+/* ⭐ 大標題 + Metric 數字用 var(--font-display) -- D-7 改純系統字 stack(SF Pro / 蘋方 / 微軟正黑體),0 字體下載 */
 h1,
 h2,
 h3,

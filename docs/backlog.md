@@ -1,7 +1,7 @@
 ---
 role: backlog
 status: active
-last_updated: 2026-04-26
+last_updated: 2026-04-27
 ---
 
 # banner-studio-site Backlog
@@ -9,22 +9,17 @@ last_updated: 2026-04-26
 > 單一真相來源。新項目從這裡加、改、歸檔。
 > 用 `/backlog` 快速檢視。
 
-## 🔴 P0(D-7 Lighthouse 修改 / 4/29 上線前必過)
+## 🔴 P0(4/29 上線前必過)
 
 | 狀態 | 項目 | 建立 | 備註 |
 |------|------|------|------|
-| ⬜ | **Mobile Performance 57 → 85+**(D-7 早上開工)| 2026-04-26 | 主因:轉譯封鎖 8.6s。修法:① `next/font` 加 `display: 'swap'` ② Hero 首屏圖加 `priority` + `fetchpriority="high"` |
-| ⬜ | **A11y 92 → 95**(D-7 早上)| 2026-04-26 | 差 3 分:檢查按鈕 `aria-label` / color contrast / form input 跟 label 對應 |
-| ⬜ | LCP 11.5s → < 2.5s(行動)| 2026-04-26 | hero 圖 `priority` 一加應該過 |
-| ⬜ | D-7 修完跑第二次 Lighthouse 驗證 | 2026-04-26 | Mobile Performance ≥ 85 / A11y ≥ 95 才能上線 |
+| ⬜ | **換正式產品圖**(D-7 4/27 換)| 2026-04-27 | 替換 Hero / Features / Story 的 Unsplash placeholder。檔案放 `app/public/images/` 下,程式用絕對路徑 `/images/...`,WebP 優先 < 100 KB / 張 |
 
 ## 🟡 P1(交件後 polish)
 
 | 狀態 | 項目 | 建立 | 備註 |
 |------|------|------|------|
-| ⬜ | **Loading 動畫(Plan B)**| 2026-04-27 | 若 D-7 純系統字 + Hero preload 仍未過 Performance 85 才加。蓋住首屏載入空白期,等資源好再 reveal |
 | ⬜ | **Mobile UI 修改**(細項待 Kay 補)| 2026-04-26 | D-7 真機跑完後列具體修法 |
-| ⬜ | **圖片換成正式產品圖**(現在是 placeholder)| 2026-04-26 | Hero / Feature Grid / Story 等都用真產品圖 |
 | ⬜ | OG image 生成(用 Banner Agent 吃自己狗糧)| 2026-04-25 | D7 polish |
 | ⬜ | Favicon SVG 設計 | 2026-04-25 | D7 polish |
 | ⬜ | Mobile 漢堡選單 | 2026-04-25 | D3-D6 階段直接隱藏 menu items |
@@ -102,3 +97,9 @@ last_updated: 2026-04-26
 | D-6 wave 2 Vercel 部署上線 | 2026-04-26 | — | Framework Preset Other → Next.js 為主要修法 + Deployment Protection Disabled。Production URL: banner-studio-site-jbnq4nnx2-yihueliu13s-projects.vercel.app |
 | D-6 wave 2 真實表單測試全綠 | 2026-04-26 | — | 桌機 production URL 填表 → ✓ 大勾勾 + Chat 卡片 + Sheet 第 5 列(申請中 + 橘 + dropdown) |
 | D-6 wave 2 Lighthouse 第一輪跑分 | 2026-04-26 | — | Mobile 57 / Desktop 80。A11y 92 / Best Practices 100 / SEO 100。Performance 不過 → P0 D-7 修(主因:轉譯封鎖 8.6s) |
+| D-7 Lighthouse 修分 wave 1 - next/font + Hero priority | 2026-04-27 | fdabcbf | 拔 Google Fonts `<link>` 改 next/font/google + geist 套件,Hero 第一張圖加 fetchPriority="high"。Performance 57 → 59(改善有限) |
+| D-7 Lighthouse 修分 wave 2 - 純系統字 + Hero preload | 2026-04-27 | 5c117b3 | 拔字體下載,改 SF Pro / 蘋方 / Roboto / 微軟正黑體 system stack。`<link rel="preload">` 限 desktop。Performance 59 → 97(達標)|
+| D-7 A11y 修分 - lightbox dialog 名稱 + Footer h3 | 2026-04-27 | 2ea42bc | Features.tsx lightbox h3 加 fallback「作品詳情」+ Footer h4→h3 + globals.css 同步。A11y 92 → 97(達標)|
+| D-7 SSOT 修法 - banners 抽到資料檔 | 2026-04-27 | (待補) | review 發現 LCP preload URL 寫死兩處違反 SSOT。新建 `app/data/hero-banners.ts` 純資料,layout.tsx + Hero.tsx 都從這讀 |
+| D-7 治理同步 - spec / CLAUDE.md / 註解對齊純系統字 | 2026-04-27 | (待補) | 改 spec Typography Strategy / Stats Strip / OG image 描述對齊 D-7 改動,CLAUDE.md 加讀表加 hero-banners.ts |
+| D-7 Lighthouse 第二次驗證 | 2026-04-27 | — | banner-studio-site.vercel.app(main alias)Mobile 97/97/100/100 / Desktop 99/97/100/100。前 4 輪卡 58 是因為跑 deployment URL 凍結舊版,換 main alias 後立刻全綠 |

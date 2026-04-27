@@ -31,14 +31,16 @@
 - `--accent-blue`: `#3B5FD6` (Scale Showcase 藍色 metric)
 - `--form-input-bg`: `#33343B` (Final CTA 表單欄位深灰)
 
-### Typography Strategy（雙字型）
+### Typography Strategy（D-7 改純系統字 stack,0 字體下載）
 
 ```css
---font-display: "Geist", "Inter", system-ui, sans-serif;
---font-body: "Inter", "Noto Sans TC", system-ui, sans-serif;
+--font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", "Roboto", "Helvetica Neue", system-ui, sans-serif;
+--font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang TC", "Microsoft JhengHei", "Segoe UI", "Roboto", "Noto Sans TC", system-ui, sans-serif;
 ```
 
-D3 用 `next/font/google` + `geist` package 載入。
+D-7 改用純系統字:iOS / macOS 取 SF Pro + 蘋方繁、Android 取 Roboto + Noto Sans CJK(裝置內建)、Windows 取 Segoe UI + 微軟正黑體。
+**不再下載網路字體**(原 Geist + Inter + Noto Sans TC 為 render-blocking 主因,Lighthouse Performance 卡 58 → 改純系統字後跳 97)。
+視覺幾乎一致,各平台用該平台原生最美字組合。
 
 ### Typography Scale
 - Hero title: `clamp(40px, 6vw, 56px)` / weight 600 / line-height 1.1 / **font-display**
@@ -204,7 +206,7 @@ D3 用 `next/font/google` + `geist` package 載入。
 |---|-------|-----------|------|
 | 01 | Top Nav | 100% | scroll 變白底 + blur |
 | 02 | Hero | 1366px | 兩行標題 56px + marquee + **subtitle 不限寬度** |
-| 03 | Stats Strip | 1080px | 3 個 counter / Geist 500 / 漸層 suffix / **eyebrow 橘色** |
+| 03 | Stats Strip | 1080px | 3 個 counter / `--font-display` weight 500 / 漸層 suffix / **eyebrow 橘色** |
 | 04 | Scroll-Pinned Story | 1080px | ⭐ 見專用 spec + **Sidebar active 滑鼠 icon** |
 | 05 | Feature Grid | 1080px | 圖片版 + Lightbox（**不能 overflow:hidden**）|
 | ~~06~~ | ~~（D1 廢案）~~ | — | 編號保留以維持版本對齊,內容已併入 05 Reframe |
@@ -348,7 +350,7 @@ lenis.on('scroll', ({ scroll }) => {
 | 72 | % | 一次通過率 |
 
 ### 字型細節
-- Geist weight 500（瘦版）
+- `--font-display` weight 500（瘦版,D-7 改純系統字後對應 SF Pro Display Medium / 蘋方 Medium）
 - Suffix（+, min, %）漸層色
 
 ### ⚠️ 跟 Block 08.5 Scale Showcase 數字的定位差異
