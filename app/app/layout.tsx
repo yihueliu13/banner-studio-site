@@ -1,8 +1,24 @@
 import type { Metadata } from "next";
+import { GeistSans } from "geist/font/sans";
+import { Inter, Noto_Sans_TC } from "next/font/google";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+const notoSansTC = Noto_Sans_TC({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-noto-tc",
+});
 
 export const metadata: Metadata = {
   title: "Banner Studio · 露天 AI Banner 產線",
@@ -16,19 +32,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-Hant">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin=""
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html
+      lang="zh-Hant"
+      className={`${GeistSans.variable} ${inter.variable} ${notoSansTC.variable}`}
+    >
       <body className="antialiased">
         <SmoothScroll>
           <Nav />

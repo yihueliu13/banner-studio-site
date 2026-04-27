@@ -42,9 +42,11 @@ const banners: Banner[] = [
 function MarqueeCol({
   list,
   direction,
+  eagerFirst = false,
 }: {
   list: Banner[];
   direction: "up" | "down";
+  eagerFirst?: boolean;
 }) {
   // 重複 3 次以實現無縫 loop(對齊 demo line 1728)
   const tripled = [...list, ...list, ...list];
@@ -55,13 +57,21 @@ function MarqueeCol({
         direction === "up" ? "marquee-col-up" : "marquee-col-down",
       ].join(" ")}
     >
-      {tripled.map((b, i) => (
-        <div className="banner-mock" key={i}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={b.img} alt={b.text} loading="lazy" />
-          <div className="banner-mock-overlay">{b.text}</div>
-        </div>
-      ))}
+      {tripled.map((b, i) => {
+        const isLcpCandidate = eagerFirst && i === 0;
+        return (
+          <div className="banner-mock" key={i}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={b.img}
+              alt={b.text}
+              loading={isLcpCandidate ? "eager" : "lazy"}
+              fetchPriority={isLcpCandidate ? "high" : "auto"}
+            />
+            <div className="banner-mock-overlay">{b.text}</div>
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -121,7 +131,7 @@ export default function Hero() {
           </p>
         </div>
         <div className="hero-marquee" ref={marqueeRef}>
-          <MarqueeCol list={banners.slice(0, 4)} direction="up" />
+          <MarqueeCol list={banners.slice(0, 4)} direction="up" eagerFirst />
           <MarqueeCol list={banners.slice(4)} direction="down" />
         </div>
       </div>

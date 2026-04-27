@@ -102,9 +102,9 @@
   --bp-xl: 1100px;
   --bp-2xl: 1366px;
 
-  /* ─── Font Stack(對齊 demo line 40-41) ─── */
-  --font-display: "Geist", "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  --font-body: "Inter", "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  /* ─── Font Stack(對齊 demo line 40-41,改 next/font CSS variable) ─── */
+  --font-display: var(--font-geist-sans), var(--font-inter), -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-body: var(--font-inter), var(--font-noto-tc), -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
 }
 
 /* ────────────────────────────────────────────────────────
