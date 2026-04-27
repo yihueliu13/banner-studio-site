@@ -1,24 +1,12 @@
 import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
-import { Inter, Noto_Sans_TC } from "next/font/google";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-  variable: "--font-inter",
-});
-
-const notoSansTC = Noto_Sans_TC({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-  variable: "--font-noto-tc",
-});
+// LCP 候選圖(Hero marquee 第一張) - desktop 才 preload(mobile 看不到 marquee)
+const HERO_LCP_IMG =
+  "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&h=400&fit=crop";
 
 export const metadata: Metadata = {
   title: "Banner Studio · 露天 AI Banner 產線",
@@ -32,10 +20,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="zh-Hant"
-      className={`${GeistSans.variable} ${inter.variable} ${notoSansTC.variable}`}
-    >
+    <html lang="zh-Hant">
+      <head>
+        <link
+          rel="preload"
+          as="image"
+          href={HERO_LCP_IMG}
+          fetchPriority="high"
+          media="(min-width: 768px)"
+        />
+      </head>
       <body className="antialiased">
         <SmoothScroll>
           <Nav />

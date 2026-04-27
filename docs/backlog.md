@@ -22,6 +22,7 @@ last_updated: 2026-04-26
 
 | 狀態 | 項目 | 建立 | 備註 |
 |------|------|------|------|
+| ⬜ | **Loading 動畫(Plan B)**| 2026-04-27 | 若 D-7 純系統字 + Hero preload 仍未過 Performance 85 才加。蓋住首屏載入空白期,等資源好再 reveal |
 | ⬜ | **Mobile UI 修改**(細項待 Kay 補)| 2026-04-26 | D-7 真機跑完後列具體修法 |
 | ⬜ | **圖片換成正式產品圖**(現在是 placeholder)| 2026-04-26 | Hero / Feature Grid / Story 等都用真產品圖 |
 | ⬜ | OG image 生成(用 Banner Agent 吃自己狗糧)| 2026-04-25 | D7 polish |
