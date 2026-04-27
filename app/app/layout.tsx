@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
+import { banners } from "@/data/hero-banners";
 import "./globals.css";
 
-// LCP 候選圖(Hero marquee 第一張) - desktop 才 preload(mobile 看不到 marquee)
-const HERO_LCP_IMG =
-  "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&h=400&fit=crop";
+// LCP 候選圖(Hero marquee 首列首張) - desktop 才 preload(mobile 看不到 marquee)
+// SSOT: 直接從 Hero 的 banners 陣列讀,避免 URL 寫死兩處不同步
+const HERO_LCP_IMG = banners[0].img;
 
 export const metadata: Metadata = {
   title: "Banner Studio · 露天 AI Banner 產線",
