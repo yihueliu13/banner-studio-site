@@ -169,7 +169,7 @@ export default function Features() {
             )}
           </div>
           <div className="lightbox-text">
-            <h3 id="lightbox-title">{active?.title}</h3>
+            <h3 id="lightbox-title">{active?.title ?? "作品詳情"}</h3>
             <p>{active?.fullBody}</p>
           </div>
         </div>

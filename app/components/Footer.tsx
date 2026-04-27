@@ -11,7 +11,7 @@ export default function Footer() {
             <p>露天 UIUX Team × Sales</p>
           </div>
           <div className="footer-col">
-            <h4>快速連結</h4>
+            <h3>快速連結</h3>
             <ul>
               <li>
                 Notion DB 後台
@@ -21,7 +21,7 @@ export default function Footer() {
             </ul>
           </div>
           <div className="footer-col">
-            <h4>找 Kay</h4>
+            <h3>找 Kay</h3>
             <ul>
               <li>Google Chat: @kay</li>
             </ul>
