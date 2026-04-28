@@ -381,6 +381,7 @@ body {
     overflow: hidden;
     margin-bottom: 20px;
     background: #FCFCFB;
+    border: 1px solid #F4F3F1;
     display: flex;
     align-items: center;
     justify-content: center;
