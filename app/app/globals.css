@@ -380,7 +380,7 @@ body {
     border-radius: 16px;
     overflow: hidden;
     margin-bottom: 20px;
-    background: var(--neutral-100);
+    background: #FCFCFB;
     display: flex;
     align-items: center;
     justify-content: center;
