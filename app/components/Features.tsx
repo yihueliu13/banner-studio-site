@@ -29,9 +29,9 @@ const features: Feature[] = [
     fullImg: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1200&h=800&fit=crop",
   },
   {
-    title: "3 組文案候選",
-    shortBody: "H1/H2/CTA 各 3 版。不滿意直接切換,或退回重跑。",
-    fullBody: "H1/H2/CTA 各 3 版。不滿意直接切換,或退回重跑。AI 會學你挑的版本,下次建議更準。",
+    title: "2 組文案候選",
+    shortBody: "H1/H2/CTA 各 2 版。不滿意直接切換,或退回重跑。",
+    fullBody: "H1/H2/CTA 各 2 版。不滿意直接切換,或退回重跑。AI 會學你挑的版本,下次建議更準。",
     thumb: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=600&fit=crop",
     fullImg: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1200&h=800&fit=crop",
   },

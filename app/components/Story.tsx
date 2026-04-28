@@ -24,15 +24,15 @@ const steps: Step[] = [
   },
   {
     navLabel: "產文案",
-    title: "30-60 秒產出 3 組候選文案",
-    body: "H1 大標、H2 小標、CTA 各 3 版,挑一個勾確認就好。不滿意?改一個字再勾也行,系統會用你的版本繼續跑。",
+    title: "30-60 秒產出 2 組候選文案",
+    body: "H1 大標、H2 小標、CTA 各 2 版,挑一個勾確認就好。不滿意?改一個字再勾也行,系統會用你的版本繼續跑。",
     image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1000&h=750&fit=crop",
     imageAlt: "文案候選",
     layout: "split",
   },
   {
     navLabel: "產底圖",
-    title: "12 種風格 5 種主體 自由組合",
+    title: "12 種風格 14 種主體 自由組合",
     body: "清新美妝、質感家電、活潑童趣、急迫促銷、溫馨生活...或讓 AI 看完你的活動需求,自動幫你判斷該用哪一種。PC + M 兩種版型一次產完。",
     image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=1400&h=800&fit=crop",
     imageAlt: "12 種風格 grid",
