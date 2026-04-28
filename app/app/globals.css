@@ -356,7 +356,7 @@ body {
   /* ─── Features Block 05(對齊 demo line 527-600) ─── */
   .features {
     padding: 128px 0;
-    background: var(--bg-card);
+    background: #eeede8;
   }
   .feature-grid {
     display: grid;
@@ -380,7 +380,7 @@ body {
     border-radius: 16px;
     overflow: hidden;
     margin-bottom: 20px;
-    background: #eeede8;
+    background: var(--neutral-100);
     display: flex;
     align-items: center;
     justify-content: center;
