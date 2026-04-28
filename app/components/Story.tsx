@@ -34,7 +34,7 @@ const steps: Step[] = [
     navLabel: "產底圖",
     title: "12 種風格 14 種主體 自由組合",
     body: "清新美妝、質感家電、活潑童趣、急迫促銷、溫馨生活...或讓 AI 看完你的活動需求,自動幫你判斷該用哪一種。PC + M 兩種版型一次產完。",
-    image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=1400&h=800&fit=crop",
+    image: "/images/story/step-3-style.webp",
     imageAlt: "12 種風格 grid",
     layout: "stack",
   },
