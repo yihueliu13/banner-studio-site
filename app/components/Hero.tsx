@@ -32,7 +32,6 @@ function MarqueeCol({
               loading={isLcpCandidate ? "eager" : "lazy"}
               fetchPriority={isLcpCandidate ? "high" : "auto"}
             />
-            <div className="banner-mock-overlay">{b.text}</div>
           </div>
         );
       })}
