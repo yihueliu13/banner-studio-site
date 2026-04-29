@@ -1560,7 +1560,11 @@ body {
   }
   .hero-subtitle {
     font-size: 16px;
-    margin-bottom: 28px;
+    margin-bottom: 48px;
+  }
+  .hero-micro {
+    font-size: 12px;
+    white-space: nowrap;
   }
 }
 @media (max-width: 480px) {
