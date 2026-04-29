@@ -1522,7 +1522,7 @@ body {
 }
 @media (max-width: 480px) {
   .hero-marquee {
-    display: none;
+    height: 280px;
   }
   .hero-cta {
     flex-direction: column;

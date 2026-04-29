@@ -70,11 +70,11 @@ export default function Hero() {
           </div>
           <h1 className="hero-title" ref={titleRef}>
             <span className="word">
-              <span className="word-inner">你以為要 4 小時的 banner</span>
+              <span className="word-inner">你以為要 4 小時</span>
             </span>
             <br />
             <span className="word">
-              <span className="word-inner">現在 3 分鐘</span>
+              <span className="word-inner">banner 現在 3 分鐘</span>
             </span>
           </h1>
           <p className="hero-subtitle" ref={subtitleRef}>
