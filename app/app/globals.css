@@ -1516,13 +1516,17 @@ body {
     grid-template-columns: 1fr;
     gap: 40px;
   }
+  .hero-grid > div:first-child {
+    order: 2;
+  }
   .hero-marquee {
-    height: 320px;
+    order: 1;
+    height: 192px;
   }
 }
 @media (max-width: 480px) {
   .hero-marquee {
-    height: 280px;
+    height: 168px;
   }
   .hero-cta {
     flex-direction: column;
