@@ -159,7 +159,7 @@ export default function ScaleShowcase() {
     });
   };
 
-  // 同時綁 Lenis scroll 和原生 scroll(雙保險,對齊 demo line 1808-1810)
+  // 同時綁 Lenis scroll 和原生 scroll(雙保險，對齊 demo line 1808-1810)
   useLenis(() => onScroll());
   useEffect(() => {
     const handler = () => onScroll();
@@ -187,7 +187,7 @@ export default function ScaleShowcase() {
             </h2>
             <p>
               Banner Studio 背後是完整的 Banner Agent 系統 — 由一個設計師和
-              Claude Code 用 SDD 流程打造,達到接近大廠內部工具的治理密度。
+              Claude Code 用 SDD 流程打造，達到接近大廠內部工具的治理密度。
             </p>
           </div>
 

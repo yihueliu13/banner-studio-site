@@ -80,7 +80,7 @@ export default function Hero() {
           <p className="hero-subtitle" ref={subtitleRef}>
             不排期、不開繪圖軟體、不寫文案、不生圖。
             <br />
-            Notion 填 5 個欄位,AI 把文案、底圖、組裝全包
+            Notion 填 5 個欄位，AI 把文案、底圖、組裝全包
           </p>
           <div className="hero-cta" ref={ctaRef}>
             <a href="#apply" className="btn btn-primary btn-lg">

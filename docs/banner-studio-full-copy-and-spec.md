@@ -39,8 +39,8 @@
 ```
 
 D-7 改用純系統字:iOS / macOS 取 SF Pro + 蘋方繁、Android 取 Roboto + Noto Sans CJK(裝置內建)、Windows 取 Segoe UI + 微軟正黑體。
-**不再下載網路字體**(原 Geist + Inter + Noto Sans TC 為 render-blocking 主因,Lighthouse Performance 卡 58 → 改純系統字後跳 97)。
-視覺幾乎一致,各平台用該平台原生最美字組合。
+**不再下載網路字體**(原 Geist + Inter + Noto Sans TC 為 render-blocking 主因，Lighthouse Performance 卡 58 → 改純系統字後跳 97)。
+視覺幾乎一致，各平台用該平台原生最美字組合。
 
 ### Typography Scale
 - Hero title: `clamp(40px, 6vw, 56px)` / weight 600 / line-height 1.1 / **font-display**
@@ -209,7 +209,7 @@ D-7 改用純系統字:iOS / macOS 取 SF Pro + 蘋方繁、Android 取 Roboto +
 | 03 | Stats Strip | 1080px | 3 個 counter / `--font-display` weight 500 / 漸層 suffix / **eyebrow 橘色** |
 | 04 | Scroll-Pinned Story | 1080px | ⭐ 見專用 spec + **Sidebar active 滑鼠 icon** |
 | 05 | Feature Grid | 1080px | 圖片版 + Lightbox（**不能 overflow:hidden**）|
-| ~~06~~ | ~~（D1 廢案）~~ | — | 編號保留以維持版本對齊,內容已併入 05 Reframe |
+| ~~06~~ | ~~（D1 廢案）~~ | — | 編號保留以維持版本對齊，內容已併入 05 Reframe |
 | 07 | Manifesto | 滿版 | Unsplash 底圖 + 黑漸層 |
 | 08 | Data Testimonials | 1080px | 3 張 metric card + **GSAP scale hover** |
 | **08.5** | **Scale Showcase** ⭐ | 1080px | Z 軸 scroll-linked depth reveal + counter 同步 |
@@ -351,7 +351,7 @@ Notion 填 5 個欄位，AI 把文案、底圖、組裝全包
 | 72 | % | 一次通過率 |
 
 ### 字型細節
-- `--font-display` weight 500（瘦版,D-7 改純系統字後對應 SF Pro Display Medium / 蘋方 Medium）
+- `--font-display` weight 500（瘦版，D-7 改純系統字後對應 SF Pro Display Medium / 蘋方 Medium）
 - Suffix（+, min, %）漸層色
 
 ### ⚠️ 跟 Block 08.5 Scale Showcase 數字的定位差異
@@ -418,10 +418,10 @@ Active sidebar item **左邊**出現露天橘色實體滑鼠 SVG icon，CSS anim
 | # | Title | Body | Layout |
 |---|-------|------|--------|
 | 01 | **在 Notion 填 5 個欄位** | 活動名稱、促銷重點、目標受眾、語氣風格、版型。其他欄位都可以讓 AI 自己決定。 | stack |
-| 02 | **30-60 秒產出 2 組候選文案** | H1 大標、H2 小標、CTA 各 2 版,挑一個勾確認就好。 | split |
-| 03 | **12 種風格 14 種主體 自由組合** | 清新美妝、質感家電、活潑童趣...AI 自動判斷。PC + M 一次產完。 | stack |
-| 04 | **自動組裝 + WCAG 檢查** | 文字底圖自動拼起來,檢查對比度、文字超界。不合格直接退回重做。 | split |
-| 05 | **Google Chat 通知 Drive 下載** | 每階段 Chat 提醒。Notion 審核,Drive 下載。 | stack |
+| 02 | **30-60 秒產出 2 組候選文案** | H1 大標、H2 小標、CTA 各 2 版，挑一個勾確認就好。 | split |
+| 03 | **12 種風格 14 種主體 自由組合** | 清新美妝、質感家電、活潑童趣…AI 自動判斷。PC + M 一次產完。 | stack |
+| 04 | **自動組裝 + WCAG 檢查** | 文字底圖自動拼起來，檢查對比度、文字超界。不合格直接退回重做。 | split |
+| 05 | **Google Chat 通知 Drive 下載** | 每階段 Chat 提醒。Notion 審核，Drive 下載。 | stack |
 
 ---
 
@@ -443,17 +443,17 @@ Active sidebar item **左邊**出現露天橘色實體滑鼠 SVG icon，CSS anim
 ### Section Copy
 - Eyebrow: `功能總覽`
 - Title: **`一個工具 把業務團隊從 banner 地獄救出來`**（無標點）
-- Subtitle: `Kay 做設計系統的時候,受不了 banner 要反覆排期和改尺寸,所以做了這個。`（**全形逗號**）
+- Subtitle: `Kay 做設計系統的時候，受不了 banner 要反覆排期和改尺寸，所以做了這個。`（**全形逗號**）
 
 ### 6 張卡片資料（內文用全形逗號）
 
 | # | Title | Body |
 |---|-------|------|
-| 1 | 12 種視覺風格 | 清新、質感、活潑、急迫、溫馨...17 種選一個,或讓 AI 自動判斷。|
+| 1 | 12 種視覺風格 | 清新、質感、活潑、急迫、溫馨…17 種選一個，或讓 AI 自動判斷。|
 | 2 | PC + M 雙版型 | 一次產完 PC 和 Mobile 兩種版型。座標從 Figma 同步。|
-| 3 | 2 組文案候選 | H1/H2/CTA 各 2 版。不滿意直接切換,或退回重跑。|
+| 3 | 2 組文案候選 | H1/H2/CTA 各 2 版。不滿意直接切換，或退回重跑。|
 | 4 | WCAG 對比度檢查 | 大標 3:1、小標 4.5:1。對比度不夠擋下重做。|
-| 5 | 手動上傳替代路徑 | AI 不滿意?按規範準備自己的底圖,上傳 Drive 貼連結。|
+| 5 | 手動上傳替代路徑 | AI 不滿意？按規範準備自己的底圖，上傳 Drive 貼連結。|
 | 6 | Google Chat 自動通知 | 每階段完成 Chat 群組叫你審核。|
 
 ---
@@ -632,7 +632,7 @@ document.querySelectorAll('.testimonial-card').forEach(card => {
 ```css
 .footer { background: var(--neutral-900); color: white; padding: 80px 0 32px; }
 .footer > .container {
-  max-width: 100%;          /* ⭐ 滿版,跟 Nav 一致 */
+  max-width: 100%;          /* ⭐ 滿版，跟 Nav 一致 */
   padding: 0 32px;
 }
 ```
@@ -733,6 +733,6 @@ Google Chat: @kay     ← v9.x 從 Slack 改 Google Chat
 | **v10.1** | **4/25 傍晚** | **補完整 RWD 響應式規格 — Block-by-Block mobile/tablet 行為、降級規則、QA checklist**|
 | **v11.0** | **4/25 晚上** | **加 Google Sheet 雙寫架構（Chat + Sheet），Apps Script webhook + Next.js API route 程式碼**|
 | **v11.1** | **4/25 晚上** | **補完整 — Spacing/Radius/Shadow/Z-index/Duration/Breakpoint Scale + A11y + SEO/OG + Loading/Error/Success states + Lighthouse + Browser Support + Analytics**|
-| ~~v11.2~~ | ~~4/25 D2~~ | ~~（**假升版**:changelog 宣稱補 4 個 block 章節 + Hero 全形 + Stats vs Scale 說明 + 檔案清單對齊,但實際只做了 Block 結構表 06 註記 + Sheet Notion ID 註記 + 版本號變更。已在 v11.3 真補)~~ |
+| ~~v11.2~~ | ~~4/25 D2~~ | ~~（**假升版**:changelog 宣稱補 4 個 block 章節 + Hero 全形 + Stats vs Scale 說明 + 檔案清單對齊，但實際只做了 Block 結構表 06 註記 + Sheet Notion ID 註記 + 版本號變更。已在 v11.3 真補)~~ |
 | **v11.3** | **4/25 D2 真補完** | **Block 01 Top Nav / 07 Manifesto / 08.5 Scale Showcase / 10 FAQ Accordion 完整章節 + Hero subtitle 半形→全形 + Stats vs Scale 數字定位區隔 + D3 檔案清單** |
-| **v11.4** | **4/25 D2 拆檔治理** | **Block 08.5 / 09 / 10 拆到 `specs/blocks/` + A11y/SEO/States/Performance/Analytics 合併到 `specs/site-foundations.md` + RWD 拆到 `specs/rwd-responsive.md`。主檔 2024 → ~700 行,治理達標** |
+| **v11.4** | **4/25 D2 拆檔治理** | **Block 08.5 / 09 / 10 拆到 `specs/blocks/` + A11y/SEO/States/Performance/Analytics 合併到 `specs/site-foundations.md` + RWD 拆到 `specs/rwd-responsive.md`。主檔 2024 → ~700 行，治理達標** |

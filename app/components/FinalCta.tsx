@@ -78,12 +78,12 @@ export default function FinalCta() {
               3 分鐘搞定
             </h2>
             <p className="final-cta-subtitle">
-              填 4 個欄位,24 小時內 Kay 會把你加進 Notion 和 Chat 群組,你就可以開始產 banner 了。
+              填 4 個欄位，24 小時內 Kay 會把你加進 Notion 和 Chat 群組，你就可以開始產 banner 了。
             </p>
             <ul className="final-cta-points">
               <li>平均 3 分鐘產完一組 PC + M banner</li>
-              <li>72% 一次通過,不用反覆改稿</li>
-              <li>每 100 張成本約台幣 120 元,幾乎等於免費</li>
+              <li>72% 一次通過，不用反覆改稿</li>
+              <li>每 100 張成本約台幣 120 元，幾乎等於免費</li>
             </ul>
           </div>
 
@@ -163,7 +163,7 @@ export default function FinalCta() {
                     type="submit"
                     disabled={status === "loading"}
                   >
-                    {status === "loading" ? "送出中..." : "送出申請"}
+                    {status === "loading" ? "送出中…" : "送出申請"}
                   </button>
                   <p className="form-meta">
                     申請 24 小時內開通 · 有問題 Google Chat 找 Kay
@@ -171,7 +171,7 @@ export default function FinalCta() {
                 </div>
                 {status === "error" && (
                   <div className="form-error" role="alert">
-                    送出失敗,請稍後再試或直接 Google Chat 找 Kay。
+                    送出失敗，請稍後再試或直接 Google Chat 找 Kay。
                     {errorMsg && (
                       <span className="form-error-detail">({errorMsg})</span>
                     )}
@@ -184,7 +184,7 @@ export default function FinalCta() {
                   ✓
                 </div>
                 <h3>申請已送出</h3>
-                <p>Kay 已收到通知,24 小時內會把你加進 Notion 和 Chat 群組。</p>
+                <p>Kay 已收到通知，24 小時內會把你加進 Notion 和 Chat 群組。</p>
               </div>
             )}
           </div>

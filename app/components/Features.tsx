@@ -14,48 +14,48 @@ type Feature = {
 const features: Feature[] = [
   {
     title: "12 種視覺風格",
-    shortBody: "清新、質感、活潑、急迫、溫馨... 17 種選一個,或讓 AI 自動判斷。",
+    shortBody: "清新、質感、活潑、急迫、溫馨… 17 種選一個，或讓 AI 自動判斷。",
     fullBody:
-      "清新、質感、活潑、急迫、溫馨... 17 種選一個,或讓 AI 自動判斷。Figma 設計 token 同步,不走調。",
+      "清新、質感、活潑、急迫、溫馨… 17 種選一個，或讓 AI 自動判斷。Figma 設計 token 同步，不走調。",
     thumb: "/images/features/feature-style.webp",
     fullImg: "/images/features/feature-style.webp",
   },
   {
     title: "PC + M 雙版型",
-    shortBody: "一次產完 PC 和 Mobile 兩種版型。座標從 Figma 同步,永遠對齊最新規範。",
+    shortBody: "一次產完 PC 和 Mobile 兩種版型。座標從 Figma 同步，永遠對齊最新規範。",
     fullBody:
-      "一次產完 PC 和 Mobile 兩種版型。座標從 Figma 同步,永遠對齊最新規範,設計工程不用再手動校對。",
+      "一次產完 PC 和 Mobile 兩種版型。座標從 Figma 同步，永遠對齊最新規範，設計工程不用再手動校對。",
     thumb: "/images/features/feature-pc-mobile.webp",
     fullImg: "/images/features/feature-pc-mobile.webp",
   },
   {
     title: "2 組文案候選",
-    shortBody: "H1/H2/CTA 各 2 版。不滿意直接切換,或退回重跑。",
-    fullBody: "H1/H2/CTA 各 2 版。不滿意直接切換,或退回重跑。AI 會學你挑的版本,下次建議更準。",
+    shortBody: "H1/H2/CTA 各 2 版。不滿意直接切換，或退回重跑。",
+    fullBody: "H1/H2/CTA 各 2 版。不滿意直接切換，或退回重跑。AI 會學你挑的版本，下次建議更準。",
     thumb: "/images/features/feature-copy.webp",
     fullImg: "/images/features/feature-copy.webp",
   },
   {
     title: "WCAG 對比度檢查",
-    shortBody: "大標 3:1、小標 4.5:1。對比度不夠、字數超限、字超出邊界,系統擋下重做。",
+    shortBody: "大標 3:1、小標 4.5:1。對比度不夠、字數超限、字超出邊界，系統擋下重做。",
     fullBody:
-      "大標 3:1、小標 4.5:1。對比度不夠、字數超限、字超出邊界,系統擋下重做。無障礙標準不靠人眼把關。",
+      "大標 3:1、小標 4.5:1。對比度不夠、字數超限、字超出邊界，系統擋下重做。無障礙標準不靠人眼把關。",
     thumb: "/images/features/feature-wcag.webp",
     fullImg: "/images/features/feature-wcag.webp",
   },
   {
     title: "手動上傳替代路徑",
-    shortBody: "AI 生的圖不滿意?按規範準備自己的底圖,上傳 Drive 貼連結。",
+    shortBody: "AI 生的圖不滿意？按規範準備自己的底圖，上傳 Drive 貼連結。",
     fullBody:
-      "AI 生的圖不滿意?按規範準備自己的底圖,上傳 Drive 貼連結。系統一樣幫你做對比度檢查和組裝。",
+      "AI 生的圖不滿意？按規範準備自己的底圖，上傳 Drive 貼連結。系統一樣幫你做對比度檢查和組裝。",
     thumb: "/images/features/feature-manual.webp",
     fullImg: "/images/features/feature-manual.webp",
   },
   {
     title: "Google Chat 自動通知",
-    shortBody: "每階段完成,Chat 群組直接叫你審核。成品連結一鍵下載到 Drive。",
+    shortBody: "每階段完成，Chat 群組直接叫你審核。成品連結一鍵下載到 Drive。",
     fullBody:
-      "每階段完成,Chat 群組直接叫你審核。成品連結一鍵下載到 Drive。流程透明,進度一目了然。",
+      "每階段完成，Chat 群組直接叫你審核。成品連結一鍵下載到 Drive。流程透明，進度一目了然。",
     thumb: "/images/features/feature-chat.webp",
     fullImg: "/images/features/feature-chat.webp",
   },
@@ -109,7 +109,7 @@ export default function Features() {
               功能總覽
             </div>
             <h2>一個工具 把業務團隊從 banner 地獄救出來</h2>
-            <p>Kay 做設計系統的時候,受不了 banner 要反覆排期和改尺寸,所以做了這個。</p>
+            <p>Kay 做設計系統的時候，受不了 banner 要反覆排期和改尺寸，所以做了這個。</p>
           </div>
           <div className="feature-grid">
             {features.map((f, i) => (

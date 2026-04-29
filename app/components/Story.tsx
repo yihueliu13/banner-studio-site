@@ -25,7 +25,7 @@ const steps: Step[] = [
   {
     navLabel: "產文案",
     title: "30-60 秒產出 2 組候選文案",
-    body: "H1 大標、H2 小標、CTA 各 2 版,挑一個勾確認就好。不滿意?改一個字再勾也行,系統會用你的版本繼續跑。",
+    body: "H1 大標、H2 小標、CTA 各 2 版，挑一個勾確認就好。不滿意？改一個字再勾也行，系統會用你的版本繼續跑。",
     image: "/images/story/step-2-copy.webp",
     imageAlt: "文案候選",
     layout: "split",
@@ -33,7 +33,7 @@ const steps: Step[] = [
   {
     navLabel: "產底圖",
     title: "12 種風格 14 種主體 自由組合",
-    body: "清新美妝、質感家電、活潑童趣、急迫促銷、溫馨生活...或讓 AI 看完你的活動需求,自動幫你判斷該用哪一種。PC + M 兩種版型一次產完。",
+    body: "清新美妝、質感家電、活潑童趣、急迫促銷、溫馨生活…或讓 AI 看完你的活動需求，自動幫你判斷該用哪一種。PC + M 兩種版型一次產完。",
     image: "/images/story/step-3-style.webp",
     imageAlt: "12 種風格 grid",
     layout: "stack",
@@ -41,7 +41,7 @@ const steps: Step[] = [
   {
     navLabel: "自動組裝",
     title: "自動組裝 + WCAG 檢查",
-    body: "文字和底圖自動拼起來,檢查對比度是否達到無障礙標準、文字有沒有超出邊界。不合格的系統直接退回重做,醜 banner 上不了架。",
+    body: "文字和底圖自動拼起來，檢查對比度是否達到無障礙標準、文字有沒有超出邊界。不合格的系統直接退回重做，醜 banner 上不了架。",
     image: "/images/story/step-4-assemble-wcag.webp",
     imageAlt: "WCAG 對比度檢查",
     layout: "split",
@@ -49,7 +49,7 @@ const steps: Step[] = [
   {
     navLabel: "下載使用",
     title: "Google Chat 通知 Drive 下載",
-    body: "每階段完成 Google Chat 會提醒你。點連結進 Notion 審核,成品連結直接通往 Drive。不滿意?點「退回」重跑該階段。",
+    body: "每階段完成 Google Chat 會提醒你。點連結進 Notion 審核，成品連結直接通往 Drive。不滿意？點「退回」重跑該階段。",
     image: "/images/story/step-5-chat-drive.webp",
     imageAlt: "Chat 通知 Drive 下載",
     layout: "stack",
