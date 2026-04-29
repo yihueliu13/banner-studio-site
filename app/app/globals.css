@@ -1596,11 +1596,8 @@ body {
 /* ─── Footer Block 11 RWD(對齊 specs/rwd-responsive.md §11) ─── */
 @media (max-width: 768px) {
   .footer-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 20px;
-  }
-  .footer-brand {
-    grid-column: 1 / -1;
   }
   .footer-bottom {
     text-align: center;
