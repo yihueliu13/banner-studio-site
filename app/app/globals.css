@@ -1595,6 +1595,9 @@ body {
 
 /* ─── Footer Block 11 RWD(對齊 specs/rwd-responsive.md §11) ─── */
 @media (max-width: 768px) {
+  .footer {
+    padding: 40px 0 32px;
+  }
   .footer-grid {
     grid-template-columns: 1fr;
     gap: 20px;
