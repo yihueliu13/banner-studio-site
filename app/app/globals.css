@@ -1517,21 +1517,28 @@ body {
   }
 }
 @media (max-width: 768px) {
+  .hero {
+    padding: 32px 0 48px;
+  }
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 24px;
   }
   .hero-grid > div:first-child {
     order: 2;
   }
   .hero-marquee {
     order: 1;
-    height: 192px;
+    height: 173px;
+  }
+  .hero-subtitle {
+    font-size: 16px;
+    margin-bottom: 28px;
   }
 }
 @media (max-width: 480px) {
   .hero-marquee {
-    height: 168px;
+    height: 151px;
   }
   .hero-cta {
     flex-direction: column;
