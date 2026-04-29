@@ -1442,6 +1442,11 @@ body {
   .faq {
     padding: 48px 0;
   }
+  /* Manifesto h2 mobile 縮 2 級不斷行 */
+  .manifesto h2 {
+    font-size: 32px;
+    white-space: nowrap;
+  }
 }
 
 /* ─── Features Block 05 RWD(spec D3 minimal,polish 留 D5) ─── */
