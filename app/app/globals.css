@@ -1506,8 +1506,8 @@ body {
     perspective: none;
   }
   .scale-numbers {
-    grid-template-columns: 1fr;
-    gap: 56px;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 16px;
   }
   .scale-metric {
     transform: none !important;
