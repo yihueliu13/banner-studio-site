@@ -1432,8 +1432,15 @@ body {
   .section-header p {
     font-size: 16px;
   }
-  .features {
-    padding: 64px 0;
+  /* Mobile section padding 統一 48px(上下一致,40-60 範圍) */
+  .stats,
+  .story,
+  .features,
+  .manifesto,
+  .testimonials,
+  .scale-showcase,
+  .faq {
+    padding: 48px 0;
   }
 }
 
@@ -1491,7 +1498,6 @@ body {
 }
 @media (max-width: 768px) {
   .scale-showcase {
-    padding: 40px 0;
     perspective: none;
   }
   .scale-numbers {
@@ -1552,7 +1558,8 @@ body {
 /* ─── Stats Strip RWD(對齊 spec v11.4 §RWD Block 03) ─── */
 @media (max-width: 768px) {
   .stats {
-    padding: 16px 0;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
   }
   .stats-grid {
     grid-template-columns: 1fr;
