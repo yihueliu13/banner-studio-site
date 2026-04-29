@@ -1447,6 +1447,21 @@ body {
     font-size: 32px;
     white-space: nowrap;
   }
+  /* Final CTA 3 個勾勾 mobile 隱藏 */
+  .final-cta-points {
+    display: none;
+  }
+  /* Footer brand mobile 橫排（logo + 副標同一行) */
+  .footer-brand {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .footer-brand .logo {
+    margin-bottom: 0;
+  }
 }
 
 /* ─── Features Block 05 RWD(spec D3 minimal,polish 留 D5) ─── */
