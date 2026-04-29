@@ -153,7 +153,7 @@ D-7 改用純系統字:iOS / macOS 取 SF Pro + 蘋方繁、Android 取 Roboto +
 
 | Section | 標題 |
 |---------|------|
-| Hero | `你以為要 4 小時的 banner` / `現在 3 分鐘` |
+| Hero | `以前 4 小時的 banner` / `現在 3 分鐘搞定` |
 | Story h2 | `5 個步驟 3 分鐘` |
 | Story step 1 | `在 Notion 填 5 個欄位` |
 | Story step 2 | `30-60 秒產出 2 組候選文案` |
@@ -314,14 +314,14 @@ lenis.on('scroll', ({ scroll }) => {
 
 ### Title
 ```
-你以為要 4 小時的 banner
-現在 3 分鐘
+以前 4 小時的 banner
+現在 3 分鐘搞定
 ```
 （兩行，無標點）
 
 ### Subtitle (v10.0 ⭐ 寬度跟標題一致，不再 max-width: 480px)
 ```
-不用排期設計、不用會 Photoshop / Figma，沒時間用 AI 生圖、想文案。在 Notion 填 5 個欄位，AI 幫你把文案、底圖、組裝全做完。
+不排期、不開繪圖軟體、不寫文案、不生圖。Notion 填 5 個欄位，AI 把文案、底圖、組裝全包
 ```
 
 ### CTA

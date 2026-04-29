@@ -70,16 +70,15 @@ export default function Hero() {
           </div>
           <h1 className="hero-title" ref={titleRef}>
             <span className="word">
-              <span className="word-inner">你以為要 4 小時</span>
+              <span className="word-inner">以前 4 小時的 banner</span>
             </span>
             <br />
             <span className="word">
-              <span className="word-inner">banner 現在 3 分鐘</span>
+              <span className="word-inner">現在 3 分鐘搞定</span>
             </span>
           </h1>
           <p className="hero-subtitle" ref={subtitleRef}>
-            不用排期設計、不用會 Photoshop / Figma,沒時間用 AI
-            生圖、想文案。在 Notion 填 5 個欄位,AI 幫你把文案、底圖、組裝全做完。
+            不排期、不開繪圖軟體、不寫文案、不生圖。Notion 填 5 個欄位,AI 把文案、底圖、組裝全包
           </p>
           <div className="hero-cta" ref={ctaRef}>
             <a href="#apply" className="btn btn-primary btn-lg">
