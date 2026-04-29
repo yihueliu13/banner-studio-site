@@ -667,7 +667,7 @@ body {
   .manifesto-bg {
     position: absolute;
     inset: 0;
-    background-image: url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=2000&h=1200&fit=crop");
+    background-image: url("/images/manifesto/bg.webp");
     background-size: cover;
     background-position: center;
     z-index: 0;

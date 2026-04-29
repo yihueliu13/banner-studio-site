@@ -477,9 +477,9 @@ CTA 區：
 - Meta（CTA 下方 24px）: `Made by UIUX Team，專為露天業務團隊打造`（白色 70% 透明）
 
 ### 視覺
-- **底圖**：Unsplash 黑白攝影風
+- **底圖**：本地 WebP（原 Unsplash photo-1522202176988 已下載 + 壓縮為本地檔）
   ```
-  https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=2000&h=1200&fit=crop
+  /images/manifesto/bg.webp
   ```
 - 底圖 z-index 0，背景蓋全版
 - 黑色漸層遮罩（`::after`）：
@@ -507,7 +507,7 @@ CTA 區：
 }
 .manifesto-bg {
   position: absolute; inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=2000&h=1200&fit=crop');
+  background-image: url('/images/manifesto/bg.webp');
   background-size: cover; background-position: center;
   z-index: 0;
 }
