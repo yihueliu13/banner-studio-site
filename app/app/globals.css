@@ -1412,6 +1412,11 @@ body {
   }
   .story-card.layout-split {
     grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .story-card.layout-split .story-card-image {
+    aspect-ratio: 16 / 9;
+    border-radius: 24px;
   }
 }
 
