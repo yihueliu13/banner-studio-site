@@ -155,7 +155,7 @@ flowchart TD
 
 ## §2 Step 1 → 進 Notion DB
 
-![DB 列表全景](quick-start-images/01-db-list.png)
+![DB 列表全景](https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/01-db-list.png)
 
 打開 [Banner 製作管理 DB](https://www.notion.so/bef2ca44-6991-4de1-b5cf-5610043132db) 看到列表
 
@@ -192,9 +192,9 @@ flowchart TD
 
 ## Step 2 → 範例：填好的需求頁
 
-![空白需求頁](quick-start-images/02-s0-form-empty.png)
+![空白需求頁](https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/02-s0-form-empty.png)
 
-![填好的需求頁](quick-start-images/03-s0-form-filled.png)
+![填好的需求頁](https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/03-s0-form-filled.png)
 *母親節 / 85折 / 輕熟女 / 溫馨*
 
 ---
@@ -204,7 +204,7 @@ flowchart TD
 
 下拉 **狀態** → 選 **「待製作」**
 
-![狀態下拉打開](quick-start-images/04-status-dropdown.png)
+![狀態下拉打開](https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/04-status-dropdown.png)
 
 選完 → **系統 1 分鐘內自動接手**
 
@@ -213,7 +213,7 @@ flowchart TD
 
 ## Step 3 → 系統開始跑
 
-![文案生成中](quick-start-images/05-s1-generating.png)
+![文案生成中](https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/05-s1-generating.png)
 
 狀態自動跳成「文案生成中」
 
@@ -226,10 +226,10 @@ flowchart TD
 
 | Emoji | 意義 | 通知畫面 |
 |------|------|----------|
-| 📋 | 接收需求 | ![📋](quick-start-images/11-chat-notifications-1.png) |
-| 📝 | 文案完成 | ![📝](quick-start-images/11-chat-notifications-2.png) |
-| 🖼️ | 底圖完成 | ![🖼️](quick-start-images/11-chat-notifications-3.png) |
-| ✅ | Banner 完成 | ![✅](quick-start-images/11-chat-notifications-4.png) |
+| 📋 | 接收需求 | ![📋](https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/11-chat-notifications-1.png) |
+| 📝 | 文案完成 | ![📝](https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/11-chat-notifications-2.png) |
+| 🖼️ | 底圖完成 | ![🖼️](https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/11-chat-notifications-3.png) |
+| ✅ | Banner 完成 | ![✅](https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/11-chat-notifications-4.png) |
 
 > 4 則通知總覽 → 詳見 PDF 版 §5
 
@@ -238,7 +238,7 @@ flowchart TD
 
 ## §3 Step 4 → 審文案
 
-![文案兩組並列](quick-start-images/06-s1-copy-review_form.png)
+![文案兩組並列](https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/06-s1-copy-review_form.png)
 
 系統會給**兩組文案**（主組 + 備選）
 
@@ -289,7 +289,7 @@ flowchart TD
 
 ## Step 5 → 審底圖
 
-![底圖確認頁](quick-start-images/07-s2-image-review.png)
+![底圖確認頁](https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/07-s2-image-review.png)
 
 系統同時生 **PC 大圖**（2500×369）+ **手機版**（1436×212）
 
@@ -361,7 +361,7 @@ flowchart TD
 
 ## Step 6 → 審成品
 
-![成品確認頁總覽](quick-start-images/08-s3-final-review.png)
+![成品確認頁總覽](https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/08-s3-final-review.png)
 
 系統把文字（大標 / 小標 / CTA 按鈕）疊到底圖上
 
@@ -387,7 +387,7 @@ flowchart TD
 
 ## Step 7 → 完成、拿 Banner URL
 
-![已完成頁](quick-start-images/09-s4-completed.png)
+![已完成頁](https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/09-s4-completed.png)
 
 | 欄位 | 用途 |
 |------|------|
@@ -410,7 +410,7 @@ flowchart TD
 
 ## §4 退回 / 重做 — 核心邏輯
 
-![退回 / 審核 select 對照](quick-start-images/10-rollback-buttons-s3.png)
+![退回 / 審核 select 對照](https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/10-rollback-buttons-s3.png)
 *S3 階段（待確認底圖）的狀態下拉 + 🟢S2 審核 select*
 
 每階段都能退，但要**自己改「狀態」欄位**告訴系統
