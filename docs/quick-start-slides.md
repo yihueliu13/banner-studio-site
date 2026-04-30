@@ -40,6 +40,42 @@ description: Banner 自動產生 — 業務 Quick Start 簡報源（給 Claude D
 ---
 <!-- slide -->
 
+## 🔄 完整使用流程圖
+
+```mermaid
+flowchart TD
+    A[👤 S0 開需求<br/>填 4 必填欄位<br/>~1 分鐘] -->|狀態: 待製作| B[🤖 S1 文案生成<br/>~3 分鐘]
+    B -->|狀態: 待確認文案| C{👤 審文案}
+    C -->|🟡 選版本 + 待確認底圖| D[🤖 S2 底圖生成<br/>~5 分鐘]
+    C -->|🔄 重生 → 待製作| B
+    D -->|狀態: 待確認底圖| E{👤 審底圖}
+    E -->|🟢 確認 → 待確認成品| F[🤖 S3 組裝<br/>&lt; 1 分鐘]
+    E -->|🔄 重做 → 維持| D
+    E -->|退文案 → 待確認文案| C
+    E -->|手動上傳 → 待確認成品| F
+    F -->|狀態: 待確認成品| G{👤 審成品}
+    G -->|🔵 確認 → 已完成| H[🎉 拿 Banner URL<br/>下稿]
+    G -->|🔄 改字色 → 維持| F
+    G -->|退底圖 → 待確認底圖| E
+    G -->|退文案 → 待確認文案| C
+
+    style A fill:#FFE4B5,stroke:#FF963B,stroke-width:2px
+    style H fill:#90EE90,stroke:#2E8B57,stroke-width:2px
+    style B fill:#E6E6FA,stroke:#9370DB
+    style D fill:#E6E6FA,stroke:#9370DB
+    style F fill:#E6E6FA,stroke:#9370DB
+    style C fill:#FFF5E1,stroke:#FF963B,stroke-width:2px
+    style E fill:#FFF5E1,stroke:#FF963B,stroke-width:2px
+    style G fill:#FFF5E1,stroke:#FF963B,stroke-width:2px
+```
+
+🟠 你做 / 🟣 系統做 / 🟢 完成
+
+→ 詳細各階段 select / 狀態對照見 §3 - §4
+
+---
+<!-- slide -->
+
 ## 🔍 我有問題 → 跳到哪頁
 
 | 問題 | 跳到 |
@@ -97,42 +133,6 @@ description: Banner 自動產生 — 業務 Quick Start 簡報源（給 Claude D
 ```
 
 每個「審」都可以 ✅ **確認** 或 🔄 **退回 / 重做**
-
----
-<!-- slide -->
-
-## 🔄 完整使用流程圖
-
-```mermaid
-flowchart TD
-    A[👤 S0 開需求<br/>填 4 必填欄位<br/>~1 分鐘] -->|狀態: 待製作| B[🤖 S1 文案生成<br/>~3 分鐘]
-    B -->|狀態: 待確認文案| C{👤 審文案}
-    C -->|🟡 選版本 + 待確認底圖| D[🤖 S2 底圖生成<br/>~5 分鐘]
-    C -->|🔄 重生 → 待製作| B
-    D -->|狀態: 待確認底圖| E{👤 審底圖}
-    E -->|🟢 確認 → 待確認成品| F[🤖 S3 組裝<br/>&lt; 1 分鐘]
-    E -->|🔄 重做 → 維持| D
-    E -->|退文案 → 待確認文案| C
-    E -->|手動上傳 → 待確認成品| F
-    F -->|狀態: 待確認成品| G{👤 審成品}
-    G -->|🔵 確認 → 已完成| H[🎉 拿 Banner URL<br/>下稿]
-    G -->|🔄 改字色 → 維持| F
-    G -->|退底圖 → 待確認底圖| E
-    G -->|退文案 → 待確認文案| C
-
-    style A fill:#FFE4B5,stroke:#FF963B,stroke-width:2px
-    style H fill:#90EE90,stroke:#2E8B57,stroke-width:2px
-    style B fill:#E6E6FA,stroke:#9370DB
-    style D fill:#E6E6FA,stroke:#9370DB
-    style F fill:#E6E6FA,stroke:#9370DB
-    style C fill:#FFF5E1,stroke:#FF963B,stroke-width:2px
-    style E fill:#FFF5E1,stroke:#FF963B,stroke-width:2px
-    style G fill:#FFF5E1,stroke:#FF963B,stroke-width:2px
-```
-
-🟠 你做 / 🟣 系統做 / 🟢 完成
-
-→ 詳細各階段 select / 狀態對照見 §3 - §4
 
 ---
 <!-- slide -->
