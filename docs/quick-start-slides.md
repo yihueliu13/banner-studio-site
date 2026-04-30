@@ -224,14 +224,14 @@ flowchart TD
 
 ## Chat 通知 — 4 則里程碑
 
-![Google Chat 通知](quick-start-images/11-chat-notifications.png)
+| Emoji | 意義 | 通知畫面 |
+|------|------|----------|
+| 📋 | 接收需求 | ![📋](quick-start-images/11-chat-notifications-1.png) |
+| 📝 | 文案完成 | ![📝](quick-start-images/11-chat-notifications-2.png) |
+| 🖼️ | 底圖完成 | ![🖼️](quick-start-images/11-chat-notifications-3.png) |
+| ✅ | Banner 完成 | ![✅](quick-start-images/11-chat-notifications-4.png) |
 
-| Emoji | 意義 |
-|------|------|
-| 📋 | 接收需求 |
-| 📝 | 文案完成 |
-| 🖼️ | 底圖完成 |
-| ✅ | Banner 完成 |
+> 4 則通知總覽 → 詳見 PDF 版 §5
 
 ---
 <!-- slide -->
@@ -289,8 +289,7 @@ flowchart TD
 
 ## Step 5 → 審底圖
 
-> ⚠️ **底圖確認頁截圖待補**（07-s2-image-review）
-> 應拍：PC 底圖 + M 底圖 + 🟢S2 底圖審核 select 同框
+![底圖確認頁](quick-start-images/07-s2-image-review.png)
 
 系統同時生 **PC 大圖**（2500×369）+ **手機版**（1436×212）
 
