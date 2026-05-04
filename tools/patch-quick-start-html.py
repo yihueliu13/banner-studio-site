@@ -25,7 +25,7 @@ PATCH = """<script>
 
   function applyCursorHints(map) {
     // 目錄 / 跳轉表的 row(tr/li),含 §1-§6 → 加 pointer
-    document.querySelectorAll('tr, li').forEach(function(row) {
+    document.querySelectorAll('.toc-item, .jump-item, tr, li').forEach(function(row) {
       var t = (row.textContent || '').trim();
       var m = t.match(/§([1-6])/);
       if (m && map[m[1]] != null) {
@@ -63,7 +63,7 @@ PATCH = """<script>
       }
 
       // 2) 目錄 / 跳轉表 row 點擊跳 § 章節
-      var row = e.target.closest('tr, li');
+      var row = e.target.closest('.toc-item, .jump-item, tr, li');
       if (row) {
         var t = (row.textContent || '').trim();
         var m = t.match(/§([1-6])/);
