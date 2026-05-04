@@ -1074,6 +1074,11 @@ body {
     font-weight: 600;
     letter-spacing: 0.02em;
     vertical-align: middle;
+    text-decoration: none;
+    transition: background 200ms;
+  }
+  a.footer-pill:hover {
+    background: var(--brand-hover);
   }
   .footer-bottom {
     padding-top: 32px;

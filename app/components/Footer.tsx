@@ -17,7 +17,25 @@ export default function Footer() {
                 Notion DB 後台
                 <span className="footer-pill">需申請</span>
               </li>
-              <li>Quick Start 教學</li>
+              <li>
+                Quick Start 教學
+                <a
+                  href="/quick-start.html"
+                  className="footer-pill"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  線上
+                </a>
+                <a
+                  href="/quick-start.pdf"
+                  className="footer-pill"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  PDF
+                </a>
+              </li>
             </ul>
           </div>
           <div className="footer-col">
