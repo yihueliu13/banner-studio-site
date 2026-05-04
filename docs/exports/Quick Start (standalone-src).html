@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<title>Banner 自動產生 — 業務 Quick Start</title>
+<template id="__bundler_thumbnail" data-bg-color="#FAFAF9">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#FAFAF9"/>
+    <rect x="200" y="280" width="800" height="120" rx="28" fill="#FFFFFF" stroke="#E7E5E4" stroke-width="2"/>
+    <rect x="240" y="320" width="180" height="40" rx="20" fill="#FF963B"/>
+    <rect x="460" y="324" width="380" height="32" rx="8" fill="#1C1917"/>
+    <rect x="200" y="440" width="380" height="80" rx="28" fill="#1C1917"/>
+    <text x="390" y="492" font-family="-apple-system,sans-serif" font-size="32" font-weight="600" fill="#FF963B" text-anchor="middle">3 分鐘</text>
+  </svg>
+</template>
+<script src="deck-stage.js"></script>
+<link rel="stylesheet" href="deck.css" />
+<script src="icons.js" defer></script>
+<style>
+  .iconsvg { width: 1em; height: 1em; display: inline-block; vertical-align: middle; }
+  .flow-arrow.iconsvg { width: 28px; height: 28px; color: var(--text-3); }
+  .vf-arrow .iconsvg { width: 22px; height: 22px; }
+  .warning-box .iconsvg { width: 36px; height: 36px; color: var(--brand); flex-shrink: 0; }
+  .warning-box-sm .iconsvg { width: 24px; height: 24px; }
+  .col-head .iconsvg { width: 32px; height: 32px; color: var(--brand); }
+  .prep-icon .iconsvg, .chat-icon .iconsvg, .who-icon .iconsvg { width: 36px; height: 36px; }
+  .brief-item .iconsvg { width: 26px; height: 26px; }
+  .step-mini-go .step-num .iconsvg { width: 20px; height: 20px; color: var(--text); }
+  .chat-pill > .iconsvg { width: 36px; height: 36px; color: var(--brand); padding: 14px; box-sizing: content-box; border-radius: 50%; background: rgba(255,150,59,0.15); }
+  .when-mark .iconsvg { width: 26px; height: 26px; }
+  .faq-q .iconsvg, .faq-a .iconsvg { display: none; }
+  .img-fallback .iconsvg { width: 64px; height: 64px; }
+  .link-pill .iconsvg, .prep-cta .iconsvg, .rule-note .iconsvg { width: 22px; height: 22px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- ============ 1. 封面 ============ -->
+<section data-label="01 封面" class="cover">
+  <div class="cover-grid">
+    <div class="cover-left">
+      <div class="eyebrow">
+        <span class="dot"></span>
+        露天 AI Banner 產線 · 業務 Quick Start
+      </div>
+      <h1 class="cover-title">
+        Banner 自動產生<br/>
+        <span class="brand">3 分鐘</span> 做完一張 banner
+      </h1>
+      <p class="cover-sub">
+        5 個步驟 · ~15 分鐘 · 不用設計師<br/>
+        Notion 填欄位,AI 把文案、底圖、組裝全包
+      </p>
+      <div class="cover-btns">
+        <button class="btn btn-primary">開始學習</button>
+        <button class="btn btn-secondary">看完整流程 →</button>
+      </div>
+      <div class="cover-meta">
+        露天 UIUX Team × Sales · 2026-04
+      </div>
+    </div>
+    <div class="cover-right">
+      <div class="banner-stack">
+        <div class="banner-card banner-1">
+          <div class="banner-img" style="background:linear-gradient(135deg,#1a1a2e,#16213e);">
+            <div class="banner-text" style="--c:#FF963B;">
+              <div class="bt-h1">ACG 鋼彈模型</div>
+              <div class="bt-h2">限時 85 折</div>
+              <div class="bt-cta">立即搶購</div>
+            </div>
+          </div>
+        </div>
+        <div class="banner-card banner-2">
+          <div class="banner-img" style="background:linear-gradient(135deg,#FFB088,#FF963B);">
+            <div class="banner-text" style="--c:#1C1917;">
+              <div class="bt-h1">廚房家電節</div>
+              <div class="bt-h2">滿千免運再送好禮</div>
+              <div class="bt-cta">馬上逛</div>
+            </div>
+          </div>
+        </div>
+        <div class="banner-card banner-3">
+          <div class="banner-img" style="background:linear-gradient(135deg,#EEEDE8,#D4D2CB);">
+            <div class="banner-text" style="--c:#1C1917;">
+              <div class="bt-h1">母親節 85 折禮遇</div>
+              <div class="bt-h2">頂級寵愛媽咪</div>
+              <div class="bt-cta">立即搶購</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. 目錄 ============ -->
+<section data-label="02 目錄">
+  <div class="slide-pad">
+    <div class="section-tag">CONTENTS · 目錄</div>
+    <h2 class="slide-title">翻簡報像翻字典<br/>遇到問題跳到對應章節</h2>
+    <div class="toc-grid">
+      <div class="toc-item">
+        <div class="toc-num">§1</div>
+        <div class="toc-body">
+          <div class="toc-name">開始前</div>
+          <div class="toc-desc">系統認識、核心概念</div>
+        </div>
+      </div>
+      <div class="toc-item">
+        <div class="toc-num">§2</div>
+        <div class="toc-body">
+          <div class="toc-name">開需求 → 啟動</div>
+          <div class="toc-desc">Step 1-3 + Chat 通知</div>
+        </div>
+      </div>
+      <div class="toc-item">
+        <div class="toc-num">§3</div>
+        <div class="toc-body">
+          <div class="toc-name">各階段審核</div>
+          <div class="toc-desc">Step 4-7、字數、上傳救援</div>
+        </div>
+      </div>
+      <div class="toc-item">
+        <div class="toc-num">§4</div>
+        <div class="toc-body">
+          <div class="toc-name">退回 / 重做</div>
+          <div class="toc-desc">對照表、訣竅</div>
+        </div>
+      </div>
+      <div class="toc-item">
+        <div class="toc-num">§5</div>
+        <div class="toc-body">
+          <div class="toc-name">全 AI 模式</div>
+          <div class="toc-desc">最快路徑、信任 AI</div>
+        </div>
+      </div>
+      <div class="toc-item">
+        <div class="toc-num">§6</div>
+        <div class="toc-body">
+          <div class="toc-name">FAQ + 聯絡</div>
+          <div class="toc-desc">常見問題、找誰問</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. 完整使用流程圖 ============ -->
+<section data-label="03 完整使用流程圖">
+  <div class="slide-pad">
+    <div class="section-tag">FLOWCHART · 完整使用流程圖</div>
+    <h2 class="slide-title">從開需求到下稿 完整 5 步驟</h2>
+    <div class="flow-chart">
+      <div class="flow-row">
+        <div class="flow-node node-you">
+          <div class="node-tag">S0 · 你做</div>
+          <div class="node-title">開需求</div>
+          <div class="node-meta">填 4 必填欄位 · ~1 分鐘</div>
+        </div>
+        <i class="fas fa-arrow-right flow-arrow"></i>
+        <div class="flow-node node-sys">
+          <div class="node-tag">S1 · 系統做</div>
+          <div class="node-title">文案生成</div>
+          <div class="node-meta">~3 分鐘</div>
+        </div>
+        <i class="fas fa-arrow-right flow-arrow"></i>
+        <div class="flow-node node-review">
+          <div class="node-tag">🟡 你審</div>
+          <div class="node-title">審文案</div>
+          <div class="node-meta">選版本 / 改寫 / 重生</div>
+        </div>
+      </div>
+      <div class="flow-row">
+        <div class="flow-node node-done">
+          <div class="node-tag">完成</div>
+          <div class="node-title">拿 Banner URL</div>
+          <div class="node-meta">下稿</div>
+        </div>
+        <i class="fas fa-arrow-left flow-arrow"></i>
+        <div class="flow-node node-review">
+          <div class="node-tag">🔵 你審</div>
+          <div class="node-title">審成品</div>
+          <div class="node-meta">確認 / 改字色 / 退回</div>
+        </div>
+        <i class="fas fa-arrow-left flow-arrow"></i>
+        <div class="flow-node node-sys">
+          <div class="node-tag">S3 · 系統做</div>
+          <div class="node-title">組裝</div>
+          <div class="node-meta">&lt; 1 分鐘</div>
+        </div>
+        <i class="fas fa-arrow-left flow-arrow"></i>
+        <div class="flow-node node-review">
+          <div class="node-tag">🟢 你審</div>
+          <div class="node-title">審底圖</div>
+          <div class="node-meta">確認 / 重做 / 上傳</div>
+        </div>
+        <i class="fas fa-arrow-left flow-arrow"></i>
+        <div class="flow-node node-sys">
+          <div class="node-tag">S2 · 系統做</div>
+          <div class="node-title">底圖生成</div>
+          <div class="node-meta">~5 分鐘</div>
+        </div>
+      </div>
+    </div>
+    <div class="flow-legend">
+      <span><span class="lg lg-you"></span>你做</span>
+      <span><span class="lg lg-sys"></span>系統做</span>
+      <span><span class="lg lg-review"></span>你審</span>
+      <span><span class="lg lg-done"></span>完成</span>
+      <span class="legend-note">→ 詳細各階段對照見 §3 - §4</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. 跳轉表 ============ -->
+<section data-label="04 我有問題">
+  <div class="slide-pad">
+    <div class="section-tag">QUICK JUMP · 我有問題 → 跳到哪頁</div>
+    <h2 class="slide-title">用問題找答案 不用從頭看完</h2>
+    <div class="jump-list">
+      <div class="jump-item"><div class="jump-q">怎麼開始?</div><div class="jump-a">§2 開需求 → 啟動</div></div>
+      <div class="jump-item"><div class="jump-q">文案 / 圖不滿意?</div><div class="jump-a">§3 各階段審核</div></div>
+      <div class="jump-item"><div class="jump-q">字數限制是多少?</div><div class="jump-a">§3 字數規則</div></div>
+      <div class="jump-item"><div class="jump-q">AI 生不出滿意的圖?</div><div class="jump-a">§3 上傳救援</div></div>
+      <div class="jump-item"><div class="jump-q">想退回 / 重做某一步?</div><div class="jump-a">§4 退回 / 重做</div></div>
+      <div class="jump-item"><div class="jump-q">急件、想最快拿到 banner?</div><div class="jump-a">§5 全 AI 模式</div></div>
+      <div class="jump-item"><div class="jump-q">系統卡住、找不到答案?</div><div class="jump-a">§6 FAQ + 聯絡</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. §1 章節頁 ============ -->
+<section data-label="05 §1 章節頁" class="section-cover">
+  <div class="sc-grid">
+    <div class="sc-num">§1</div>
+    <div class="sc-body">
+      <div class="sc-eyebrow">SECTION ONE</div>
+      <h2 class="sc-title">開始前</h2>
+      <p class="sc-desc">系統認識、核心概念</p>
+      <div class="sc-list">
+        <div>你會做什麼 / 系統會做什麼</div>
+        <div>開始前準備</div>
+        <div>整體流程</div>
+        <div>最重要的核心概念</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. §1 你會做什麼 ============ -->
+<section data-label="06 你會做什麼">
+  <div class="slide-pad">
+    <div class="section-tag">§1 · 開始前</div>
+    <h2 class="slide-title">你做 4 件事 系統做剩下的</h2>
+    <div class="two-col">
+      <div class="col-card">
+        <div class="col-head"><i class="fas fa-user"></i> 你做</div>
+        <ul class="col-list">
+          <li>開需求(填 4 欄)</li>
+          <li>確認 / 改寫文案</li>
+          <li>審底圖、審成品</li>
+          <li>拿成品下稿</li>
+        </ul>
+      </div>
+      <div class="col-card col-card-alt">
+        <div class="col-head"><i class="fas fa-robot"></i> 系統做</div>
+        <ul class="col-list">
+          <li>生文案</li>
+          <li>生底圖</li>
+          <li>組裝</li>
+          <li>WCAG 對比度檢查</li>
+        </ul>
+      </div>
+    </div>
+    <div class="big-callout">
+      <div class="bc-num">15-20 <span>min</span></div>
+      <div class="bc-text">總時間 ~15-20 分鐘<br/><span>過去找設計師 4 小時起跳</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. 開始前準備 ============ -->
+<section data-label="07 開始前準備">
+  <div class="slide-pad">
+    <div class="section-tag">§1 · 開始前</div>
+    <h2 class="slide-title">3 個東西 任一沒 OK 找 Kay 開通</h2>
+    <div class="prep-list">
+      <div class="prep-item">
+        <div class="prep-icon"><i class="fas fa-database"></i></div>
+        <div class="prep-body">
+          <div class="prep-name">Notion 工作區帳號</div>
+          <div class="prep-desc">能打開 Banner 製作管理 DB</div>
+        </div>
+      </div>
+      <div class="prep-item">
+        <div class="prep-icon"><i class="fas fa-comments"></i></div>
+        <div class="prep-body">
+          <div class="prep-name">Google Chat 通知群</div>
+          <div class="prep-desc">找 Kay 拉你進「Banner 自動化通知」</div>
+        </div>
+      </div>
+      <div class="prep-item">
+        <div class="prep-icon"><i class="fas fa-id-badge"></i></div>
+        <div class="prep-body">
+          <div class="prep-name">Notion ID</div>
+          <div class="prep-desc">用來標「負責人」欄位</div>
+        </div>
+      </div>
+    </div>
+    <div class="prep-cta">
+      <i class="fas fa-circle-info"></i> 任一沒 OK → 找 Kay 開通(5 分鐘)
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. 整體流程 ============ -->
+<section data-label="08 整體流程">
+  <div class="slide-pad">
+    <div class="section-tag">§1 · 開始前</div>
+    <h2 class="slide-title">每個「審」都可以確認 或退回重做</h2>
+    <div class="vflow">
+      <div class="vf-step"><span class="vf-tag">你</span><span class="vf-text">開需求</span></div>
+      <div class="vf-arrow"><i class="fas fa-arrow-down"></i></div>
+      <div class="vf-pair">
+        <div class="vf-step vf-sys"><span class="vf-tag">系統</span><span class="vf-text">生文案</span></div>
+        <div class="vf-step vf-you"><span class="vf-tag">你</span><span class="vf-text">審文案</span></div>
+      </div>
+      <div class="vf-arrow"><i class="fas fa-arrow-down"></i></div>
+      <div class="vf-pair">
+        <div class="vf-step vf-sys"><span class="vf-tag">系統</span><span class="vf-text">生底圖</span></div>
+        <div class="vf-step vf-you"><span class="vf-tag">你</span><span class="vf-text">審底圖</span></div>
+      </div>
+      <div class="vf-arrow"><i class="fas fa-arrow-down"></i></div>
+      <div class="vf-pair">
+        <div class="vf-step vf-sys"><span class="vf-tag">系統</span><span class="vf-text">組裝</span></div>
+        <div class="vf-step vf-you"><span class="vf-tag">你</span><span class="vf-text">審成品</span></div>
+      </div>
+      <div class="vf-arrow"><i class="fas fa-arrow-down"></i></div>
+      <div class="vf-step vf-done"><span class="vf-tag">完成</span><span class="vf-text">拿 Banner URL → 下稿</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. 核心概念 ============ -->
+<section data-label="09 核心概念">
+  <div class="slide-pad">
+    <div class="section-tag">§1 · 開始前 · 最重要</div>
+    <h2 class="slide-title">兩個欄位控制系統<br/>改完狀態 系統才會動</h2>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="cc-label">欄位 1</div>
+        <div class="cc-name">「狀態」</div>
+        <div class="cc-role">司令官</div>
+        <div class="cc-desc">告訴系統現在在哪、要去哪</div>
+      </div>
+      <div class="concept-card">
+        <div class="cc-label">欄位 2</div>
+        <div class="cc-name">「審核 select」</div>
+        <div class="cc-role">指令</div>
+        <div class="cc-desc">🟡 / 🟢 / 🔵 — 確認 / 重做的開關</div>
+      </div>
+    </div>
+    <div class="warning-box">
+      <i class="fas fa-triangle-exclamation"></i>
+      光按 select 不改狀態 = 系統不會跑
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. §2 章節頁 ============ -->
+<section data-label="10 §2 章節頁" class="section-cover">
+  <div class="sc-grid">
+    <div class="sc-num">§2</div>
+    <div class="sc-body">
+      <div class="sc-eyebrow">SECTION TWO</div>
+      <h2 class="sc-title">開需求 → 啟動</h2>
+      <p class="sc-desc">Step 1-3 + Chat 通知 4 則里程碑</p>
+      <div class="sc-list">
+        <div>Step 1 — 進 Notion DB</div>
+        <div>Step 2 — 開新需求(必填 / 選填)</div>
+        <div>Step 3 — 啟動產線</div>
+        <div>Chat 通知 4 則里程碑</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11. Step 1 ============ -->
+<section data-label="11 Step 1 進 DB">
+  <div class="slide-pad">
+    <div class="section-tag">§2 · STEP 1</div>
+    <h2 class="slide-title">進 Notion DB 看到列表</h2>
+    <div class="img-row">
+      <div class="img-frame">
+        <img src="https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/01-db-list.png" alt="DB 列表全景" />
+        <div class="img-cap">Banner 製作管理 DB · 列表全景</div>
+      </div>
+      <div class="img-side">
+        <p class="lead">每筆 row = 一張 banner 需求</p>
+        <p class="muted">狀態欄位會自動更新進度,你只要關注「自己負責」的 row。</p>
+        <div class="link-pill">
+          <i class="fas fa-link"></i> Banner 製作管理 DB
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 12. Step 2 必填 ============ -->
+<section data-label="12 Step 2 必填">
+  <div class="slide-pad">
+    <div class="section-tag">§2 · STEP 2</div>
+    <h2 class="slide-title">開新需求 4 個必填欄位</h2>
+    <div class="field-list">
+      <div class="field-row">
+        <div class="field-tag">🔘S1</div>
+        <div class="field-name">活動 / 商品名稱</div>
+        <div class="field-how">越具體越好</div>
+        <div class="field-ex">母親節保養品促銷</div>
+      </div>
+      <div class="field-row">
+        <div class="field-tag">🔘S1</div>
+        <div class="field-name">促銷重點</div>
+        <div class="field-how">折扣 / 優惠 / 賣點</div>
+        <div class="field-ex">全館 85 折 + 滿千免運</div>
+      </div>
+      <div class="field-row">
+        <div class="field-tag">🔘S1</div>
+        <div class="field-name">目標受眾</div>
+        <div class="field-how">給誰看</div>
+        <div class="field-ex">25-40 歲輕熟女</div>
+      </div>
+      <div class="field-row">
+        <div class="field-tag">🔘S1</div>
+        <div class="field-name">語氣風格</div>
+        <div class="field-how">下拉選</div>
+        <div class="field-ex">溫馨</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 13. Step 2 選填 ============ -->
+<section data-label="13 Step 2 選填">
+  <div class="slide-pad">
+    <div class="section-tag">§2 · STEP 2</div>
+    <h2 class="slide-title">選填欄位 全空也 OK<br/>AI 依品類自動配最適選項</h2>
+    <div class="opt-grid">
+      <div class="opt-card">
+        <div class="opt-tag">🔘S1</div>
+        <div class="opt-name">指定關鍵字</div>
+        <div class="opt-desc">想強調的字 — 限時、獨家</div>
+      </div>
+      <div class="opt-card">
+        <div class="opt-tag">🔘S2</div>
+        <div class="opt-name">視覺風格</div>
+        <div class="opt-desc">想要的調性 — 奢華 / 童趣 / 北歐極簡</div>
+      </div>
+      <div class="opt-card">
+        <div class="opt-tag">🔘S2</div>
+        <div class="opt-name">人物設定</div>
+        <div class="opt-desc">要不要人物入鏡</div>
+      </div>
+      <div class="opt-card">
+        <div class="opt-tag">🔘S2</div>
+        <div class="opt-name">渲染模式 / 材質</div>
+        <div class="opt-desc">進階視覺控制</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 14. Step 2 範例 ============ -->
+<section data-label="14 Step 2 範例">
+  <div class="slide-pad">
+    <div class="section-tag">§2 · STEP 2 · 範例</div>
+    <h2 class="slide-title">空白頁 → 填好的需求頁</h2>
+    <div class="img-pair">
+      <div class="img-pair-item">
+        <div class="img-frame">
+          <img src="https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/02-s0-form-empty.png" alt="空白需求頁" />
+        </div>
+        <div class="img-cap">Before · 空白需求頁</div>
+      </div>
+      <div class="img-pair-item">
+        <div class="img-frame">
+          <img src="https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/03-s0-form-filled.png" alt="填好的需求頁" />
+        </div>
+        <div class="img-cap">After · 母親節 / 85 折 / 輕熟女 / 溫馨</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 15. Step 3 啟動 ============ -->
+<section data-label="15 Step 3 啟動">
+  <div class="slide-pad">
+    <div class="section-tag">§2 · STEP 3</div>
+    <h2 class="slide-title">啟動產線 改狀態為「待製作」</h2>
+    <div class="img-row">
+      <div class="img-frame">
+        <img src="https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/04-status-dropdown.png" alt="狀態下拉打開" />
+      </div>
+      <div class="img-side">
+        <div class="step-mini">
+          <span class="step-num">1</span>
+          <span>下拉「狀態」欄位</span>
+        </div>
+        <div class="step-mini">
+          <span class="step-num">2</span>
+          <span>選「待製作」</span>
+        </div>
+        <div class="step-mini step-mini-go">
+          <span class="step-num"><i class="fas fa-bolt"></i></span>
+          <span>系統 1 分鐘內自動接手</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 16. Step 3 系統開始 ============ -->
+<section data-label="16 系統開始跑">
+  <div class="slide-pad">
+    <div class="section-tag">§2 · STEP 3 · 系統接手</div>
+    <h2 class="slide-title">狀態自動跳成「文案生成中」<br/>去喝杯咖啡 ~3 分鐘</h2>
+    <div class="img-row">
+      <div class="img-frame">
+        <img src="https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/05-s1-generating.png" alt="文案生成中" />
+      </div>
+      <div class="img-side">
+        <div class="chat-pill">
+          <i class="fas fa-clipboard-list"></i>
+          <div>
+            <div class="chat-pill-title">Google Chat 推第一則通知</div>
+            <div class="chat-pill-sub">📋 接收需求</div>
+          </div>
+        </div>
+        <p class="muted">不用一直盯著看,通知會主動找你。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 17. Chat 通知 4 則 ============ -->
+<section data-label="17 Chat 通知 4 則">
+  <div class="slide-pad">
+    <div class="section-tag">§2 · CHAT NOTIFICATIONS</div>
+    <h2 class="slide-title">Chat 通知 4 則里程碑</h2>
+    <div class="chat-grid">
+      <div class="chat-card">
+        <div class="chat-icon"><i class="fas fa-clipboard-list"></i></div>
+        <div class="chat-meta">里程碑 1</div>
+        <div class="chat-name">接收需求</div>
+        <div class="chat-thumb">
+          <img src="https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/11-chat-notifications-1.png" alt="接收需求" />
+        </div>
+      </div>
+      <div class="chat-card">
+        <div class="chat-icon"><i class="fas fa-pen-to-square"></i></div>
+        <div class="chat-meta">里程碑 2</div>
+        <div class="chat-name">文案完成</div>
+        <div class="chat-thumb">
+          <img src="https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/11-chat-notifications-2.png" alt="文案完成" />
+        </div>
+      </div>
+      <div class="chat-card">
+        <div class="chat-icon"><i class="fas fa-image"></i></div>
+        <div class="chat-meta">里程碑 3</div>
+        <div class="chat-name">底圖完成</div>
+        <div class="chat-thumb">
+          <img src="https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/11-chat-notifications-3.png" alt="底圖完成" />
+        </div>
+      </div>
+      <div class="chat-card">
+        <div class="chat-icon"><i class="fas fa-circle-check"></i></div>
+        <div class="chat-meta">里程碑 4</div>
+        <div class="chat-name">Banner 完成</div>
+        <div class="chat-thumb">
+          <img src="https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/11-chat-notifications-4.png" alt="Banner 完成" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 18. §3 章節頁 ============ -->
+<section data-label="18 §3 章節頁" class="section-cover">
+  <div class="sc-grid">
+    <div class="sc-num">§3</div>
+    <div class="sc-body">
+      <div class="sc-eyebrow">SECTION THREE</div>
+      <h2 class="sc-title">各階段審核</h2>
+      <p class="sc-desc">Step 4-7 + 字數規則 + 上傳救援</p>
+      <div class="sc-list">
+        <div>Step 4 審文案 + 字數規則</div>
+        <div>Step 5 審底圖 + 上傳救援</div>
+        <div>Step 6 審成品</div>
+        <div>Step 7 完成、下稿</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 19. Step 4 審文案 ============ -->
+<section data-label="19 Step 4 審文案">
+  <div class="slide-pad">
+    <div class="section-tag">§3 · STEP 4</div>
+    <h2 class="slide-title">系統給兩組文案<br/>主組 + 備選 各 大標 / 小標 / CTA</h2>
+    <div class="img-row">
+      <div class="img-frame">
+        <img src="https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/06-s1-copy-review_form.png" alt="文案兩組並列" />
+      </div>
+      <div class="img-side">
+        <div class="kv">
+          <div class="kv-k">主組</div>
+          <div class="kv-v">AI 第一推薦</div>
+        </div>
+        <div class="kv">
+          <div class="kv-k">備選</div>
+          <div class="kv-v">同主題不同切角</div>
+        </div>
+        <p class="muted">每組包含:大標 H1 / 小標 H2 / CTA 按鈕。可選用、可改寫、可重生。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 20. Step 4 想做什麼 ============ -->
+<section data-label="20 Step 4 4 種選擇">
+  <div class="slide-pad">
+    <div class="section-tag">§3 · STEP 4 · 想做什麼 → 改 2 欄位</div>
+    <h2 class="slide-title">4 種選擇對照</h2>
+    <div class="action-table">
+      <div class="at-head">
+        <div>想做</div>
+        <div>改 1 · 選用 / 文案</div>
+        <div>改 2 · 狀態</div>
+      </div>
+      <div class="at-row">
+        <div class="at-want">用主組</div>
+        <div class="at-do">🟡S2 選用版本 = <b>主組</b></div>
+        <div class="at-status">→ 待確認底圖</div>
+      </div>
+      <div class="at-row">
+        <div class="at-want">用備選</div>
+        <div class="at-do">🟡S2 選用版本 = <b>備選</b></div>
+        <div class="at-status">→ 待確認底圖</div>
+      </div>
+      <div class="at-row">
+        <div class="at-want">自己改寫</div>
+        <div class="at-do">直接改 大標 / 小標 / CTA</div>
+        <div class="at-status">→ 待確認底圖</div>
+      </div>
+      <div class="at-row">
+        <div class="at-want">兩組都爛 重生</div>
+        <div class="at-do">不用改文案</div>
+        <div class="at-status">→ <b>待製作</b>(重跑 S1)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 21. 字數規則 ============ -->
+<section data-label="21 字數規則">
+  <div class="slide-pad">
+    <div class="section-tag">§3 · 自己改寫文案</div>
+    <h2 class="slide-title">字數規則 超過會擠壓變形</h2>
+    <div class="rule-grid">
+      <div class="rule-card">
+        <div class="rule-name">大標 H1</div>
+        <div class="rule-num">≤ 12<span>字</span></div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-name">小標 H2</div>
+        <div class="rule-num">≤ 15<span>字</span></div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-name">CTA 按鈕</div>
+        <div class="rule-num">≤ 5<span>字</span></div>
+      </div>
+    </div>
+    <div class="rule-note">
+      <i class="fas fa-circle-info"></i>
+      超過 → 系統自動縮字級。仍超過會擠壓到變形
+    </div>
+  </div>
+</section>
+
+<!-- ============ 22. 字數範例 ============ -->
+<section data-label="22 字數範例">
+  <div class="slide-pad">
+    <div class="section-tag">§3 · 字數範例</div>
+    <h2 class="slide-title">寧可少一個字 不要貪多</h2>
+    <div class="ex-table">
+      <div class="ex-head">
+        <div>元素</div>
+        <div class="ok">OK</div>
+        <div class="bad">太長</div>
+      </div>
+      <div class="ex-row">
+        <div class="ex-name">大標</div>
+        <div class="ex-ok">母親節 85 折禮遇 <span>(9)</span></div>
+        <div class="ex-bad">母親節限定全館保養品 85 折優惠 <span>(17)</span></div>
+      </div>
+      <div class="ex-row">
+        <div class="ex-name">小標</div>
+        <div class="ex-ok">滿千免運、頂級寵愛媽咪 <span>(11)</span></div>
+        <div class="ex-bad">三檔超殺優惠搶購季買滿千就免運再送好禮 <span>(19)</span></div>
+      </div>
+      <div class="ex-row">
+        <div class="ex-name">CTA</div>
+        <div class="ex-ok">立即搶購 <span>(4)</span></div>
+        <div class="ex-bad">馬上點我搶購活動商品 <span>(10)</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 23. Step 5 審底圖 ============ -->
+<section data-label="23 Step 5 審底圖">
+  <div class="slide-pad">
+    <div class="section-tag">§3 · STEP 5</div>
+    <h2 class="slide-title">系統同時生 PC 大圖 + 手機版</h2>
+    <div class="img-row">
+      <div class="img-frame img-frame-placeholder">
+        <img src="https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/07-s2-image-review.png" alt="底圖確認頁" onerror="this.parentElement.classList.add('img-missing')" />
+        <div class="img-fallback">
+          <i class="fas fa-image"></i>
+          <div>底圖確認頁(待補)</div>
+        </div>
+      </div>
+      <div class="img-side">
+        <div class="size-card">
+          <div class="size-tag">PC 大圖</div>
+          <div class="size-num">2500 × 369 px</div>
+        </div>
+        <div class="size-card">
+          <div class="size-tag">手機版</div>
+          <div class="size-num">1436 × 212 px</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 24. Step 5 5 種選擇 ============ -->
+<section data-label="24 Step 5 5 種選擇">
+  <div class="slide-pad">
+    <div class="section-tag">§3 · STEP 5 · 想做什麼 → 改 2 欄位</div>
+    <h2 class="slide-title">5 種選擇對照</h2>
+    <div class="action-table">
+      <div class="at-head">
+        <div>想做</div>
+        <div>改 1 · 審核 select</div>
+        <div>改 2 · 狀態</div>
+      </div>
+      <div class="at-row"><div class="at-want">都 OK 進下一步</div><div class="at-do">🟢 = <b>確認</b></div><div class="at-status">→ 待確認成品</div></div>
+      <div class="at-row"><div class="at-want">同條件重生</div><div class="at-do">🟢 = <b>重做</b></div><div class="at-status">維持 待確認底圖</div></div>
+      <div class="at-row"><div class="at-want">改文案再生</div><div class="at-do">清空 🟢</div><div class="at-status">→ 待確認文案</div></div>
+      <div class="at-row"><div class="at-want">改用自己的圖</div><div class="at-do">切「手動上傳」(下頁)</div><div class="at-status">→ 待確認成品</div></div>
+      <div class="at-row"><div class="at-want">全部重來</div><div class="at-do">不改</div><div class="at-status">→ <b>待製作</b></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 25. 上傳救援 5 步 ============ -->
+<section data-label="25 上傳救援 5 步">
+  <div class="slide-pad">
+    <div class="section-tag">§3 · 7.1 自己上傳底圖(救援)</div>
+    <h2 class="slide-title">連續重做 3-5 次仍生不出滿意<br/>改用自己的圖</h2>
+    <div class="upload-steps">
+      <div class="us-item"><div class="us-num">1</div><div class="us-text">PC 版底圖傳 <b>Google Drive</b> → 取分享連結</div></div>
+      <div class="us-item"><div class="us-num">2</div><div class="us-text">同上傳 M 版</div></div>
+      <div class="us-item"><div class="us-num">3</div><div class="us-text">🔵S3 底圖來源 = <b>「手動上傳」</b></div></div>
+      <div class="us-item"><div class="us-num">4</div><div class="us-text">🔵S3 底圖 PC / M = <b>貼 Drive 連結</b></div></div>
+      <div class="us-item"><div class="us-num">5</div><div class="us-text">狀態 → <b>「待確認成品」</b></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 26. 上傳規則 ============ -->
+<section data-label="26 上傳規則">
+  <div class="slide-pad">
+    <div class="section-tag">§3 · 7.1 上傳規則(必守)</div>
+    <h2 class="slide-title">5 條規則 不守會被退稿</h2>
+    <div class="spec-table">
+      <div class="spec-head">
+        <div>規則</div>
+        <div>PC 版</div>
+        <div>手機版</div>
+      </div>
+      <div class="spec-row"><div class="spec-name">尺寸</div><div class="spec-pc">2500 × 369 px</div><div class="spec-m">1436 × 212 px</div></div>
+      <div class="spec-row"><div class="spec-name">格式</div><div class="spec-pc">PNG</div><div class="spec-m">PNG</div></div>
+      <div class="spec-row"><div class="spec-name">主體位置</div><div class="spec-pc">集中在左 30%</div><div class="spec-m">集中在左 24%</div></div>
+      <div class="spec-row"><div class="spec-name">右側留白</div><div class="spec-pc">50-70% 留白 / 漸層</div><div class="spec-m">56-76% 留白 / 漸層</div></div>
+      <div class="spec-row"><div class="spec-name">大小</div><div class="spec-pc">&lt; 3 MB</div><div class="spec-m">&lt; 3 MB</div></div>
+    </div>
+    <div class="warning-box warning-box-sm">
+      <i class="fas fa-triangle-exclamation"></i>
+      Drive 分享要選「任何人有連結可檢視」 否則系統抓不到
+    </div>
+  </div>
+</section>
+
+<!-- ============ 27. 為何要左側集中 ============ -->
+<section data-label="27 為何左側集中">
+  <div class="slide-pad">
+    <div class="section-tag">§3 · 7.1 設計邏輯</div>
+    <h2 class="slide-title">為何要左側集中 + 右側留白</h2>
+    <div class="layout-demo">
+      <div class="ld-banner">
+        <div class="ld-subject">
+          <div class="ld-subject-tag">主體</div>
+          <div class="ld-subject-name">商品 / 模特</div>
+        </div>
+        <div class="ld-text-area">
+          <div class="ld-text-tag">右側 — 系統會疊文字</div>
+          <div class="ld-text-mock">
+            <div class="ld-mock-h1">大標 H1</div>
+            <div class="ld-mock-h2">小標 H2 副標</div>
+            <div class="ld-mock-cta">CTA</div>
+          </div>
+        </div>
+      </div>
+      <p class="ld-caption">系統會把文字(大標 / 小標 / CTA)疊在右側 — 主體跑到中央或右邊 → 文字疊在主體上 → 看不清楚</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 28. 設計師交圖時請告訴他 ============ -->
+<section data-label="28 設計師交圖須知">
+  <div class="slide-pad">
+    <div class="section-tag">§3 · 7.1 給設計師的交圖須知</div>
+    <h2 class="slide-title">設計師交圖時請告訴他 5 件事</h2>
+    <div class="brief-list">
+      <div class="brief-item"><i class="fas fa-ruler-combined"></i><div>Banner 底圖,PC 2500×369 / M 1436×212</div></div>
+      <div class="brief-item"><i class="fas fa-file-image"></i><div>PNG,每張 &lt; 3 MB</div></div>
+      <div class="brief-item"><i class="fas fa-align-left"></i><div>主體放<b>左 30%</b>,右側留白給文字</div></div>
+      <div class="brief-item"><i class="fas fa-ban"></i><div><b>不用做文字 / CTA 按鈕</b>,系統會自動疊</div></div>
+      <div class="brief-item"><i class="fab fa-google-drive"></i><div>丟我 Drive,權限開「任何人有連結可檢視」</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 29. Step 6 審成品 ============ -->
+<section data-label="29 Step 6 審成品">
+  <div class="slide-pad">
+    <div class="section-tag">§3 · STEP 6</div>
+    <h2 class="slide-title">系統把文字疊到底圖上<br/>自動處理對比、字體、置中</h2>
+    <div class="img-row">
+      <div class="img-frame">
+        <img src="https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/08-s3-final-review.png" alt="成品確認頁總覽" />
+      </div>
+      <div class="img-side">
+        <div class="kv"><div class="kv-k">大標 H1</div><div class="kv-v">最大、強調色</div></div>
+        <div class="kv"><div class="kv-k">小標 H2</div><div class="kv-v">輔助訊息</div></div>
+        <div class="kv"><div class="kv-k">CTA</div><div class="kv-v">按鈕、行動指令</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 30. Step 6 5 種選擇 ============ -->
+<section data-label="30 Step 6 5 種選擇">
+  <div class="slide-pad">
+    <div class="section-tag">§3 · STEP 6 · 想做什麼 → 改 2 欄位</div>
+    <h2 class="slide-title">5 種選擇對照</h2>
+    <div class="action-table">
+      <div class="at-head"><div>想做</div><div>改 1 · select / 顏色</div><div>改 2 · 狀態</div></div>
+      <div class="at-row"><div class="at-want">完美 下稿</div><div class="at-do">🔵S3 成品審核 = <b>確認</b></div><div class="at-status">→ 已完成</div></div>
+      <div class="at-row"><div class="at-want">改字色 / 描邊</div><div class="at-do">改顏色 + 🔵 = <b>重做</b></div><div class="at-status">維持 待確認成品</div></div>
+      <div class="at-row"><div class="at-want">換底圖</div><div class="at-do">清 🔵</div><div class="at-status">→ 待確認底圖</div></div>
+      <div class="at-row"><div class="at-want">改文案</div><div class="at-do">清 🔵</div><div class="at-status">→ 待確認文案</div></div>
+      <div class="at-row"><div class="at-want">全重來</div><div class="at-do">不改</div><div class="at-status">→ <b>待製作</b></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 31. Step 7 完成 ============ -->
+<section data-label="31 Step 7 完成">
+  <div class="slide-pad">
+    <div class="section-tag">§3 · STEP 7</div>
+    <h2 class="slide-title">完成 拿 Banner URL 下稿</h2>
+    <div class="img-row">
+      <div class="img-frame">
+        <img src="https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/09-s4-completed.png" alt="已完成頁" />
+      </div>
+      <div class="img-side">
+        <div class="url-card"><div class="url-tag">🟣S3 PC Banner</div><div class="url-desc">拿這個下 desktop 稿</div></div>
+        <div class="url-card"><div class="url-tag">🟣S3 M Banner</div><div class="url-desc">拿這個下手機稿</div></div>
+        <div class="warning-box warning-box-sm">
+          <i class="fas fa-triangle-exclamation"></i>
+          下稿前必做:圖丟 TinyPNG 壓縮(&lt; 500 KB 才能上稿)
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 32. 整張搞定 ============ -->
+<section data-label="32 整張搞定" class="hero-stat">
+  <div class="hs-wrap">
+    <div class="hs-eyebrow">END OF SECTION 3</div>
+    <div class="hs-num">15-20<span>min</span></div>
+    <h2 class="hs-title">整張 banner ~15-20 分鐘搞定</h2>
+    <p class="hs-sub">從填需求到拿成品 不用設計師、不用排隊</p>
+  </div>
+</section>
+
+<!-- ============ 33. §4 章節頁 ============ -->
+<section data-label="33 §4 章節頁" class="section-cover">
+  <div class="sc-grid">
+    <div class="sc-num">§4</div>
+    <div class="sc-body">
+      <div class="sc-eyebrow">SECTION FOUR</div>
+      <h2 class="sc-title">退回 / 重做</h2>
+      <p class="sc-desc">每階段都能退 但要自己改「狀態」告訴系統</p>
+      <div class="sc-list">
+        <div>核心邏輯</div>
+        <div>三階段 5 種選擇對照</div>
+        <div>4 種重做 — 時間對照</div>
+        <div>退回訣竅</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 34. 退回核心邏輯 ============ -->
+<section data-label="34 退回核心邏輯">
+  <div class="slide-pad">
+    <div class="section-tag">§4 · 核心邏輯</div>
+    <h2 class="slide-title">每階段都能退<br/>但要自己改「狀態」告訴系統</h2>
+    <div class="img-row">
+      <div class="img-frame">
+        <img src="https://raw.githubusercontent.com/yihueliu13/banner-studio-site/main/docs/quick-start-images/10-rollback-buttons-s3.png" alt="退回 / 審核 select 對照" />
+        <div class="img-cap">S3 階段(待確認底圖)的狀態下拉 + 🟢S2 審核 select</div>
+      </div>
+      <div class="img-side">
+        <div class="warning-box">
+          <i class="fas fa-triangle-exclamation"></i>
+          光按 select、光改文案<br/>系統不會動
+        </div>
+        <p class="muted">永遠記得 <b>先動 select 再動狀態</b>。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 35. 三階段對照表 ============ -->
+<section data-label="35 三階段對照">
+  <div class="slide-pad">
+    <div class="section-tag">§4 · 三階段對照</div>
+    <h2 class="slide-title">三個階段 各 5 種選擇</h2>
+    <div class="three-tables">
+      <!-- 文案 -->
+      <div class="tt-card">
+        <div class="tt-head">🟡 待確認文案</div>
+        <div class="tt-row"><div class="tt-want">OK 進下一步</div><div class="tt-arrow">→</div><div class="tt-status">待確認底圖</div></div>
+        <div class="tt-row"><div class="tt-want">重生新文案</div><div class="tt-arrow">→</div><div class="tt-status">待製作</div></div>
+        <div class="tt-row"><div class="tt-want">直接改寫文字</div><div class="tt-arrow">→</div><div class="tt-status">待確認底圖</div></div>
+      </div>
+      <!-- 底圖 -->
+      <div class="tt-card">
+        <div class="tt-head">🟢 待確認底圖</div>
+        <div class="tt-row"><div class="tt-want">OK 進下一步</div><div class="tt-arrow">→</div><div class="tt-status">待確認成品</div></div>
+        <div class="tt-row"><div class="tt-want">重生底圖(常用)</div><div class="tt-arrow">→</div><div class="tt-status">維持</div></div>
+        <div class="tt-row"><div class="tt-want">退回改文案</div><div class="tt-arrow">→</div><div class="tt-status">待確認文案</div></div>
+        <div class="tt-row"><div class="tt-want">改用自己的圖</div><div class="tt-arrow">→</div><div class="tt-status">待確認成品</div></div>
+        <div class="tt-row"><div class="tt-want">全重來</div><div class="tt-arrow">→</div><div class="tt-status">待製作</div></div>
+      </div>
+      <!-- 成品 -->
+      <div class="tt-card">
+        <div class="tt-head">🔵 待確認成品</div>
+        <div class="tt-row"><div class="tt-want">OK 完成</div><div class="tt-arrow">→</div><div class="tt-status">已完成</div></div>
+        <div class="tt-row"><div class="tt-want">改字色 / 描邊</div><div class="tt-arrow">→</div><div class="tt-status">維持</div></div>
+        <div class="tt-row"><div class="tt-want">換底圖</div><div class="tt-arrow">→</div><div class="tt-status">待確認底圖</div></div>
+        <div class="tt-row"><div class="tt-want">改文案</div><div class="tt-arrow">→</div><div class="tt-status">待確認文案</div></div>
+        <div class="tt-row"><div class="tt-want">全重來</div><div class="tt-arrow">→</div><div class="tt-status">待製作</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 36. 4 種重做時間對照 ============ -->
+<section data-label="36 4 種重做時間">
+  <div class="slide-pad">
+    <div class="section-tag">§4 · 時間對照</div>
+    <h2 class="slide-title">4 種重做差別 越往前越花時間</h2>
+    <div class="time-table">
+      <div class="tm-row tm-fast">
+        <div class="tm-name">重做成品</div>
+        <div class="tm-what">文字疊圖</div>
+        <div class="tm-time">&lt; 1 min</div>
+        <div class="tm-when">改字色 / 描邊</div>
+        <div class="tm-bar"><div class="tm-fill" style="width:8%;"></div></div>
+      </div>
+      <div class="tm-row">
+        <div class="tm-name">重做底圖</div>
+        <div class="tm-what">底圖 + 成品</div>
+        <div class="tm-time">~3 min</div>
+        <div class="tm-when">文字 OK 但圖不行</div>
+        <div class="tm-bar"><div class="tm-fill" style="width:30%;"></div></div>
+      </div>
+      <div class="tm-row">
+        <div class="tm-name">退回文案</div>
+        <div class="tm-what">文案 + 底圖 + 成品</div>
+        <div class="tm-time">~7 min</div>
+        <div class="tm-when">文字本身要改</div>
+        <div class="tm-bar"><div class="tm-fill" style="width:70%;"></div></div>
+      </div>
+      <div class="tm-row tm-slow">
+        <div class="tm-name">退回待製作</div>
+        <div class="tm-what">全部</div>
+        <div class="tm-time">~10 min</div>
+        <div class="tm-when">整張要重來</div>
+        <div class="tm-bar"><div class="tm-fill" style="width:100%;"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 37. 退回訣竅 ============ -->
+<section data-label="37 退回訣竅">
+  <div class="slide-pad">
+    <div class="section-tag">§4 · 訣竅</div>
+    <h2 class="slide-title">4 個訣竅 少花一半時間</h2>
+    <div class="tip-list">
+      <div class="tip-card">
+        <div class="tip-num">01</div>
+        <div class="tip-body">
+          <div class="tip-title">先確定文案再進底圖</div>
+          <div class="tip-desc">最費時的是底圖 不要重複生</div>
+        </div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">02</div>
+        <div class="tip-body">
+          <div class="tip-title">顏色 / 描邊用「重做成品」</div>
+          <div class="tip-desc">不要退到底圖 多花 3 分鐘</div>
+        </div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">03</div>
+        <div class="tip-body">
+          <div class="tip-title">底圖先試「重做」2-3 次</div>
+          <div class="tip-desc">仍不行再退文案</div>
+        </div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">04</div>
+        <div class="tip-body">
+          <div class="tip-title">先動 select 再動狀態</div>
+          <div class="tip-desc">永遠這個順序</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 38. §5 全 AI 模式 ============ -->
+<section data-label="38 §5 全 AI 模式" class="section-cover">
+  <div class="sc-grid">
+    <div class="sc-num">§5</div>
+    <div class="sc-body">
+      <div class="sc-eyebrow">SECTION FIVE</div>
+      <h2 class="sc-title">全 AI 模式</h2>
+      <p class="sc-desc">時間趕、不挑剔、信任 AI default → 走最快路徑</p>
+      <div class="sc-list">
+        <div>S0 開需求 — 選填全空</div>
+        <div>各階段 — 一律確認 + 前進</div>
+        <div>10-12 分鐘完成</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 39. 全 AI 模式設定 ============ -->
+<section data-label="39 全 AI 設定">
+  <div class="slide-pad">
+    <div class="section-tag">§5 · 全 AI 模式</div>
+    <h2 class="slide-title">各階段設定 一律確認 不細看</h2>
+    <div class="ai-setup">
+      <div class="ai-step">
+        <div class="ai-tag">S0 開需求</div>
+        <div class="ai-rule"><b>4 個必填</b> 正常填(一定要)</div>
+        <div class="ai-rule"><b>視覺風格 / 人物 / 渲染等選填</b> 全空著(AI 自動決定)</div>
+      </div>
+      <div class="ai-step">
+        <div class="ai-tag">待確認文案</div>
+        <div class="ai-rule">🟡 = <b>主組</b> + 狀態前進(不細看)</div>
+      </div>
+      <div class="ai-step">
+        <div class="ai-tag">待確認底圖</div>
+        <div class="ai-rule">🟢 = <b>確認</b> + 狀態前進(不重做)</div>
+      </div>
+      <div class="ai-step">
+        <div class="ai-tag">待確認成品</div>
+        <div class="ai-rule">🔵 = <b>確認</b> + 狀態前進(不調字色)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 40. 全 AI 預期 vs 何時選 ============ -->
+<section data-label="40 全 AI 預期">
+  <div class="slide-pad">
+    <div class="section-tag">§5 · 預期 vs 何時選</div>
+    <h2 class="slide-title">全 AI 模式 快但中等滿意度</h2>
+    <div class="compare-grid">
+      <div class="cmp-card">
+        <div class="cmp-name">標準流程</div>
+        <div class="cmp-time">15-20 <span>min</span></div>
+        <div class="cmp-rate">滿意度 高</div>
+      </div>
+      <div class="cmp-card cmp-card-alt">
+        <div class="cmp-name">全 AI 模式</div>
+        <div class="cmp-time">10-12 <span>min</span></div>
+        <div class="cmp-rate">滿意度 中</div>
+      </div>
+    </div>
+    <div class="when-grid">
+      <div class="when-card when-good">
+        <div class="when-mark"><i class="fas fa-check"></i></div>
+        <div class="when-title">適合</div>
+        <ul>
+          <li>內部 demo</li>
+          <li>急件</li>
+          <li>同質性活動</li>
+        </ul>
+      </div>
+      <div class="when-card when-bad">
+        <div class="when-mark"><i class="fas fa-xmark"></i></div>
+        <div class="when-title">不適合</div>
+        <ul>
+          <li>重點檔期</li>
+          <li>第一次上某品類</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 41. §6 章節頁 ============ -->
+<section data-label="41 §6 章節頁" class="section-cover">
+  <div class="sc-grid">
+    <div class="sc-num">§6</div>
+    <div class="sc-body">
+      <div class="sc-eyebrow">SECTION SIX</div>
+      <h2 class="sc-title">FAQ + 找誰問</h2>
+      <p class="sc-desc">常見問題、聯絡管道</p>
+      <div class="sc-list">
+        <div>FAQ 1/2 — 系統卡住、字數、商品圖</div>
+        <div>FAQ 2/2 — 字色、批次、急件</div>
+        <div>找誰問</div>
+        <div>開始試試</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 42. FAQ 1/2 ============ -->
+<section data-label="42 FAQ 1">
+  <div class="slide-pad">
+    <div class="section-tag">§6 · FAQ 1/2</div>
+    <h2 class="slide-title">常見問題 1/2</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q"><span>Q</span> 5 分鐘了狀態沒變?</div>
+        <div class="faq-a"><span>A</span> 系統 1 分鐘輪詢、最多等 2 分鐘。仍卡 → 找 Kay</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Q</span> 字太長會怎樣?</div>
+        <div class="faq-a"><span>A</span> 系統自動縮字級。建議大標 ≤ 12 / 小標 ≤ 15 / CTA ≤ 5</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Q</span> 商品圖被裁掉?</div>
+        <div class="faq-a"><span>A</span> 點「重做底圖」3 次仍不行 → 找 Kay 看 prompt</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 43. FAQ 2/2 ============ -->
+<section data-label="43 FAQ 2">
+  <div class="slide-pad">
+    <div class="section-tag">§6 · FAQ 2/2</div>
+    <h2 class="slide-title">常見問題 2/2</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q"><span>Q</span> 字色看不清楚?</div>
+        <div class="faq-a"><span>A</span> 手動指定 🔵S3 大標色 + 描邊 → 重做成品</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Q</span> 一次開很多筆?</div>
+        <div class="faq-a"><span>A</span> 可以、系統排隊。建議單批 ≤ 5 筆</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Q</span> 急件怎麼辦?</div>
+        <div class="faq-a"><span>A</span> 標題加「[急]」+ Chat 私訊 Kay</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 44. 找誰問 ============ -->
+<section data-label="44 找誰問">
+  <div class="slide-pad">
+    <div class="section-tag">§6 · 找誰問</div>
+    <h2 class="slide-title">不同情境 找對人問最快</h2>
+    <div class="who-list">
+      <div class="who-item">
+        <div class="who-icon"><i class="fas fa-key"></i></div>
+        <div class="who-body">
+          <div class="who-case">帳號 / 群組開通</div>
+          <div class="who-who">Kay(Notion 私訊)</div>
+        </div>
+      </div>
+      <div class="who-item">
+        <div class="who-icon"><i class="fas fa-bug"></i></div>
+        <div class="who-body">
+          <div class="who-case">系統卡住 / 報錯</div>
+          <div class="who-who">Kay(截圖 + 貼 row 連結)</div>
+        </div>
+      </div>
+      <div class="who-item">
+        <div class="who-icon"><i class="fas fa-rotate"></i></div>
+        <div class="who-body">
+          <div class="who-case">文案 / 風格不滿意</div>
+          <div class="who-who">試「重做」3 次,仍不行找 Kay</div>
+        </div>
+      </div>
+      <div class="who-item">
+        <div class="who-icon"><i class="fas fa-palette"></i></div>
+        <div class="who-body">
+          <div class="who-case">想加新風格 / 版型</div>
+          <div class="who-who">Kay 排期評估</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 45. 結尾 開始試試 ============ -->
+<section data-label="45 開始試試" class="closing">
+  <div class="closing-wrap">
+    <div class="closing-eyebrow">START NOW</div>
+    <h2 class="closing-title">開始試試</h2>
+    <p class="closing-sub">第一張 banner ~15 分鐘<br/>有問題隨時 Notion 私訊 Kay</p>
+    <div class="closing-btns">
+      <button class="btn btn-primary">打開 Banner 製作管理 DB</button>
+      <button class="btn btn-secondary">回到目錄 ↑</button>
+    </div>
+    <div class="closing-foot">
+      露天 UIUX Team × Sales · Banner Studio Quick Start v0.1 · 2026-04
+    </div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>
