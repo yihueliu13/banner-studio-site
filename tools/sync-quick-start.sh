@@ -25,6 +25,9 @@ fi
 cp "$HTML_SRC" "$DST_DIR/quick-start.html"
 cp "$PDF_SRC" "$DST_DIR/quick-start.pdf"
 
+# Patch:幫封面兩個 CTA 按鈕加 click handler(Claude Design 匯出時沒接事件)
+python3 "$PROJECT_ROOT/tools/patch-quick-start-html.py" "$DST_DIR/quick-start.html"
+
 echo "✅ 同步完成"
 echo "   HTML: $(du -h "$DST_DIR/quick-start.html" | cut -f1) → app/public/quick-start.html"
 echo "   PDF:  $(du -h "$DST_DIR/quick-start.pdf" | cut -f1) → app/public/quick-start.pdf"
