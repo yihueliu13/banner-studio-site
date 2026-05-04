@@ -14,9 +14,9 @@ type Feature = {
 const features: Feature[] = [
   {
     title: "12 種視覺風格",
-    shortBody: "清新、質感、活潑、急迫、溫馨… 17 種選一個，或讓 AI 自動判斷。",
+    shortBody: "清新、質感、活潑、急迫、溫馨… 12 種選一個，或讓 AI 自動判斷。",
     fullBody:
-      "清新、質感、活潑、急迫、溫馨… 17 種選一個，或讓 AI 自動判斷。Figma 設計 token 同步，不走調。",
+      "清新、質感、活潑、急迫、溫馨… 12 種選一個，或讓 AI 自動判斷。Figma 設計 token 同步，不走調。",
     thumb: "/images/features/feature-style.webp",
     fullImg: "/images/features/feature-style.webp",
   },
