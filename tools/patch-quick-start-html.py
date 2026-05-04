@@ -11,29 +11,81 @@ import pathlib
 
 PATCH = """<script>
 (function() {
-  document.addEventListener('click', function(e) {
-    var stage = document.querySelector('deck-stage');
-    if (!stage) return;
-    var btn = e.target.closest('button');
-    if (!btn) return;
-    var txt = (btn.textContent || '').trim();
-    if (txt === '開始學習') {
-      e.preventDefault();
-      stage.next();
-    } else if (txt.indexOf('看完整流程') === 0) {
-      e.preventDefault();
-      if (typeof stage._go === 'function') {
-        stage._go(2, 'api');  // 第 3 張 slide(流程圖)
-      } else {
-        stage.next();
-        setTimeout(function() { stage.next(); }, 100);
+  // 建立 §1-§6 章節頁 → slide index 對照表
+  function buildSectionIndexMap() {
+    var map = {};
+    var sections = document.querySelectorAll('deck-stage > section');
+    sections.forEach(function(sec, i) {
+      var label = sec.getAttribute('data-label') || '';
+      var m = label.match(/§([1-6])/);
+      if (m) map[m[1]] = i;
+    });
+    return map;
+  }
+
+  function applyCursorHints(map) {
+    // 目錄 / 跳轉表的 row(tr/li),含 §1-§6 → 加 pointer
+    document.querySelectorAll('tr, li').forEach(function(row) {
+      var t = (row.textContent || '').trim();
+      var m = t.match(/§([1-6])/);
+      if (m && map[m[1]] != null) {
+        row.style.cursor = 'pointer';
       }
-    }
-  });
+    });
+  }
+
+  function init() {
+    var stage = document.querySelector('deck-stage');
+    if (!stage) { setTimeout(init, 50); return; }
+    var sectionIndexMap = buildSectionIndexMap();
+    applyCursorHints(sectionIndexMap);
+
+    document.addEventListener('click', function(e) {
+      // 1) 封面 CTA 按鈕
+      var btn = e.target.closest('button');
+      if (btn) {
+        var bt = (btn.textContent || '').trim();
+        if (bt === '開始學習') {
+          e.preventDefault();
+          stage.next();
+          return;
+        }
+        if (bt.indexOf('看完整流程') === 0) {
+          e.preventDefault();
+          if (typeof stage._go === 'function') {
+            stage._go(2, 'api');
+          } else {
+            stage.next();
+            setTimeout(function() { stage.next(); }, 100);
+          }
+          return;
+        }
+      }
+
+      // 2) 目錄 / 跳轉表 row 點擊跳 § 章節
+      var row = e.target.closest('tr, li');
+      if (row) {
+        var t = (row.textContent || '').trim();
+        var m = t.match(/§([1-6])/);
+        if (m && sectionIndexMap[m[1]] != null) {
+          e.preventDefault();
+          if (typeof stage._go === 'function') {
+            stage._go(sectionIndexMap[m[1]], 'api');
+          }
+        }
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
 </script>"""
 
-PATCH_MARKER = "// Quick Start CTA patch"
+PATCH_MARKER = "buildSectionIndexMap"
 
 def main():
     if len(sys.argv) != 2:
@@ -47,8 +99,8 @@ def main():
 
     content = path.read_text(encoding="utf-8")
 
-    # 防止重複注入
-    if "stage._go(2" in content:
+    # 防止重複注入(用 marker)
+    if PATCH_MARKER in content:
         print(f"ℹ️  patch 已存在,跳過: {path.name}")
         return
 
